@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  flex-direction: row;
+}
+.header__title {
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
