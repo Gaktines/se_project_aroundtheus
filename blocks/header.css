@@ -1,9 +1,8 @@
 .header {
-  display: flex;
-  flex-direction: row;
+  background-color: black;
 }
 .header__title {
-  color: white;
+  color: #ffffff;
   display: flex;
   flex-direction: row;
 }
