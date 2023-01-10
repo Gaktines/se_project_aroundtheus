@@ -10,68 +10,95 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Serif&display=swap" rel="stylesheet">
     </head>
-    <header class="header">
-        
-          <h1 class="Header__title">Around<span class="header__title-end">The U.S.</span></h1>
-    </header>
-    <body>
-        <section class="about">
+    
+    <body class="page">
+        <div class="page__content">
+          <header class="header page__section">
+            
+        <img
+        src="./images/header logo.svg"
+        alt="Header Logo"
+        class="logo"
+        />
+          </header>
+          <main class="content">
+            <section class="profile page__section">
             <img
             src="./images/jacques-cousteau.svg"
             alt="JCousteau Image"
             class="image"
           />
-          <h2 class="JC__title">Jacques Cousteau</h2>
-          <p class="JC__subheading">Explorer</p>
-          <div class="card">
+          <h2 class="profile__title">Jacques Cousteau</h2>
+          <p class="profile__subheading">Explorer</p>
+        </section>
+        <section class="cards page__section">
+          <ul class="card__list">
+          <li class="card">
             <img
             src="./images/yosemite-valley.svg"
             alt="Yosemite image"
             class="card__image"
-            />
-            <p class="card__title">Yosemite Valley<img src="./images/Vector.svg"/></p>
-          </div>
-          <div class="card">
+           />
+            <div class="card__description">
+              <p>Yosemite Valley<img src="./images/Vector.svg"/></p>
+            </div>
+          </li>
+          <li class="card">
             <img
             src="./images/lake-louise.svg"
             alt="Lake Louise Image"
             class="card__image"
             />
-            <p class="card__title">Lake Louise<img src="./images/Vector.svg"/></p>
-          </div>
-          <div class="card">
+            <div class="card__description">
+              <p>Lake Louise<img src="./images/Vector.svg"/></p>
+            </div>
+        </li>
+          <li class="card">
+          
             <img 
             src="./images/bald-mountains.svg"
             alt="Bald Mountains Image"
             class="card__image"
             />
-            <p class="card__title">Bald Mountains<img src="./images/Vector.svg"/></p>
+            <div class="card__description">
+              <p>Bald Mountains<img src="./images/Vector.svg"/></p>
           </div>
-          <div class="card">
+        </li>
+          <li class="card">
             <img
             src="./images/latemar.svg"
             alt="Latemar Image"
             class="card__image"
             />
-            <p class="card__title">Latemar<img src="./images/Vector.svg"/></p>
+            <div class="card__description">
+              <p>Latemar<img src="./images/Vector.svg"/></p>
           </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img
             src="./images/vanoise-national-park.svg"
             alt="Vanoise Image"
             class="card__image"
             />
-            <p class="card__title">Vanoise National Park<img src="./images/Vector.svg"/></p>
+            <div class="card__description">
+              <p>Vanoise National Park<img src="./images/Vector.svg"/></p>
           </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img
             src="./images/lago-di-braies.svg"
             alt="Lago Image"
             class="card__image"
             />
-            <p class="card__title">Lago di Braies<img src="./images/Vector.svg"/></p>
+            <div class="card__description">
+              <p>Lago di Braies<img src="./images/Vector.svg"/></p>
           </div>
+          </li>
+        </ul>
         </section>
+        </main>
+        </div>
+          
         <footer class="footer">
           <p class="footer__copyright">2022 Around the US</p>
         </footer>

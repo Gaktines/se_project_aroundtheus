@@ -1,8 +1,5 @@
 .header {
   background-color: black;
-}
-.header__title {
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
+  margin-top: 45px;
+  max-width: 880px;
 }
