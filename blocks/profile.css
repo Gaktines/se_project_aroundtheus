@@ -16,8 +16,6 @@
 }
 .profile__grid {
   display: grid;
-  grid-template-columns: repeat(2 auto);
-  grid-template-rows: repeat(2 auto);
 }
 .profile__title {
   width: 373px;
