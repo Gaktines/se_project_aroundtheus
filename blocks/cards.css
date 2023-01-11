@@ -24,10 +24,17 @@
   padding-right: 20px;
   align-items: center;
   justify-content: space-between;
+  font-family: "Inter" Helvetica sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
 }
 .card__button {
   background-color: white;
   color: black;
   border: none;
   margin-left: 28px;
+  width: 21px;
+  height: 18px;
 }

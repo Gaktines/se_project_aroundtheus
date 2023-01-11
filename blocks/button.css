@@ -3,3 +3,15 @@
   background-color: black;
   color: white;
 }
+.button__pencil {
+  border-color: white;
+  border-style: solid;
+  background-color: black;
+}
+.button__plus {
+  border-color: white;
+  border-style: solid;
+  background-color: black;
+  width: 150px;
+  height: 50px;
+}
