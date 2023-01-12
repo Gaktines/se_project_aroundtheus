@@ -2,17 +2,18 @@
   padding-top: 48px;
   height: 361px;
   width: 282px;
-  gap: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 .card__list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, 282px);
   list-style: none;
-  padding-left: 200px;
-  padding-right: 200px;
+  padding: 0;
   margin: 0;
-  gap: 17px;
+  grid-gap: 20px 17px;
+  justify-content: center;
 }
 .card__description {
   display: flex;
@@ -32,10 +33,21 @@
   line-height: 29px;
 }
 .card__button {
-  background-color: white;
+  background: transparent url(../images/vector.svg);
+  background-position: center;
+  background-repeat: no-repeat;
   color: black;
   border: none;
   margin-left: 28px;
   width: 21px;
   height: 18px;
+}
+.card__button:hover {
+  background: transparent url(../images/vector_hover.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card__image {
+  height: 282px;
+  width: 282px;
 }
