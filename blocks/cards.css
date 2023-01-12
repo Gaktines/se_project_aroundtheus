@@ -2,6 +2,7 @@
   padding-top: 48px;
   height: 361px;
   width: 282px;
+  gap: 20px;
 }
 .card__list {
   display: grid;
