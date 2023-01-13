@@ -15,10 +15,10 @@
 .profile__grid {
   display: grid;
   grid-template-areas:
-    ". title title plus . "
-    ". subheading . . ";
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 3fr 1fr 1fr;
+    "title title pencil . . "
+    "subheading . . . . ";
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-rows: 5fr 1fr 1fr 1fr;
 }
 .profile__title {
   max-width: 373px;
@@ -30,6 +30,7 @@
   line-height: 48px;
   margin: 0;
   grid-area: title;
+  width: 100%;
 }
 .profile__subheading {
   max-width: 415px;
@@ -42,4 +43,18 @@
   line-height: 22px;
   margin: 0;
   grid-area: subheading;
+}
+@media screen and (max-width: 425px) {
+  .profile {
+    flex-direction: column;
+  }
+  .profile__grid {
+    flex-direction: column;
+  }
+  .profile__title {
+    width: 100%;
+  }
+  .profile__subheading {
+    width: 100%;
+  }
 }

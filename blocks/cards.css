@@ -51,3 +51,8 @@
   height: 282px;
   width: 282px;
 }
+@media screen and (max-width: 425px) {
+  .card__list {
+    flex-direction: column;
+  }
+}
