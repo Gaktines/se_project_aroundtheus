@@ -3,9 +3,6 @@
   color: white;
 }
 .page__content {
-  margin-left: 200px;
-  margin-right: 200px;
-  display: flex;
 }
 .page__section {
   position: relative;

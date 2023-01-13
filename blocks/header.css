@@ -1,7 +1,5 @@
 .header {
   background-color: black;
   margin-top: 45px;
-  max-width: 880px;
-  position: absolute;
-  margin-left: 200px;
+  width: 100%;
 }
