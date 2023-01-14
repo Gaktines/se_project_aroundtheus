@@ -1,4 +1,10 @@
 @font-face {
   font-family: "Inter";
-  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&family=Noto+Serif&display=swap");
+  src: url("C:\Users\georg\projects\se_project_aroundtheus\fonts\Inter-Bold.woff2");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("C:\Users\georg\projects\se_project_aroundtheus\fonts\Inter-Regular.woff2");
+  font-weight: regular;
 }
