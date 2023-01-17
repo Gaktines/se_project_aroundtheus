@@ -85,7 +85,6 @@
       ". title title pencil .  "
       ". subheading . . . ";
     grid-template-columns: 1fr 3fr 1fr 1fr;
-    /**grid-template-rows: 1fr 6fr 1fr 1fr;**/
   }
   .profile__title {
     width: 100%;
