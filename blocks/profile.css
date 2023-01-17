@@ -35,7 +35,6 @@
 .profile__subheading {
   max-width: 415px;
   height: 22px;
-  position: absoute;
   font-family: "Inter", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -82,8 +81,11 @@
     align-items: center;
   }
   .profile__grid {
-    flex-direction: column;
-    align-items: center;
+    grid-template-areas:
+      ". title title pencil .  "
+      ". subheading . . . ";
+    grid-template-columns: 1fr 3fr 1fr 1fr;
+    /**grid-template-rows: 1fr 6fr 1fr 1fr;**/
   }
   .profile__title {
     width: 100%;
