@@ -43,7 +43,7 @@
   margin: 0;
   grid-area: subheading;
 }
-.profile__edit_button {
+.profile__edit-button {
   background: transparent url(../images/pencil.svg);
   border-color: white;
   border-style: solid;
@@ -54,12 +54,12 @@
   grid-area: pencil;
   margin-left: 18px;
 }
-.profile__edit_button:hover {
+.profile__edit-button:hover {
   background: transparent url(../images/pencil_hover.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
-.profile__add_button {
+.profile__add-button {
   background: transparent url(../images/plus.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -70,7 +70,7 @@
   height: 50px;
   grid-area: plus;
 }
-.profile__add_button:hover {
+.profile__add-button:hover {
   background: transparent url(../images/plus_hover.svg);
   background-position: center;
   background-repeat: no-repeat;
