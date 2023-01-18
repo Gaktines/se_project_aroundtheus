@@ -1,10 +1,20 @@
 @font-face {
   font-family: "Inter";
-  src: url("C:\Users\georg\projects\se_project_aroundtheus\fonts\Inter-Bold.woff2");
+  src: url("../fonts/Inter-Bold.woff2");
   font-weight: bold;
 }
 @font-face {
   font-family: "Inter";
-  src: url("C:\Users\georg\projects\se_project_aroundtheus\fonts\Inter-Regular.woff2");
+  src: url("../fonts/Inter-Regular.woff2");
   font-weight: regular;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Medium.woff2");
+  font-weight: medium;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Black.woff2");
+  font-weight: bold;
 }
