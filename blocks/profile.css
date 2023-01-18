@@ -10,15 +10,15 @@
   flex-direction: row;
   margin: 0 auto;
   padding-top: 156px;
-  max-width: 880px;
 }
 .profile__grid {
   display: grid;
   grid-template-areas:
     "title title pencil . . "
     "subheading . . . . ";
-  grid-template-columns: 3fr 1fr 1fr 1fr;
-  grid-template-rows: 6fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  grid-template-rows: 3fr 1fr 1fr 1fr;
+  align-items: center;
 }
 .profile__title {
   max-width: 373px;
