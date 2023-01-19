@@ -1,28 +1,20 @@
-.image {
-  border-radius: 50%;
-  width: 169px;
-  height: 128px;
-  margin-top: 156px;
-  margin: 0;
-  align-self: center;
-}
 .profile {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  padding-top: 156px;
+  padding-top: 75px;
 }
 .profile__grid {
   display: grid;
   grid-template-areas:
     "title title pencil . . "
-    "subheading . . . . ";
-  grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
+    "subheading subheading subheading . . ";
+  grid-template-columns: 2fr 5fr 1fr 1fr 1fr;
   grid-template-rows: 4fr 1fr 1fr 1fr 1fr;
   align-items: center;
+  margin-left: 10px;
 }
 .profile__title {
-  height: 39px;
   font-family: "Inter", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -31,10 +23,12 @@
   margin: 0;
   grid-area: title;
   width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__subheading {
-  max-width: 415px;
-  height: 22px;
+  max-width: 100%;
   font-family: "Inter", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -42,6 +36,9 @@
   line-height: 22px;
   margin: 0;
   grid-area: subheading;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__edit-button {
   background: transparent url(../images/pencil.svg);
@@ -58,6 +55,8 @@
   background: transparent url(../images/pencil_hover.svg);
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
+  border: solid rgba(255, 255, 255, 0.6);
 }
 .profile__add-button {
   background: transparent url(../images/plus.svg);
@@ -70,12 +69,15 @@
   height: 50px;
   grid-area: plus;
   align-self: center;
+  border-radius: 2px;
 }
 .profile__add-button:hover {
   background: transparent url(../images/plus_hover.svg);
   background-position: center;
   background-repeat: no-repeat;
   align-self: center;
+  cursor: pointer;
+  border: solid rgba(255, 255, 255, 0.6);
 }
 @media screen and (max-width: 425px) {
   .profile {
@@ -85,8 +87,9 @@
   .profile__grid {
     grid-template-areas:
       ". title title pencil .  "
-      ". subheading . . . ";
+      ". subheading subheading subheading . ";
     grid-template-columns: 1fr 3fr 1fr 1fr;
+    text-align: center;
   }
   .profile__title {
     width: 100%;
