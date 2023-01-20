@@ -2,10 +2,14 @@
   background-color: black;
   margin-top: 45px;
   width: 100%;
-  border-bottom: solid 1px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.7);
 }
-@media screen and (max-width: 425px) {
+.header__logo {
+  margin-bottom: 41px;
+}
+@media screen and (max-width: 320px) {
   .header {
-    height: 24px;
+    max-width: 100%;
+    padding-bottom: 32px;
   }
 }

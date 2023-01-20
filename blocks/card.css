@@ -51,9 +51,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-size: 24px;
+  line-height: 29px;
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 320px) {
   .card__description {
     max-width: 100%;
+  }
+  .card__image {
+    width: 100%;
+  }
+  .card {
+    padding-top: 36px;
   }
 }

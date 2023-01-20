@@ -9,3 +9,11 @@
   width: 100%;
   margin: 0 auto;
 }
+@media screen and (max-width: 320px) {
+  .page_section {
+    max-width: 100%;
+  }
+  .page {
+    max-width: 100%;
+  }
+}
