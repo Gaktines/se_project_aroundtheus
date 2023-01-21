@@ -61,7 +61,8 @@
   margin-left: 18px;
 }
 .profile__edit-button:hover {
-  background: transparent url(../images/pencil-hover.svg);
+  background: transparent url(../images/pencil.svg);
+  opacity: 0.6;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
