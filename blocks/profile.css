@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  padding-top: 75px;
+  margin-top: 36.25px;
+  margin-bottom: 47.25px;
 }
 .profile__image {
   border-radius: 50%;
@@ -16,12 +17,10 @@
   display: grid;
   grid-template-areas:
     "title title pencil . . "
-    "subheading subheading subheading . . ";
-  grid-template-columns: 2fr 5fr 1fr 1fr 1fr;
-  grid-template-rows: 4fr 1fr 1fr 1fr 1fr;
+    "subheading subheading subheading . .  ";
+  grid-template-columns: 2fr 5fr 1fr 1fr 1fr 1fr;
   align-items: center;
   margin-left: 20px;
-  padding-top: 40px;
 }
 .profile__title {
   font-family: "Inter", Helvetica, sans-serif;
@@ -34,6 +33,7 @@
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 .profile__subheading {
   max-width: 100%;
@@ -110,16 +110,20 @@
     font-size: 14px;
     margin: 0 auto;
     line-height: 17px;
+    margin-top: 14px;
   }
   .profile__add-button {
     max-width: 100%;
     width: 282px;
     height: 50px;
     margin: 0 auto;
-    padding-top: 36px;
+    margin-top: 36px;
   }
   .profile__edit-button {
     height: 18px;
     width: 18px;
+  }
+  .profile__image {
+    margin-top: 38.25px;
   }
 }
