@@ -61,12 +61,8 @@
   margin-left: 18px;
 }
 .profile__edit-button:hover {
-  /**background: transparent url(../images/pencil.svg);**/
   opacity: 0.6;
-  /**background-position: center;
-  background-repeat: no-repeat;**/
   cursor: pointer;
-  /**border: solid 1px rgba(255, 255, 255, 0.6);**/
 }
 .profile__add-button {
   background: transparent url(../images/plus.svg);

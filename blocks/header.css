@@ -11,6 +11,8 @@
   .header {
     max-width: 100%;
     margin-left: 27px;
+  }
+  .header__logo {
     width: 126px;
   }
 }
