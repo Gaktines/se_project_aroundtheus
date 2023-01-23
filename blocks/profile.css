@@ -9,7 +9,6 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  margin-top: 75px;
   margin: 0;
   align-self: center;
 }
@@ -90,12 +89,12 @@
   .profile {
     flex-direction: column;
     align-items: center;
-    margin-top: 38.25px;
+    margin-top: 0;
+    margin-bottom: 0;
   }
   .profile__grid {
     text-align: center;
     padding-top: 26.25px;
-    margin-left: 40px;
   }
   .profile__title {
     width: 100%;
