@@ -16,8 +16,8 @@
 .profile__grid {
   display: grid;
   grid-template-areas:
-    "title title pencil . . "
-    "subheading subheading subheading . .  ";
+    "title title pencil . . ."
+    "subheading subheading subheading . . . ";
 
   align-items: center;
   margin-left: 20px;
@@ -61,12 +61,12 @@
   margin-left: 18px;
 }
 .profile__edit-button:hover {
-  background: transparent url(../images/pencil.svg);
+  /**background: transparent url(../images/pencil.svg);**/
   opacity: 0.6;
-  background-position: center;
-  background-repeat: no-repeat;
+  /**background-position: center;
+  background-repeat: no-repeat;**/
   cursor: pointer;
-  border: solid 1px rgba(255, 255, 255, 0.6);
+  /**border: solid 1px rgba(255, 255, 255, 0.6);**/
 }
 .profile__add-button {
   background: transparent url(../images/plus.svg);
@@ -94,6 +94,7 @@
   .profile {
     flex-direction: column;
     align-items: center;
+    margin-top: 38.25px;
   }
   .profile__grid {
     text-align: center;
