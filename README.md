@@ -23,4 +23,4 @@ Good luck and have fun!
 Project Name: Around the US
 Description: A webpage recognizing US explorers and their feats.
 Tech: CSS, HTML, Javascript
-GitHub: https://github.com/Gaktines/Gaktines.github.io.git/aroundtheus
+GitHub: https://gaktines.github.io/se_project_aroundtheus/
