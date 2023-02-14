@@ -56,12 +56,15 @@ function getCardElement(cardData) {
   const cardTitleElement = cardElement.querySelector("#card-title");
   const cardImageElement = cardElement.querySelector("#card-image");
   // set the path to the image to the link field of the object
-
+  cardImageElement.src = cardData.link;
   // set the image alt text to the name field of the object
+  cardImageElement.alt = cardData.name;
 
   // set the card title to the name field of the object, too
   cardTitleElement.textContent = cardData.name;
+
   // return the ready HTML element with the filled-in data
+  return cardElement;
 }
 
 profileEditButton.addEventListener("click", () => {
