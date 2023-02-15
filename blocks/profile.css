@@ -4,6 +4,7 @@
   margin: 0 auto;
   margin-top: 36.25px;
   margin-bottom: 47.25px;
+  padding-left: 20px;
 }
 .profile__image {
   border-radius: 50%;
@@ -122,5 +123,15 @@
   }
   .profile__image {
     margin-top: 38.25px;
+  }
+}
+@media screen (max-width: 880px) {
+  .profile__add-button {
+    padding-right: 20px;
+    border-right: 20px;
+    max-width: 100%;
+  }
+  .profile__image {
+    margin-left: 20px;
   }
 }

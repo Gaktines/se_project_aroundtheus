@@ -15,7 +15,6 @@
 }
 .modal__opened {
   display: flex;
-  flex-direction: column;
 }
 
 .modal__container {
@@ -43,7 +42,6 @@
 }
 .modal__close:hover {
   background-color: transparent;
-  background-image: url(../images/Close\_Icon.svg);
   opacity: 0.6;
 }
 .modal__heading {
