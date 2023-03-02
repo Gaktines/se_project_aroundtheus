@@ -49,6 +49,7 @@ const addCardTitle = document.querySelector("add-card-modal-title");
 const addCardLink = document.querySelector("#add-card-link");
 const addCardTitlePlaceholder = document.querySelector("#Title");
 const addCardLinkPlaceholder = document.querySelector("#Image Link");
+const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 
 function closeEditModalPopup() {
   profileEditModal.classList.remove("modal__opened");
@@ -104,6 +105,8 @@ profilemodalCloseButton.addEventListener("click", closeEditModalPopup);
 addCardModalCloseButton.addEventListener("click", closeAddCardModalPopup);
 
 profileEditForm.addEventListener("submit", handleProfileEditForm);
+
+addCardForm.addEventListener("submit", handleAddCardEditForm);
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
