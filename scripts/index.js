@@ -82,12 +82,15 @@ function handleAddCardForm(evt) {
 
 function getCardElement(cardData) {
   const cardElement = cardTemplateInput.cloneNode(true);
-
   const cardTitleElement = cardElement.querySelector("#card-title");
   const cardImageElement = cardElement.querySelector("#card-image");
   const likeButton = cardElement.querySelector(".card__button");
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__button_active");
+  });
+  const cardDeleteButton = cardElement.querySelector("#card-delete-button");
+  cardDeleteButton.addEventListener("click", () => {
+    cardDeleteButton.classList.remove(".card");
   });
 
   cardImageElement.src = cardData.link;
