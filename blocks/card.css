@@ -2,6 +2,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .card__description {
   display: flex;
@@ -36,6 +37,29 @@
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+.card__button_active {
+  background: transparent url(../images/like-active.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.card__delete_button {
+  background-image: url(../images/Trash-inactive.svg);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  height: 19.3px;
+  width: 18px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.card__delete_button:hover {
+  background-color: transparent;
+  opacity: 0.6;
 }
 .card__image {
   height: 282px;
