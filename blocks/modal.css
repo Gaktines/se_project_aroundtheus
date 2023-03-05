@@ -7,15 +7,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  background-color: transparent #000000;
+  visibility: hidden;
   flex-direction: column;
   margin: 0;
   padding: 0 19px;
+  opacity: 0;
+  transition: 1s, 1s ease;
 }
 .modal__opened {
   display: flex;
-  transition: 3s;
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal__container {
@@ -40,7 +43,6 @@
   width: 40px;
   background-repeat: no-repeat;
   background-size: contain;
-  transition: 1s;
 }
 .modal__close:hover {
   background-color: transparent;
