@@ -51,6 +51,10 @@ const addCardTitlePlaceholder = document.querySelector("#Title");
 const addCardLinkPlaceholder = document.querySelector("#Image Link");
 const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 const cardsWrap = document.querySelector("#card-list");
+const imageModal = document.querySelector("#image-modal");
+const imageButton = document.querySelector("#image-button");
+const imageModalCard = imageModal.querySelector("#modal-image");
+const imageModalCaption = imageModal.querySelector("#image-title");
 
 function closeEditModalPopup() {
   profileEditModal.classList.remove("modal__opened");
@@ -91,10 +95,15 @@ function getCardElement(cardData) {
   const deleteBtn = cardElement.querySelector("#card-delete-button");
   deleteBtn.addEventListener("click", function () {
     cardElement.remove();
-    const imageButton = document.querySelector("#image-button");
-    imageButton.addEventListener("click", () => {
-      console.log("its clicked");
-    });
+  });
+  cardImageElement.addEventListener("click", () => {
+    imageModalCaption.textContent = cardData.name;
+    imageModalCard.src = cardData.link;
+    openModal(imageModal);
+  });
+  const modalCloseBtn = document.querySelector("#modal-close-button");
+  modalCloseBtn.addEventListener("click", () => {
+    closeModal(imageModal);
   });
 
   cardImageElement.src = cardData.link;

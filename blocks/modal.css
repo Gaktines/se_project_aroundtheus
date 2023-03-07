@@ -13,7 +13,7 @@
   margin: 0;
   padding: 0 19px;
   opacity: 0;
-  transition: 1s, 1s ease;
+  transition: 1s, 1s linear;
 }
 .modal__opened {
   display: flex;
@@ -98,10 +98,22 @@
   display: flex;
   flex-direction: column;
 }
-modal__button_image {
+.modal__container_image {
+  background: none;
+  max-width: 75vw;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+  display: flex;
+  padding: 0;
 }
-modal__button_image:hover {
-  cursor: pointer;
+.modal__image {
+  object-fit: cover;
+}
+.modal__image_title {
+  position: absolute;
+  left: 0px;
+  bottom: -50px;
 }
 @media screen and (max-width: 475px) {
   .modal__container {
