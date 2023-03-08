@@ -78,9 +78,12 @@ function handleProfileEditForm(evt) {
 
 function handleAddCardForm(evt) {
   evt.preventDefault();
-  const titleValue = addCardTitleInput.value;
-  const linkValue = addCardLinkInput.value;
-  renderCard((titleValue, linkValue), cardsWrap);
+  const titleValue = {
+    name: addCardTitleInput.value,
+    link: addCardLinkInput.value,
+  };
+  /*const linkValue = { link: addCardLinkInput.value };*/
+  renderCard(titleValue, cardsWrap);
   closeAddCardModalPopup();
 }
 
