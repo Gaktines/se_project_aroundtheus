@@ -84,8 +84,7 @@ function handleAddCardForm(evt) {
   };
   renderCard(titleValue, cardsWrap);
   closeAddCardModalPopup();
-  addCardTitleInput.value.refresh();
-  addCardLinkInput.value.refresh();
+  addCardForm.reset();
 }
 
 function getCardElement(cardData) {
