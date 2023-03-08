@@ -54,7 +54,7 @@ const cardsWrap = document.querySelector("#card-list");
 const imageModal = document.querySelector("#image-modal");
 const imageButton = document.querySelector("#image-button");
 const imageModalCard = imageModal.querySelector("#modal-image");
-const imageModalCaption = imageModal.querySelector("#image-title");
+const imageModalCaption = imageModal.querySelector("#modal-caption");
 
 function closeEditModalPopup() {
   profileEditModal.classList.remove("modal__opened");
