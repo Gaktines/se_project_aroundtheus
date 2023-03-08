@@ -110,7 +110,7 @@
 .modal__image {
   object-fit: cover;
 }
-.modal__title_image {
+.modal__title_clicked {
   position: absolute;
   left: 0px;
   bottom: -50px;
