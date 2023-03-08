@@ -80,7 +80,7 @@ function handleAddCardForm(evt) {
   evt.preventDefault();
   const titleValue = addCardTitleInput.value;
   const linkValue = addCardLinkInput.value;
-  renderCard({ titleValue, linkValue }, cardsWrap);
+  renderCard((titleValue, linkValue), cardsWrap);
   closeAddCardModalPopup();
 }
 
