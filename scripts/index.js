@@ -103,13 +103,9 @@ function getCardElement(cardData) {
     imageModalCaption.textContent = cardData.name;
     imageModalCard.src = cardData.link;
     imageModalCard.alt = imageModalCaption.textContent;
-    console.log(imageModalCard.alt);
     openModal(imageModal);
   });
-  const modalCloseBtn = document.querySelector("#modal-close-button");
-  modalCloseBtn.addEventListener("click", () => {
-    closeModal(imageModal);
-  });
+
   cardImageElement.src = cardData.link;
 
   cardImageElement.alt = cardData.name;
@@ -129,6 +125,10 @@ function closeModal(modal) {
 
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
+  const modalCloseBtn = document.querySelector("#modal-close-button");
+  modalCloseBtn.addEventListener("click", () => {
+    closeModal(imageModal);
+  });
   profileTitleInput.value = profileTitle.textContent;
   profileSubheadingInput.value = profileSubheading.textContent;
   openModal(profileEditModal);
