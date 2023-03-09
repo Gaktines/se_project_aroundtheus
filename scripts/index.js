@@ -99,10 +99,6 @@ function getCardElement(cardData) {
     console.log(imageModalCard.alt);
     openModal(imageModal);
   });
-  const modalCloseBtn = document.querySelector("#modal-close-button");
-  modalCloseBtn.addEventListener("click", () => {
-    closeModal(imageModal);
-  });
 
   cardImageElement.src = cardData.link;
 
