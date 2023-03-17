@@ -132,12 +132,21 @@ const processEscDown = (evt) => {
   escEvent(evt, closeModal);
 };
 
-profileEditForm.addEventListener("click", (evt) => {
+profileEditModal.addEventListener("click", (evt) => {
   if (
     evt.target.classList.contains("modal") ||
     evt.target.classList.contains("modal__close")
   ) {
-    closeModal(profileEditForm);
+    closeModal(profileEditModal);
+  }
+});
+
+addCardEditModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(addCardEditModal);
   }
 });
 
