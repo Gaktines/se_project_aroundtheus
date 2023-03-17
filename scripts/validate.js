@@ -8,7 +8,7 @@ const validationOptions = {
   errorClass: "modal__error_visible",
 };
 
-function showInputError(modalElment, inputElement, validationOptions) {
+function showInputError(modalElement, inputElement, validationOptions) {
   const errorMessageElement = document.querySelector(
     `#${inputElement.id}-error`
   );
@@ -17,7 +17,7 @@ function showInputError(modalElment, inputElement, validationOptions) {
   errorMessageElement.classList.add(validationOptions.errorClass);
 }
 
-function hideInputError(modalElment, inputElement, validationOptions) {
+function hideInputError(modalElement, inputElement, validationOptions) {
   const errorMessageElement = document.querySelector(
     `#${inputElement.id}-error`
   );
@@ -26,20 +26,17 @@ function hideInputError(modalElment, inputElement, validationOptions) {
   errorMessageElement.classList.remove(validationOptions.errorClass);
 }
 
-function checkInputValidity(modalElment, inputElement, validationOptions) {
+function checkInputValidity(modalElement, inputElement, validationOptions) {
   if (!inputElement.validity.valid) {
-    showInputError(modalElment, inputElement, validationOptions);
+    showInputError(modalElement, inputElement, validationOptions);
   } else {
-    hideInputError(modalElment, inputElement, validationOptions);
+    hideInputError(modalElement, inputElement, validationOptions);
   }
 }
 function isNotValid(inputList) {
   return inputList.every((inputElement) => !inputElement.validity.valid);
 }
 
-function disableSaveButton() {}
-
-function enableSaveButton() {}
 function toggleButtonState(inputElements, saveButton, validationOptions) {
   if (isNotValid(inputElements)) {
     saveButton.classList.add(validationOptions.inactiveButtonClass);
