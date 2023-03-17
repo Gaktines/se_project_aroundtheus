@@ -55,6 +55,7 @@ const imageButton = document.querySelector("#image-button");
 const imageModalCard = imageModal.querySelector("#modal-image");
 const imageModalCaption = imageModal.querySelector("#modal-caption");
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
+const ESC_KEYCODE = 27;
 
 function closeEditModalPopup() {
   closeModal(profileEditModal);
@@ -110,12 +111,35 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+const escEvent = (evt, action) => {
+  const activeModal = document.querySelector(".modal_opened");
+  if (evt.which === ESC_KEYCODE) {
+    action(activeModal);
+  }
+};
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", processEscDown);
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", processEscDown);
 }
+
+const processEscDown = (evt) => {
+  evt.preventDefault;
+  escEvent(evt, closeModal);
+};
+
+profileEditForm.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(profileEditForm);
+  }
+});
 
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
