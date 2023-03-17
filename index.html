@@ -58,21 +58,31 @@
         <form class="modal__form" id="profile-modal-form">
           <p class="modal__heading">Edit Profile</p>
           <input
-            class="modal__title modal__title_card"
+            class="modal__input modal__title modal__title_card"
             id="profile-modal-title"
             type="text"
             name="Title"
             placeholder="Name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__error" id="profile-modal-title-error"
+            >Please fill out this field.</span
+          >
           <input
-            class="modal__subheading"
+            class="modal__input modal__subheading"
             id="modal-subheading"
             type="text"
             name="Subheading"
             placeholder="Subheading"
             required
+            minlength="2"
+            maxlength="200"
           />
+          <span class="modal__error" id="modal-subheading-error"
+            >Please fill out this field.</span
+          >
           <button class="modal__button">Save</button>
         </form>
       </div>
@@ -83,22 +93,32 @@
         <form class="modal__form" id="add-card-modal-form">
           <p class="modal__heading">New Place</p>
           <input
-            class="modal__title"
+            class="modal__input modal__title"
             id="add-card-modal-title"
             type="text"
             name="Title"
             placeholder="Title"
             required
+            minlength="1"
+            maxlength="30"
           />
+          <span class="modal__error" id="add-card-modal-title-error"
+            >Please fill out this field.</span
+          >
           <input
-            class="add-card-link"
+            class="modal__input add-card-link"
             id="add-card-link"
-            type="text"
+            type="url"
             name="link"
             placeholder="Image Link"
             required
           />
-          <button class="modal__button">Save</button>
+          <span class="modal__error" id="add-card-link-error"
+            >Please enter a web address.</span
+          >
+          <button class="modal__button modal__button_disabled" disabled>
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -128,5 +148,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>
