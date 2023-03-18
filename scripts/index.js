@@ -150,6 +150,15 @@ addCardEditModal.addEventListener("click", (evt) => {
   }
 });
 
+imageModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(imageModal);
+  }
+});
+
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;

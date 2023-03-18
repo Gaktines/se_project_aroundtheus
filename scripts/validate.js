@@ -1,4 +1,3 @@
-const saveButton = document.querySelector(".modal__button");
 const validationOptions = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -8,57 +7,60 @@ const validationOptions = {
   errorClass: "modal__error_visible",
 };
 
-function showInputError(modalElement, inputElement, validationOptions) {
-  const errorMessageElement = document.querySelector(
+function showInputError(modalElement, inputElement, options) {
+  const errorMessageElement = modalElement.querySelector(
     `#${inputElement.id}-error`
   );
-  inputElement.classList.add(validationOptions.inputErrorClass);
+  inputElement.classList.add(options.inputErrorClass);
   errorMessageElement.textContent = inputElement.validationMessage;
-  errorMessageElement.classList.add(validationOptions.errorClass);
+  errorMessageElement.classList.add(options.errorClass);
 }
 
-function hideInputError(modalElement, inputElement, validationOptions) {
-  const errorMessageElement = document.querySelector(
+function hideInputError(modalElement, inputElement, options) {
+  const errorMessageElement = modalElement.querySelector(
     `#${inputElement.id}-error`
   );
-  inputElement.classList.remove(validationOptions.inputErrorClass);
+  inputElement.classList.remove(options.inputErrorClass);
   errorMessageElement.textContent = "";
-  errorMessageElement.classList.remove(validationOptions.errorClass);
+  errorMessageElement.classList.remove(options.errorClass);
 }
 
-function checkInputValidity(modalElement, inputElement, validationOptions) {
+function checkInputValidity(modalElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    showInputError(modalElement, inputElement, validationOptions);
-  } else {
-    hideInputError(modalElement, inputElement, validationOptions);
-  }
-}
-function isNotValid(inputList) {
-  return inputList.every((inputElement) => !inputElement.validity.valid);
-}
-
-function toggleButtonState(inputElements, saveButton, validationOptions) {
-  if (isNotValid(inputElements)) {
-    saveButton.classList.add(validationOptions.inactiveButtonClass);
+    showInputError(modalElement, inputElement, options);
     saveButton.disabled = true;
   } else {
-    saveButton.classList.remove(validationOptions.inactiveButtonClass);
+    hideInputError(modalElement, inputElement, options);
     saveButton.disabled = false;
   }
 }
-function setEventListeners(modalElement, validationOptions) {
-  const inputElements = Array.from(
-    modalElement.querySelectorAll(validationOptions.inputSelector)
-  );
+function hasInvalidInput(inputList) {
+  return !inputList.every((inputElement) => inputElement.validity.valid);
+}
 
+function toggleButtonState(inputElements, saveButton, options) {
+  if (hasInvalidInput(inputElements)) {
+    saveButton.classList.add(options.inactiveButtonClass);
+    saveButton.disabled = true;
+    return;
+  }
+  saveButton.classList.remove(options.inactiveButtonClass);
+  saveButton.disabled = false;
+}
+
+function setEventListeners(modalElement, options) {
+  const inputElements = Array.from(
+    modalElement.querySelectorAll(options.inputSelector)
+  );
+  const saveButton = document.querySelector(options.submitButtonSelector);
   inputElements.forEach((inputElement) => {
-    inputElement.addEventListener("input", (evt) => {
-      checkInputValidity(modalElement, inputElement, validationOptions);
-      toggleButtonState(inputElements, saveButton, validationOptions);
+    inputElement.addEventListener("input", () => {
+      checkInputValidity(modalElement, inputElement, options);
+      toggleButtonState(inputElements, saveButton, options);
     });
   });
 }
-function enableValidation(validationOptions) {
+function enableValidation(options) {
   const modalElements = Array.from(
     document.querySelectorAll(validationOptions.formSelector)
   );
@@ -66,7 +68,7 @@ function enableValidation(validationOptions) {
     modalElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(modalElement, validationOptions);
+    setEventListeners(modalElement, options);
   });
 }
 
