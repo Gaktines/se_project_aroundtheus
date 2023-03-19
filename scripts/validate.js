@@ -6,6 +6,8 @@ const validationOptions = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+const options = validationOptions;
+const saveButton = document.querySelector(options.submitButtonSelector);
 
 function showInputError(modalElement, inputElement, options) {
   const errorMessageElement = modalElement.querySelector(
@@ -52,7 +54,7 @@ function setEventListeners(modalElement, options) {
   const inputElements = Array.from(
     modalElement.querySelectorAll(options.inputSelector)
   );
-  const saveButton = document.querySelector(options.submitButtonSelector);
+
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(modalElement, inputElement, options);
