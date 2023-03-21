@@ -7,7 +7,6 @@ const validationOptions = {
   errorClass: "modal__error_visible",
 };
 const options = validationOptions;
-const saveButton = document.querySelector(options.submitButtonSelector);
 
 function showInputError(modalElement, inputElement, options) {
   const errorMessageElement = modalElement.querySelector(
@@ -27,12 +26,12 @@ function hideInputError(modalElement, inputElement, options) {
   errorMessageElement.classList.remove(options.errorClass);
 }
 
-function checkInputValidity(modalElement, inputElement, options) {
+function checkInputValidity(modalElement, inputElement, saveButton, options) {
   if (!inputElement.validity.valid) {
-    showInputError(modalElement, inputElement, options);
+    showInputError(modalElement, inputElement, saveButton, options);
     saveButton.disabled = true;
   } else {
-    hideInputError(modalElement, inputElement, options);
+    hideInputError(modalElement, inputElement, saveButton, options);
     saveButton.disabled = false;
   }
 }
@@ -54,7 +53,7 @@ function setEventListeners(modalElement, options) {
   const inputElements = Array.from(
     modalElement.querySelectorAll(options.inputSelector)
   );
-
+  const saveButton = modalElement.querySelector(options.submitButtonSelector);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(modalElement, inputElement, options);
