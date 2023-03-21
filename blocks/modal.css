@@ -21,7 +21,9 @@
   visibility: visible;
   transition: visibility 1s 0s, opacity 1s linear;
 }
-
+.modal__error {
+  position: absolute;
+}
 .modal__container {
   height: 330px;
   width: 430px;
@@ -95,6 +97,8 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
+  margin-top: 36px;
+  margin-bottom: 36px;
 }
 .modal__button_disabled {
   border-color: rgba(0, 0, 0, 0.2);
