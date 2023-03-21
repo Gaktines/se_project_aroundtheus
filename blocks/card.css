@@ -33,16 +33,11 @@
   height: 18px;
 }
 .card__button:hover {
-  background: transparent url(../images/Vector_hover.svg);
-  background-position: center;
-  background-repeat: no-repeat;
   cursor: pointer;
+  opacity: 0.8;
 }
 .card__button_active {
   background: transparent url(../images/like-active.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
 }
 .card__delete_button {
   background-image: url(../images/Trash-inactive.svg);

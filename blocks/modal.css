@@ -57,7 +57,7 @@
   font-size: 24px;
   line-height: 29.05px;
 }
-.modal__title {
+.modal__input_title {
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -68,7 +68,12 @@
   color: #000000;
   padding-bottom: 13.26px;
 }
-.modal__subheading {
+.modal__input_add_card_link {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.modal__input {
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -90,7 +95,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
-  margin-top: auto;
 }
 .modal__button_disabled {
   border-color: rgba(0, 0, 0, 0.2);
@@ -101,6 +105,10 @@
 .modal__button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+.modal__button_disabled:hover {
+  opacity: 0.2;
+  cursor: default;
 }
 .modal__form {
   display: flex;
@@ -128,12 +136,13 @@
   bottom: -50px;
 }
 .modal__input_type_error {
-  border-top: 1px solid red;
+  border-bottom: 1px solid red;
   color: red;
   font-family: "Inter", Helvetica, sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 14.52px;
+  padding-top: 5px;
 }
 .modal__error_visible {
   border-top: 1px solid red;

@@ -112,8 +112,8 @@ function getCardElement(cardData) {
 }
 
 const escEvent = (evt, action) => {
-  const activeModal = document.querySelector(".modal_opened");
   if (evt.which === ESC_KEYCODE) {
+    const activeModal = document.querySelector(".modal_opened");
     action(activeModal);
   }
 };
@@ -132,32 +132,19 @@ const processEscDown = (evt) => {
   escEvent(evt, closeModal);
 };
 
-profileEditModal.addEventListener("click", (evt) => {
+function closeModalOnRemoteClick(evt) {
   if (
-    evt.target.classList.contains("modal") ||
+    evt.target === evt.currentTarget ||
     evt.target.classList.contains("modal__close")
   ) {
-    closeModal(profileEditModal);
+    closeModal(evt.target);
   }
-});
+}
+profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-addCardEditModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closeModal(addCardEditModal);
-  }
-});
+addCardEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-imageModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closeModal(imageModal);
-  }
-});
+imageModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
@@ -169,9 +156,7 @@ profileModalCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
 addCardButton.addEventListener("click", () => openModal(addCardEditModal));
-addCardModalCloseButton.addEventListener("click", () =>
-  closeModal(addCardEditModal)
-);
+
 addCardForm.addEventListener("submit", handleAddCardForm);
 profileModalCloseButton.addEventListener("click", closeEditModalPopup);
 addCardModalCloseButton.addEventListener("click", closeAddCardModalPopup);

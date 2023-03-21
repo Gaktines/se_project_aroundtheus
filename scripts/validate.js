@@ -6,7 +6,6 @@ const validationOptions = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-const options = validationOptions;
 
 function showInputError(modalElement, inputElement, options) {
   const errorMessageElement = modalElement.querySelector(
@@ -29,10 +28,12 @@ function hideInputError(modalElement, inputElement, options) {
 function checkInputValidity(modalElement, inputElement, saveButton, options) {
   if (!inputElement.validity.valid) {
     showInputError(modalElement, inputElement, saveButton, options);
-    saveButton.disabled = true;
+
+    toggleButtonState;
   } else {
     hideInputError(modalElement, inputElement, saveButton, options);
-    saveButton.disabled = false;
+
+    toggleButtonState;
   }
 }
 function hasInvalidInput(inputList) {
@@ -55,6 +56,7 @@ function setEventListeners(modalElement, options) {
   );
   const saveButton = modalElement.querySelector(options.submitButtonSelector);
   inputElements.forEach((inputElement) => {
+    toggleButtonState;
     inputElement.addEventListener("input", () => {
       checkInputValidity(modalElement, inputElement, options);
       toggleButtonState(inputElements, saveButton, options);
