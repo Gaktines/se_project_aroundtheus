@@ -111,12 +111,12 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-const escEvent = (evt, action) => {
+/*const escEvent = (evt, action) => {
   if (evt.which === ESC_KEYCODE) {
     const activeModal = document.querySelector(".modal_opened");
     action(activeModal);
   }
-};
+};*/
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -128,8 +128,10 @@ function closeModal(modal) {
 }
 
 const processEscDown = (evt) => {
-  /*evt.preventDefault;*/
-  escEvent(evt, closeModal);
+  if (evt.which === ESC_KEYCODE) {
+    const activeModal = document.querySelector(".modal_opened");
+    closeModal(activeModal);
+  }
 };
 
 function closeModalOnRemoteClick(evt) {

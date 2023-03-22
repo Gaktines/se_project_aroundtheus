@@ -28,12 +28,8 @@ function hideInputError(modalElement, inputElement, options) {
 function checkInputValidity(modalElement, inputElement, saveButton, options) {
   if (!inputElement.validity.valid) {
     showInputError(modalElement, inputElement, saveButton, options);
-
-    toggleButtonState;
   } else {
     hideInputError(modalElement, inputElement, saveButton, options);
-
-    toggleButtonState;
   }
 }
 function hasInvalidInput(inputList) {
@@ -55,8 +51,8 @@ function setEventListeners(modalElement, options) {
     modalElement.querySelectorAll(options.inputSelector)
   );
   const saveButton = modalElement.querySelector(options.submitButtonSelector);
+  toggleButtonState(inputElements, saveButton, options);
   inputElements.forEach((inputElement) => {
-    toggleButtonState;
     inputElement.addEventListener("input", () => {
       checkInputValidity(modalElement, inputElement, options);
       toggleButtonState(inputElements, saveButton, options);

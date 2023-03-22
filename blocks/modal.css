@@ -77,14 +77,16 @@
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-top: 29.74px;
-  padding-bottom: 13.34px;
   font-family: "Inter", Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 16.94px;
   color: #000000;
 }
+.modal__input:not(:first-of-type) {
+  margin-top: 30px;
+}
+
 .modal__button {
   width: 100%;
   background-color: #000000;
@@ -95,8 +97,8 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
-  margin-top: 36px;
-  margin-bottom: 36px;
+  /*margin-top: 36px;
+  margin-bottom: 36px;*/
 }
 .modal__button_disabled {
   border-color: rgba(0, 0, 0, 0.2);
@@ -145,6 +147,7 @@
   font-size: 12px;
   line-height: 14.52px;
   padding-top: 5px;
+  padding-bottom: 13px;
 }
 .modal__error_visible {
   border-top: 1px solid red;
