@@ -14,16 +14,14 @@
   padding: 0 19px;
   opacity: 0;
   transition: visibility 0s 1s, opacity 1s linear;
+  display: flex;
 }
 .modal_opened {
-  display: flex;
   opacity: 1;
   visibility: visible;
   transition: visibility 1s 0s, opacity 1s linear;
 }
-.modal__error {
-  position: absolute;
-}
+
 .modal__container {
   height: 330px;
   width: 430px;
@@ -111,7 +109,7 @@
   cursor: pointer;
 }
 .modal__button_disabled:hover {
-  opacity: 0.2;
+  opacity: 1;
   cursor: default;
 }
 .modal__form {

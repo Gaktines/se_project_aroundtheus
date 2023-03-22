@@ -128,7 +128,7 @@ function closeModal(modal) {
 }
 
 const processEscDown = (evt) => {
-  evt.preventDefault;
+  /*evt.preventDefault;*/
   escEvent(evt, closeModal);
 };
 
