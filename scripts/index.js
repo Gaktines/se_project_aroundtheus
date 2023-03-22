@@ -82,6 +82,7 @@ function handleAddCardForm(evt) {
   renderCard(titleValue, cardsWrap);
   closeModal(addCardEditModal);
   addCardForm.reset();
+  toggleButtonState;
 }
 function getCardElement(cardData) {
   const cardElement = cardTemplateInput.cloneNode(true);
@@ -110,13 +111,6 @@ function getCardElement(cardData) {
   cardTitleElement.textContent = cardData.name;
   return cardElement;
 }
-
-/*const escEvent = (evt, action) => {
-  if (evt.which === ESC_KEYCODE) {
-    const activeModal = document.querySelector(".modal_opened");
-    action(activeModal);
-  }
-};*/
 
 function openModal(modal) {
   modal.classList.add("modal_opened");

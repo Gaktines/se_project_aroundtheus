@@ -84,7 +84,7 @@
   color: #000000;
 }
 .modal__input:not(:first-of-type) {
-  margin-top: 30px;
+  /*margin-top: 30px;*/
 }
 
 .modal__button {
@@ -97,8 +97,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
-  /*margin-top: 36px;
-  margin-bottom: 36px;*/
 }
 .modal__button_disabled {
   border-color: rgba(0, 0, 0, 0.2);
@@ -156,6 +154,9 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 14.52px;
+}
+.modal__error {
+  padding-bottom: 31px;
 }
 @media screen and (max-width: 475px) {
   .modal__container {
