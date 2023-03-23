@@ -56,6 +56,7 @@ const imageModalCard = imageModal.querySelector("#modal-image");
 const imageModalCaption = imageModal.querySelector("#modal-caption");
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
 const ESC_KEYCODE = 27;
+const cardFormSubmitButton = document.querySelector(".modal__button");
 
 function closeEditModalPopup() {
   closeModal(profileEditModal);
@@ -82,7 +83,11 @@ function handleAddCardForm(evt) {
   renderCard(titleValue, cardsWrap);
   closeModal(addCardEditModal);
   addCardForm.reset();
-  toggleButtonState;
+  toggleButtonState(
+    [addCardTitleInput, addCardLinkInput],
+    cardFormSubmitButton,
+    validationOptions
+  );
 }
 function getCardElement(cardData) {
   const cardElement = cardTemplateInput.cloneNode(true);
