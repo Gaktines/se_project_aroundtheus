@@ -23,7 +23,7 @@
 }
 
 .modal__container {
-  height: 330px;
+  height: Auto;
   width: 430px;
   background-color: #ffffff;
   padding: 36px;
@@ -56,6 +56,7 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 29.05px;
+  padding-bottom: 30px;
 }
 .modal__input_title {
   width: 100%;
@@ -83,10 +84,6 @@
   line-height: 16.94px;
   color: #000000;
 }
-.modal__input:not(:first-of-type) {
-  /*margin-top: 30px;*/
-}
-
 .modal__button {
   width: 100%;
   background-color: #000000;
