@@ -23,7 +23,7 @@
 }
 
 .modal__container {
-  height: Auto;
+  height: auto;
   width: 430px;
   background-color: #ffffff;
   padding: 36px;
