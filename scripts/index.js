@@ -56,7 +56,7 @@ const imageModalCard = imageModal.querySelector("#modal-image");
 const imageModalCaption = imageModal.querySelector("#modal-caption");
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
 const ESC_KEYCODE = 27;
-const cardFormSubmitButton = document.querySelector(".modal__button");
+const cardFormSubmitButton = document.querySelector(".modal__button_add_card");
 
 function closeEditModalPopup() {
   closeModal(profileEditModal);
