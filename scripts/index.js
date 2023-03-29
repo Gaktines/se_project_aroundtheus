@@ -1,3 +1,6 @@
+import Card from "../scripts/Card.js";
+import FormValidator from "../scripts/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +27,13 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
   },
 ];
+const cardData = {
+  name: "Lago di Braies",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
+};
+
+const card = new Card(cardData, "#card-template");
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(
@@ -90,23 +100,23 @@ function handleAddCardForm(evt) {
   );
 }
 function getCardElement(cardData) {
-  const cardElement = cardTemplateInput.cloneNode(true);
+  //const cardElement = cardTemplateInput.cloneNode(true);
   const cardTitleElement = cardElement.querySelector("#card-title");
   const cardImageElement = cardElement.querySelector("#card-image");
-  const likeButton = cardElement.querySelector(".card__button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__button_active");
-  });
-  const deleteBtn = cardElement.querySelector("#card-delete-button");
-  deleteBtn.addEventListener("click", function () {
-    cardElement.remove();
-  });
+  // const likeButton = cardElement.querySelector(".card__button");
+  // likeButton.addEventListener("click", () => {
+  //  likeButton.classList.toggle("card__button_active");
+  //});
+  //const deleteBtn = cardElement.querySelector("#card-delete-button");
+  //deleteBtn.addEventListener("click", function () {
+  //  cardElement.remove();
+  //});
 
   cardImageElement.addEventListener("click", () => {
     imageModalCaption.textContent = cardData.name;
     imageModalCard.src = cardData.link;
     imageModalCard.alt = imageModalCaption.textContent;
-    console.log(imageModalCard.alt);
+    //console.log(imageModalCard.alt);
     openModal(imageModal);
   });
 
