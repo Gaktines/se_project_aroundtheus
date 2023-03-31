@@ -68,14 +68,6 @@ export default class FormValidator {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    _setEventListeners(formElement, options);
+    _setEventListeners(this._form, this._options);
   }
 }
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const addCardEditModal = document.querySelector("#add-card-edit-modal");
-
-const editFormValidator = new FormValidator(this._options, profileEditModal);
-const addCardFormValidator = new FormValidator(this._options, addCardEditModal);
-
-editFormValidator.enableValidation();
-addCardFormValidator.enableValidation();

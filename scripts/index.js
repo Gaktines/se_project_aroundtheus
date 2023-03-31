@@ -32,29 +32,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
 };
 
-const profileEditFormElement = profileEditModal.querySelector(
-  "#profile-modal-form"
-);
-const addCardEditFormElement = addCardEditModal.querySelector(
-  "#add-card-modal-form"
-);
-const validationOptions = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-const profileEditFormValidator = new FormValidator(
-  validationOptions,
-  profileEditFormElement
-);
-const addCardEditFormValidator = new FormValidator(
-  validationOptions,
-  addCardEditFormElement
-);
-
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(
@@ -88,7 +65,42 @@ const cardsWrap = document.querySelector("#card-list");
 //const imageModalCloseBtn = document.querySelector("#modal-close-button");
 //const ESC_KEYCODE = 27;
 const cardFormSubmitButton = document.querySelector(".modal__button_add_card");
+const validationOptions = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 
+const editFormValidator = new FormValidator(
+  validationOptions,
+  profileEditModal
+);
+const addCardFormValidator = new FormValidator(
+  validationOptions,
+  addCardEditModal
+);
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
+const profileEditFormValidator = new FormValidator(
+  validationOptions,
+  profileEditFormElement
+);
+const addCardEditFormValidator = new FormValidator(
+  validationOptions,
+  addCardEditFormElement
+);
+
+const profileEditFormElement = profileEditModal.querySelector(
+  "#profile-modal-form"
+);
+const addCardEditFormElement = addCardEditModal.querySelector(
+  "#add-card-modal-form"
+);
 function closeEditModalPopup() {
   closeModal(profileEditModal);
 }
