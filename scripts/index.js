@@ -38,7 +38,14 @@ const profileEditFormElement = profileEditModal.querySelector(
 const addCardEditFormElement = addCardEditModal.querySelector(
   "#add-card-modal-form"
 );
-
+const validationOptions = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 const profileEditFormValidator = new FormValidator(
   validationOptions,
   profileEditFormElement

@@ -1,5 +1,5 @@
 export default class FormValidator {
-  constructor(validationOptions, modalElement) {
+  constructor(validationOptions, formElement) {
     this._formSelector = ".modal__form";
     this._inputSelector = ".modal__input";
     this._submitButtonSelector = ".modal__button";
@@ -7,15 +7,9 @@ export default class FormValidator {
     this._inputErrorClass = "modal__input_type_error";
     this._errorClass = "modal__error_visible";
     this._form = formElement;
+    this._options = validationOptions;
   }
-  validationOptions = {
-    formSelector: ".modal__form",
-    inputSelector: ".modal__input",
-    submitButtonSelector: ".modal__button",
-    inactiveButtonClass: "modal__button_disabled",
-    inputErrorClass: "modal__input_type_error",
-    errorClass: "modal__error_visible",
-  };
+
   _showInputError(inputElement, errorMessageElement) {
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
@@ -40,11 +34,11 @@ export default class FormValidator {
   }
   _toggleButtonState() {
     if (hasInvalidInput(this._inputElements)) {
-      saveButton.classList.add(options.inactiveButtonClass);
+      saveButton.classList.add(this._options.inactiveButtonClass);
       saveButton.disabled = true;
       return;
     }
-    saveButton.classList.remove(options.inactiveButtonClass);
+    saveButton.classList.remove(this._options.inactiveButtonClass);
     saveButton.disabled = false;
   }
   _checkInputValidity() {
@@ -59,7 +53,7 @@ export default class FormValidator {
     );
     const saveButton = this._form.querySelector(this._submitButtonSelector);
 
-    _toggleButtonState(this._inputElements, options);
+    _toggleButtonState(this._inputElements, this._options);
     this._inputElements.forEach((inputElement) => {
       this._inputElement.addEventListener("input", () => {
         _checkInputValidity();
@@ -68,10 +62,8 @@ export default class FormValidator {
     });
   }
 
-  enableValidation(validationOptions, formElements) {
+  enableValidation(options) {
     //const formElements = Array.from(document.querySelectorAll(".modal__form"));
-    const profileEditModal = document.querySelector("#profile-edit-modal");
-    const addCardEditModal = document.querySelector("#add-card-edit-modal");
 
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
@@ -79,14 +71,11 @@ export default class FormValidator {
     _setEventListeners(formElement, options);
   }
 }
-const editFormValidator = new FormValidator(
-  validationOptions,
-  profileEditModal
-);
-const addCardFormValidator = new FormValidator(
-  validationOptions,
-  addCardEditModal
-);
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const addCardEditModal = document.querySelector("#add-card-edit-modal");
+
+const editFormValidator = new FormValidator(this._options, profileEditModal);
+const addCardFormValidator = new FormValidator(this._options, addCardEditModal);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
