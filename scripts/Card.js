@@ -1,7 +1,20 @@
+const imageModal = document.querySelector("#image-modal");
+const imageButton = document.querySelector("#image-button");
+const imageModalCard = imageModal.querySelector("#modal-image");
+const imageModalCaption = imageModal.querySelector("#modal-caption");
+const imageModalCloseBtn = document.querySelector("#modal-close-button");
+const ESC_KEYCODE = 27;
+
+function closeEditModalPopup() {
+  closeModal(profileEditModal);
+}
+function closeAddCardModalPopup() {
+  closeModal(addCardEditModal);
+}
 export default class Card {
-  constructor({ name, link }, cardSelector) {
-    this._name = name;
-    this._link = link;
+  constructor(cardData, cardSelector) {
+    this._name = cardData.name;
+    this._link = cardData.link;
     this._cardSelector = cardSelector;
   }
   _setEventListeners() {
@@ -17,6 +30,9 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteBtn();
       });
+    //image
+    cardImageElement.addEventListener("click", () => this._handleImageModal());
+    openModal(imageModal);
   }
   _handleLikeIcon() {
     this._cardElement
@@ -26,15 +42,27 @@ export default class Card {
   _handleDeleteBtn() {
     this._cardElement.remove;
   }
+  _handleImageModal() {
+    imageModalCaption.textContent = cardData.name;
+    imageModalCard.src = cardData.link;
+    imageModalCard.alt = imageModalCaption.textContent;
+  }
+  _getTemplate() {
+    return (
+      document.querySelector(this._cardSelector),
+      querySelector("#card").cloneNode(true)
+    );
+  }
   getCard() {
-    this._cardElement = document
-      .querySelector(this._cardSelector)
-      .querySelector("#card")
-      .cloneNode(true);
+    this._cardElement = this._getTemplate();
     //get the card view
+    this._cardElement.querySelector(
+      "#add-card-link"
+    ).style.backgroundImage = `url(${this._link})`;
+    this._cardElement.querySelector("#add-card-modal-title").textContent =
+      this._name;
     //set the event listeners
     this._setEventListeners();
     //return the card
-    return this._cardElement;
   }
 }

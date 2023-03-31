@@ -1,5 +1,5 @@
-import Card from "../scripts/Card.js";
-import FormValidator from "../scripts/FormValidator.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -32,7 +32,21 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
 };
 
-const card = new Card(cardData, "#card-template");
+const profileEditFormElement = profileEditModal.querySelector(
+  "#profile-modal-form"
+);
+const addCardEditFormElement = addCardEditModal.querySelector(
+  "#add-card-modal-form"
+);
+
+const profileEditFormValidator = new FormValidator(
+  validationOptions,
+  profileEditFormElement
+);
+const addCardEditFormValidator = new FormValidator(
+  validationOptions,
+  addCardEditFormElement
+);
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -60,12 +74,12 @@ const addCardTitlePlaceholder = document.querySelector("#Title");
 const addCardLinkPlaceholder = document.querySelector("#Image Link");
 const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 const cardsWrap = document.querySelector("#card-list");
-const imageModal = document.querySelector("#image-modal");
-const imageButton = document.querySelector("#image-button");
-const imageModalCard = imageModal.querySelector("#modal-image");
-const imageModalCaption = imageModal.querySelector("#modal-caption");
-const imageModalCloseBtn = document.querySelector("#modal-close-button");
-const ESC_KEYCODE = 27;
+//const imageModal = document.querySelector("#image-modal");
+//const imageButton = document.querySelector("#image-button");
+//const imageModalCard = imageModal.querySelector("#modal-image");
+//const imageModalCaption = imageModal.querySelector("#modal-caption");
+//const imageModalCloseBtn = document.querySelector("#modal-close-button");
+//const ESC_KEYCODE = 27;
 const cardFormSubmitButton = document.querySelector(".modal__button_add_card");
 
 function closeEditModalPopup() {
@@ -76,7 +90,8 @@ function closeAddCardModalPopup() {
 }
 function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
-  cardsWrap.prepend(cardElement);
+  const card = new Card(cardData, "#card-template");
+  cardsWrap.prepend(card.getCard());
 }
 function handleProfileEditForm(evt) {
   evt.preventDefault();
@@ -99,33 +114,33 @@ function handleAddCardForm(evt) {
     validationOptions
   );
 }
-function getCardElement(cardData) {
-  //const cardElement = cardTemplateInput.cloneNode(true);
-  const cardTitleElement = cardElement.querySelector("#card-title");
-  const cardImageElement = cardElement.querySelector("#card-image");
-  // const likeButton = cardElement.querySelector(".card__button");
-  // likeButton.addEventListener("click", () => {
-  //  likeButton.classList.toggle("card__button_active");
-  //});
-  //const deleteBtn = cardElement.querySelector("#card-delete-button");
-  //deleteBtn.addEventListener("click", function () {
-  //  cardElement.remove();
-  //});
+//function getCardElement(cardData) {
+//const cardElement = cardTemplateInput.cloneNode(true);
+const cardTitleElement = cardElement.querySelector("#card-title");
+const cardImageElement = cardElement.querySelector("#card-image");
+// const likeButton = cardElement.querySelector(".card__button");
+// likeButton.addEventListener("click", () => {
+//  likeButton.classList.toggle("card__button_active");
+//});
+//const deleteBtn = cardElement.querySelector("#card-delete-button");
+//deleteBtn.addEventListener("click", function () {
+//  cardElement.remove();
+//});
 
-  cardImageElement.addEventListener("click", () => {
-    imageModalCaption.textContent = cardData.name;
-    imageModalCard.src = cardData.link;
-    imageModalCard.alt = imageModalCaption.textContent;
-    //console.log(imageModalCard.alt);
-    openModal(imageModal);
-  });
+//cardImageElement.addEventListener("click", () => {
+//imageModalCaption.textContent = cardData.name;
+//imageModalCard.src = cardData.link;
+//imageModalCard.alt = imageModalCaption.textContent;
+//console.log(imageModalCard.alt);
+openModal(imageModal);
+//}
 
-  cardImageElement.src = cardData.link;
+// cardImageElement.src = cardData.link;
 
-  cardImageElement.alt = cardData.name;
-  cardTitleElement.textContent = cardData.name;
-  return cardElement;
-}
+//cardImageElement.alt = cardData.name;
+//cardTitleElement.textContent = cardData.name;
+//return cardElement;
+//}
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
