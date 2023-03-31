@@ -1,12 +1,12 @@
 export default class FormValidator {
   constructor(validationOptions, modalElement) {
-    (this._formSelector = ".modal__form"),
-      (this._inputSelector = ".modal__input"),
-      (this._submitButtonSelector = ".modal__button"),
-      (this._inactiveButtonClass = "modal__button_disabled"),
-      (this._inputErrorClass = "modal__input_type_error"),
-      (this._errorClass = "modal__error_visible"),
-      (this._form = modalElement);
+    this._formSelector = ".modal__form";
+    this._inputSelector = ".modal__input";
+    this._submitButtonSelector = ".modal__button";
+    this._inactiveButtonClass = "modal__button_disabled";
+    this._inputErrorClass = "modal__input_type_error";
+    this._errorClass = "modal__error_visible";
+    this._form = formElement;
   }
   validationOptions = {
     formSelector: ".modal__form",
@@ -68,16 +68,25 @@ export default class FormValidator {
     });
   }
 
-  enableValidation() {
+  enableValidation(validationOptions, formElements) {
+    //const formElements = Array.from(document.querySelectorAll(".modal__form"));
+    const profileEditModal = document.querySelector("#profile-edit-modal");
+    const addCardEditModal = document.querySelector("#add-card-edit-modal");
+
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    _setEventListeners(this._form, options);
+    _setEventListeners(formElement, options);
   }
 }
-
-const editFormValidator = new FormValidator();
-const addCardFormValidator = new FormValidator();
+const editFormValidator = new FormValidator(
+  validationOptions,
+  profileEditModal
+);
+const addCardFormValidator = new FormValidator(
+  validationOptions,
+  addCardEditModal
+);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
