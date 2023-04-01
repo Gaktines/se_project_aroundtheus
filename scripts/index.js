@@ -73,7 +73,7 @@ const validationOptions = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
+const formElements = Array.from(document.querySelectorAll(".modal__form"));
 const editFormValidator = new FormValidator(
   validationOptions,
   profileEditModal
@@ -86,6 +86,13 @@ const addCardFormValidator = new FormValidator(
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
+const inputList = Array.from(formElement.querySelectorAll(".modal__form"));
+const profileEditFormElement = profileEditModal.querySelector(
+  "#profile-modal-form"
+);
+const addCardEditFormElement = addCardEditModal.querySelector(
+  "#add-card-modal-form"
+);
 const profileEditFormValidator = new FormValidator(
   validationOptions,
   profileEditFormElement
@@ -93,13 +100,6 @@ const profileEditFormValidator = new FormValidator(
 const addCardEditFormValidator = new FormValidator(
   validationOptions,
   addCardEditFormElement
-);
-const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-const profileEditFormElement = profileEditModal.querySelector(
-  "#profile-modal-form"
-);
-const addCardEditFormElement = addCardEditModal.querySelector(
-  "#add-card-modal-form"
 );
 function closeEditModalPopup() {
   closeModal(profileEditModal);

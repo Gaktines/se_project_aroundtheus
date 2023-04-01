@@ -12,12 +12,8 @@ export default class FormValidator {
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
-    this._modalElements = Array.from(
-      document.querySelectorAll(this._formSelector)
-    );
-    this._inputElements = Array.from(
-      this._modalElement.querySelectorAll(".modal__input")
-    );
+    this._inputElements = Array.from(this._form.querySelector(".modal__input"));
+    this._saveButton = this._form.querySelector(this._submitButtonSelector);
   }
 
   _showInputError(inputElement, errorMessageElement) {
@@ -39,7 +35,7 @@ export default class FormValidator {
   }
   _hasInvalidInput() {
     return !this._inputList.every(
-      (inputElement) => this._inputElement.validity.valid
+      (inputElement) => inputElement.validity.valid
     );
   }
   _toggleButtonState() {
@@ -70,8 +66,6 @@ export default class FormValidator {
   }
 
   enableValidation(formElements, options) {
-    this._formElements = Array.from(document.querySelectorAll(".modal__form"));
-
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
