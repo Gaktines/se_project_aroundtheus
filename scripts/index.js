@@ -94,7 +94,7 @@ const addCardEditFormValidator = new FormValidator(
   validationOptions,
   addCardEditFormElement
 );
-
+const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
 const profileEditFormElement = profileEditModal.querySelector(
   "#profile-modal-form"
 );

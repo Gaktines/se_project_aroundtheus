@@ -47,9 +47,6 @@ function toggleButtonState(inputElements, saveButton, options) {
 }
 
 function setEventListeners(modalElement, options) {
-  const inputElements = Array.from(
-    modalElement.querySelectorAll(options.inputSelector)
-  );
   const saveButton = modalElement.querySelector(options.submitButtonSelector);
   toggleButtonState(inputElements, saveButton, options);
   inputElements.forEach((inputElement) => {
