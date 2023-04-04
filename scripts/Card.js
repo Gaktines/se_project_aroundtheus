@@ -4,7 +4,9 @@ const imageModalCard = imageModal.querySelector("#modal-image");
 const imageModalCaption = imageModal.querySelector("#modal-caption");
 //const imageModalCloseBtn = document.querySelector("#modal-close-button");
 const ESC_KEYCODE = 27;
-
+const cardTemplateInput =
+  document.querySelector("#card-template").content.firstElementChild;
+const cardElement = cardTemplateInput.cloneNode(true);
 function closeEditModalPopup() {
   closeModal(profileEditModal);
 }
@@ -16,6 +18,7 @@ export default class Card {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
+    this._cardElement = cardElement;
   }
   _setEventListeners() {
     //".card__button"
@@ -47,15 +50,18 @@ export default class Card {
     imageModalCard.src = cardData.link;
     imageModalCard.alt = imageModalCaption.textContent;
   }
+
   _getTemplate() {
     return document
-      .querySelector(cardSelector)
-      .querySelector("#card")
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
       .cloneNode(true);
   }
+
   getCard() {
     this._cardElement = this._getTemplate();
     //get the card view
+    console.log(this._cardElement);
     this._cardElement.querySelector(
       "#add-card-link"
     ).style.backgroundImage = `url(${this._link})`;
