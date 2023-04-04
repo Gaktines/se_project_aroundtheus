@@ -7,19 +7,38 @@ const ESC_KEYCODE = 27;
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
 const cardElement = cardTemplateInput.cloneNode(true);
-function closeEditModalPopup() {
-  closeModal(profileEditModal);
-}
-function closeAddCardModalPopup() {
-  closeModal(addCardEditModal);
-}
+const addCardEditModal = document.querySelector("#add-card-edit-modal");
+const cardImageElement = cardElement.querySelector("#card-image");
+const processEscDown = (evt) => {
+  if (evt.which === ESC_KEYCODE) {
+    const activeModal = document.querySelector(".modal_opened");
+    closeModal(activeModal);
+  }
+};
 export default class Card {
   constructor(cardData, cardSelector) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._cardElement = cardElement;
+    this._modal = document.querySelector(".modal");
   }
+  _openModal() {
+    this._modal.classList.add("modal_opened");
+    document.addEventListener("keydown", processEscDown);
+  }
+  _closeModal() {
+    this._modal.classList.remove("modal_opened");
+    document.removeEventListener("keydown", processEscDown);
+  }
+
+  _closeEditModalPopup() {
+    closeModal(profileEditModal);
+  }
+  _closeAddCardModalPopup() {
+    closeModal(addCardEditModal);
+  }
+
   _setEventListeners() {
     //".card__button"
     const likeButton = this._cardElement
@@ -35,7 +54,7 @@ export default class Card {
       });
     //image
     cardImageElement.addEventListener("click", () => this._handleImageModal());
-    openModal(imageModal);
+    this._openModal(imageModal);
   }
   _handleLikeIcon() {
     this._cardElement
@@ -61,11 +80,11 @@ export default class Card {
   getCard() {
     this._cardElement = this._getTemplate();
     //get the card view
-    console.log(this._cardElement);
-    this._cardElement.querySelector(
+
+    addCardEditModal.querySelector(
       "#add-card-link"
     ).style.backgroundImage = `url(${this._link})`;
-    this._cardElement.querySelector("#add-card-modal-title").textContent =
+    addCardEditModal.querySelector("#add-card-modal-title").textContent =
       this._name;
     //set the event listeners
     this._setEventListeners();
