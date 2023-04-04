@@ -1,8 +1,8 @@
 const imageModal = document.querySelector("#image-modal");
-const imageButton = document.querySelector("#image-button");
+//const imageButton = document.querySelector("#image-button");
 const imageModalCard = imageModal.querySelector("#modal-image");
 const imageModalCaption = imageModal.querySelector("#modal-caption");
-const imageModalCloseBtn = document.querySelector("#modal-close-button");
+//const imageModalCloseBtn = document.querySelector("#modal-close-button");
 const ESC_KEYCODE = 27;
 
 function closeEditModalPopup() {
@@ -48,10 +48,10 @@ export default class Card {
     imageModalCard.alt = imageModalCaption.textContent;
   }
   _getTemplate() {
-    return (
-      document.querySelector(this._cardSelector),
-      querySelector("#card").cloneNode(true)
-    );
+    return document
+      .querySelector(cardSelector)
+      .querySelector("#card")
+      .cloneNode(true);
   }
   getCard() {
     this._cardElement = this._getTemplate();
