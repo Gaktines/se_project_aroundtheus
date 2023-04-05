@@ -18,7 +18,7 @@ export default class FormValidator {
     this._saveButton = this._form.querySelector(this._submitButtonSelector);
   }
 
-  _showInputError(inputElement, errorMessageElement) {
+  _showInputError() {
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
     );
@@ -27,7 +27,7 @@ export default class FormValidator {
       this._inputElement.validationMessage;
     this._errorMessageElement.classList.add(this._errorClass);
   }
-  _hideInputError(inputElement, errorMessageElement) {
+  _hideInputError() {
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
     );

@@ -80,10 +80,7 @@ export default class Card {
   getCard() {
     this._cardElement = this._getTemplate();
     //get the card view
-    this._cardElement = document
-      .querySelector(this._cardSelector)
-      .content.querySelector("#card")
-      .cloneNode(true);
+
     this._cardElement.querySelector(
       "#card-image"
     ).style.backgroundImage = `url(${this._link})`;
