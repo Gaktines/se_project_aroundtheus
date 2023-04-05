@@ -12,7 +12,9 @@ export default class FormValidator {
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
-    this._inputElements = Array.from(this._form.querySelector(".modal__input"));
+    this._inputElements = Array.from(
+      formElement.querySelector(".modal__input")
+    );
     this._saveButton = this._form.querySelector(this._submitButtonSelector);
   }
 
@@ -65,10 +67,10 @@ export default class FormValidator {
     });
   }
 
-  enableValidation(formElements, options) {
+  enableValidation() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    this._setEventListeners(this._form, this._options);
+    this._setEventListeners();
   }
 }
