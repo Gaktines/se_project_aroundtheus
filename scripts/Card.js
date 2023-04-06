@@ -52,6 +52,7 @@ export default class Card {
   }
   _handleDeleteBtn() {
     this._cardSelector.remove;
+    //document.querySelector("#card-template").remove;
   }
   _handleImageModal() {
     imageModalCaption.textContent = this._name;
