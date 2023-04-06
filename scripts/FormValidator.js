@@ -15,7 +15,7 @@ export default class FormValidator {
     this._inputElements = Array.from(
       formElement.querySelector(".modal__input")
     );
-    this._saveButton = this._form.querySelector(this._submitButtonSelector);
+    this._saveButton = document.querySelector(".modal__button");
   }
 
   _showInputError() {
