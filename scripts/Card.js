@@ -1,20 +1,16 @@
+import { openModal, closeModal } from "./utils.js";
 const imageModal = document.querySelector("#image-modal");
 //const imageButton = document.querySelector("#image-button");
 const imageModalCard = imageModal.querySelector("#modal-image");
 const imageModalCaption = imageModal.querySelector("#modal-caption");
 //const imageModalCloseBtn = document.querySelector("#modal-close-button");
-const ESC_KEYCODE = 27;
+
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
 const cardElement = cardTemplateInput.cloneNode(true);
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
 //const cardImageElement = cardElement.querySelector("#card-image");
-const processEscDown = (evt) => {
-  if (evt.which === ESC_KEYCODE) {
-    const activeModal = document.querySelector(".modal_opened");
-    closeModal(activeModal);
-  }
-};
+
 export default class Card {
   constructor(cardData, cardSelector) {
     this._name = cardData.name;
@@ -22,14 +18,6 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._cardElement = cardElement;
     this._modal = document.querySelector(".modal");
-  }
-  _openModal() {
-    this._modal.classList.add("modal_opened");
-    document.addEventListener("keydown", processEscDown);
-  }
-  _closeModal() {
-    this._modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", processEscDown);
   }
 
   _closeEditModalPopup() {
@@ -68,8 +56,8 @@ export default class Card {
   _handleImageModal() {
     imageModalCaption.textContent = this._name;
     imageModalCard.src = this._link;
-    imageModalCard.alt = imageModalCaption.textContent;
-    this._openModal(imageModal);
+    imageModalCard.alt = this._name;
+    openModal(imageModal);
   }
 
   _getTemplate() {
