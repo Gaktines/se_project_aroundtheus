@@ -51,8 +51,7 @@ export default class Card {
       .classList.toggle("card__button_active");
   }
   _handleDeleteBtn() {
-    this._cardSelector.remove;
-    //document.querySelector("#card-template").remove;
+    this._cardElement.remove();
   }
   _handleImageModal() {
     imageModalCaption.textContent = this._name;

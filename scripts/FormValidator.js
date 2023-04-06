@@ -41,18 +41,18 @@ export default class FormValidator {
     );
   }
   _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputElements)) {
-      this._saveButton.classList.add(this._options.inactiveButtonClass);
+    if (this._hasInvalidInput()) {
+      this._saveButton.classList.add(this._inactiveButtonClass);
       this._saveButton.disabled = true;
       return;
     }
-    this._saveButton.classList.remove(this._options.inactiveButtonClass);
+    this._saveButton.classList.remove(this._inactiveButtonClass);
     this._saveButton.disabled = false;
   }
   _checkInputValidity() {
-    if (!this._inputElement.validity.valid) {
-      this.showInputError(this._form, this._inputElement, options);
-      this.hideInputError(this._form, this._inputElement, options);
+    if (!inputElement.validity.valid) {
+      this._showInputError();
+      this._hideInputError();
     }
   }
   _setEventListeners() {
