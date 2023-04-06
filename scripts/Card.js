@@ -8,7 +8,7 @@ const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
 const cardElement = cardTemplateInput.cloneNode(true);
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
-const cardImageElement = cardElement.querySelector("#card-image");
+//const cardImageElement = cardElement.querySelector("#card-image");
 const processEscDown = (evt) => {
   if (evt.which === ESC_KEYCODE) {
     const activeModal = document.querySelector(".modal_opened");
@@ -53,8 +53,9 @@ export default class Card {
         this._handleDeleteBtn();
       });
     //image
-    cardImageElement.addEventListener("click", () => this._handleImageModal());
-    this._openModal(imageModal);
+    this._cardElement
+      .querySelector("#card-image")
+      .addEventListener("click", () => this._handleImageModal());
   }
   _handleLikeIcon() {
     this._cardElement
@@ -65,9 +66,10 @@ export default class Card {
     this._cardSelector.remove;
   }
   _handleImageModal() {
-    imageModalCaption.textContent = cardData.name;
-    imageModalCard.src = cardData.link;
+    imageModalCaption.textContent = this._name;
+    imageModalCard.src = this._link;
     imageModalCard.alt = imageModalCaption.textContent;
+    this._openModal(imageModal);
   }
 
   _getTemplate() {
@@ -81,9 +83,7 @@ export default class Card {
     this._cardElement = this._getTemplate();
     //get the card view
 
-    this._cardElement.querySelector(
-      "#card-image"
-    ).style.backgroundImage = `url(${this._link})`;
+    this._cardElement.querySelector("#card-image").src = this._link;
     this._cardElement.querySelector("#card-title").textContent = this._name;
     this._cardElement.querySelector("#card-image").alt = this._name;
     //set the event listeners
