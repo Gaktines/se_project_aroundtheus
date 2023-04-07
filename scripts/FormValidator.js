@@ -13,12 +13,14 @@ export default class FormValidator {
       this._form.querySelectorAll(this._inputSelector)
     );
     this._inputElements = Array.from(
-      formElement.querySelector(".modal__input")
+      formElement.querySelectorAll(".modal__input")
     );
     this._saveButton = document.querySelector(".modal__button");
+    this._inputElement = formElement.querySelectorAll(".modal__input");
   }
 
   _showInputError() {
+    debugger;
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
     );
@@ -50,17 +52,16 @@ export default class FormValidator {
     this._saveButton.disabled = false;
   }
   _checkInputValidity() {
-    if (!inputElement.validity.valid) {
+    if (!this._inputElement.validity.valid) {
       this._showInputError();
+    } else {
       this._hideInputError();
     }
   }
   _setEventListeners() {
-    const saveButton = this._form.querySelector(this._submitButtonSelector);
-
-    this._toggleButtonState(this._inputElements, this._options);
+    this._toggleButtonState();
     this._inputElements.forEach((inputElement) => {
-      this._inputElement.addEventListener("input", () => {
+      inputElement.addEventListener("input", () => {
         this._checkInputValidity();
         this._toggleButtonState();
       });
