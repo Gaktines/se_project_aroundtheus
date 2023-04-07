@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-
+import { openModal, closeModal } from "./utils.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -59,11 +59,9 @@ const addCardLinkPlaceholder = document.querySelector("#Image Link");
 const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 const cardsWrap = document.querySelector("#card-list");
 const imageModal = document.querySelector("#image-modal");
-//const imageButton = document.querySelector("#image-button");
-//const imageModalCard = imageModal.querySelector("#modal-image");
-//const imageModalCaption = imageModal.querySelector("#modal-caption");
+
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
-const ESC_KEYCODE = 27;
+
 const cardFormSubmitButton = document.querySelector(".modal__button_add_card");
 const validationOptions = {
   formSelector: ".modal__form",
@@ -86,7 +84,6 @@ const addCardFormValidator = new FormValidator(
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-// const inputList = Array.from(formElement.querySelectorAll(".modal__form"));
 const profileEditFormElement = profileEditModal.querySelector(
   "#profile-modal-form"
 );
@@ -110,7 +107,7 @@ function closeAddCardModalPopup() {
   closeModal(addCardEditModal);
 }
 function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
+  //const cardElement = getCard(cardData);
   const card = new Card(cardData, "#card-template");
   cardsWrap.prepend(card.getCard());
 }
@@ -129,48 +126,16 @@ function handleAddCardForm(evt) {
   renderCard(titleValue, cardsWrap);
   closeModal(addCardEditModal);
   addCardForm.reset();
-  toggleButtonState(
+  this._toggleButtonState(
     [addCardTitleInput, addCardLinkInput],
     cardFormSubmitButton,
     validationOptions
   );
 }
-function getCardElement(cardData) {
-  const cardElement = cardTemplateInput.cloneNode(true);
-  //const cardTitleElement = cardElement.querySelector("#card-title");
-  const cardImageElement = cardElement.querySelector("#card-image");
-  //const likeButton = cardElement.querySelector(".card__button");
-  //likeButton.addEventListener("click", () => {
-  //likeButton.classList.toggle("card__button_active");
-  //});
-  //const deleteBtn = cardElement.querySelector("#card-delete-button");
-  //deleteBtn.addEventListener("click", function () {
-  //cardElement.remove();
-  //});
 
-  /*cardImageElement.addEventListener("click", () => {
-    imageModalCaption.textContent = cardData.name;
-    imageModalCard.src = cardData.link;
-    imageModalCard.alt = imageModalCaption.textContent;
+const cardElement = cardTemplateInput.cloneNode(true);
 
-    openModal(imageModal);
-  });*/
-}
-// cardImageElement.src = cardData.link;
-
-//cardImageElement.alt = cardData.name;
-//cardTitleElement.textContent = cardData.name;
-//return cardElement;
-//}
-
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", processEscDown);
-}
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", processEscDown);
-}
+const cardImageElement = cardElement.querySelector("#card-image");
 
 const processEscDown = (evt) => {
   if (evt.which === ESC_KEYCODE) {

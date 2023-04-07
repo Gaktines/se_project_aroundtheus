@@ -20,20 +20,12 @@ export default class Card {
     this._modal = document.querySelector(".modal");
   }
 
-  _closeEditModalPopup() {
-    closeModal(profileEditModal);
-  }
-  _closeAddCardModalPopup() {
-    closeModal(addCardEditModal);
-  }
-
   _setEventListeners() {
     //".card__button"
-    this._likeButton = this._cardElement
-      .querySelector(".card__button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._likeButton = this._cardElement.querySelector(".card__button");
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
     //"#card-delete-button"
     this._deleteBtn = this._cardElement
       .querySelector("#card-delete-button")
@@ -46,9 +38,7 @@ export default class Card {
       .addEventListener("click", () => this._handleImageModal());
   }
   _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__button")
-      .classList.toggle("card__button_active");
+    this._likeButton.classList.toggle("card__button_active");
   }
   _handleDeleteBtn() {
     this._cardElement.remove();
