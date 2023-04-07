@@ -15,25 +15,22 @@ export default class FormValidator {
     this._inputElements = Array.from(
       formElement.querySelectorAll(".modal__input")
     );
-    this._saveButton = document.querySelector(".modal__button");
-    this._inputElement = formElement.querySelectorAll(".modal__input");
+    this._saveButton = this._form.querySelector(".modal__button");
   }
 
-  _showInputError() {
-    debugger;
+  _showInputError(inputElement) {
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
     );
-    this._inputElement.classList.add(this._inputErrorClass);
-    this._errorMessageElement.textContent =
-      this._inputElement.validationMessage;
+    inputElement.classList.add(this._inputErrorClass);
+    this._errorMessageElement.textContent = inputElement.validationMessage;
     this._errorMessageElement.classList.add(this._errorClass);
   }
-  _hideInputError() {
+  _hideInputError(inputElement) {
     this._errorMessageElement = this._form.querySelector(
       `#${inputElement.id}-error`
     );
-    this._inputElement.classList.remove(this._inputErrorClass);
+    inputElement.classList.remove(this._inputErrorClass);
     this._errorMessageElement.textContent = "";
     this._errorMessageElement.classList.remove(this._errorClass);
   }
@@ -51,18 +48,18 @@ export default class FormValidator {
     this._saveButton.classList.remove(this._inactiveButtonClass);
     this._saveButton.disabled = false;
   }
-  _checkInputValidity() {
-    if (!this._inputElement.validity.valid) {
-      this._showInputError();
+  _checkInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      this._showInputError(inputElement);
     } else {
-      this._hideInputError();
+      this._hideInputError(inputElement);
     }
   }
   _setEventListeners() {
     this._toggleButtonState();
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        this._checkInputValidity();
+        this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
     });
