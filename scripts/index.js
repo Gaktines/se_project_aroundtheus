@@ -89,17 +89,7 @@ const profileEditFormElement = profileEditModal.querySelector(
 const addCardEditFormElement = addCardEditModal.querySelector(
   "#add-card-modal-form"
 );
-/*const profileEditFormValidator = new FormValidator(
-  validationOptions,
-  profileEditFormElement
-);
-profileEditFormValidator.enableValidation();
-const addCardEditFormValidator = new FormValidator(
-  validationOptions,
-  addCardEditFormElement
-);*/
 
-addCardFormValidator.enableValidation();
 function closeEditModalPopup() {
   closeModal(profileEditModal);
 }
@@ -107,7 +97,6 @@ function closeAddCardModalPopup() {
   closeModal(addCardEditModal);
 }
 function renderCard(cardData) {
-  //const cardElement = getCard(cardData);
   const card = new Card(cardData, "#card-template");
   cardsWrap.prepend(card.getCard());
 }

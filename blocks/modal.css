@@ -98,7 +98,7 @@
 }
 .modal__button_disabled {
   border-color: rgba(0, 0, 0, 0.2);
-  background-color: white;
+  background-color: #ffffff;
   color: rgba(0, 0, 0, 0.2);
 }
 
