@@ -116,11 +116,12 @@ function handleAddCardForm(evt) {
   closeModal(addCardEditModal);
   addCardForm.reset();
   //this._toggleButtonState
-  addCardFormValidator.toggleButtonState(
-    [addCardTitleInput, addCardLinkInput],
+  addCardFormValidator
+    .toggleButtonState
+    /*[addCardTitleInput, addCardLinkInput],
     cardFormSubmitButton,
-    validationOptions
-  );
+    validationOptions*/
+    ();
 }
 
 const cardElement = cardTemplateInput.cloneNode(true);
