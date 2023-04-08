@@ -8,7 +8,7 @@ export default class FormValidator {
     this._errorClass = "modal__error_visible";
 
     this._form = formElement;
-    // this._options = validationOptions;
+
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );

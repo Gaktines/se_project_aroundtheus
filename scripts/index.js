@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { openModal, closeModal } from "./utils.js";
+import { openModal, closeModal, closeModalOnRemoteClick } from "./utils.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -71,7 +71,7 @@ const validationOptions = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-const formElements = Array.from(document.querySelectorAll(".modal__form"));
+
 const editFormValidator = new FormValidator(
   validationOptions,
   profileEditModal
@@ -80,7 +80,6 @@ const addCardFormValidator = new FormValidator(
   validationOptions,
   addCardEditModal
 );
-
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
@@ -90,7 +89,7 @@ const profileEditFormElement = profileEditModal.querySelector(
 const addCardEditFormElement = addCardEditModal.querySelector(
   "#add-card-modal-form"
 );
-const profileEditFormValidator = new FormValidator(
+/*const profileEditFormValidator = new FormValidator(
   validationOptions,
   profileEditFormElement
 );
@@ -98,8 +97,9 @@ profileEditFormValidator.enableValidation();
 const addCardEditFormValidator = new FormValidator(
   validationOptions,
   addCardEditFormElement
-);
-addCardEditFormValidator.enableValidation();
+);*/
+
+addCardFormValidator.enableValidation();
 function closeEditModalPopup() {
   closeModal(profileEditModal);
 }
@@ -126,7 +126,8 @@ function handleAddCardForm(evt) {
   renderCard(titleValue, cardsWrap);
   closeModal(addCardEditModal);
   addCardForm.reset();
-  this._toggleButtonState(
+  //this._toggleButtonState
+  addCardFormValidator.toggleButtonState(
     [addCardTitleInput, addCardLinkInput],
     cardFormSubmitButton,
     validationOptions
@@ -137,21 +138,6 @@ const cardElement = cardTemplateInput.cloneNode(true);
 
 const cardImageElement = cardElement.querySelector("#card-image");
 
-const processEscDown = (evt) => {
-  if (evt.which === ESC_KEYCODE) {
-    const activeModal = document.querySelector(".modal_opened");
-    closeModal(activeModal);
-  }
-};
-
-function closeModalOnRemoteClick(evt) {
-  if (
-    evt.target === evt.currentTarget ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closeModal(evt.target);
-  }
-}
 profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
 addCardEditModal.addEventListener("mousedown", closeModalOnRemoteClick);

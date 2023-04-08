@@ -27,11 +27,10 @@ export default class Card {
       this._handleLikeIcon();
     });
     //"#card-delete-button"
-    this._deleteBtn = this._cardElement
-      .querySelector("#card-delete-button")
-      .addEventListener("click", () => {
-        this._handleDeleteBtn();
-      });
+    this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
+    this._deleteBtn.addEventListener("click", () => {
+      this._handleDeleteBtn();
+    });
     //image
     this._cardElement
       .querySelector("#card-image")
