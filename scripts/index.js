@@ -31,7 +31,7 @@ const cardData = {
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
 };
-
+const modalCloseButton = document.querySelectorAll(".modal__close");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(
@@ -117,11 +117,7 @@ function handleAddCardForm(evt) {
   addCardForm.reset();
   //this._toggleButtonState
   addCardFormValidator
-    .toggleButtonState
-    /*[addCardTitleInput, addCardLinkInput],
-    cardFormSubmitButton,
-    validationOptions*/
-    ();
+    .toggleButtonState();
 }
 
 const cardElement = cardTemplateInput.cloneNode(true);
@@ -140,9 +136,7 @@ profileEditButton.addEventListener("click", () => {
   profileSubheadingInput.value = profileSubheading.textContent;
   openModal(profileEditModal);
 });
-profileModalCloseButton.addEventListener("click", () =>
-  closeModal(profileEditModal)
-);
+
 addCardButton.addEventListener("click", () => openModal(addCardEditModal));
 
 addCardForm.addEventListener("submit", handleAddCardForm);
@@ -154,3 +148,35 @@ imageModalCloseBtn.addEventListener("click", () => {
 });
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+
+export default class Section {
+  constructor({items, renderer}, cardSelector) {
+this.cardSelector = document.querySelectorAll(".modal");
+    renderItems() {
+
+}
+renderer() {
+
+}
+addItem() {
+
+}
+  }
+}
+ class UserInfo {
+  constructor({name, title}) {
+
+  
+  getUserInfo() {
+
+  }
+  setUserInfo() {
+
+  }
+}
+ }
+
+ const newModal = new PopupWithForm("#profile-edit-modal", ()=>{});
+ newCardPopup.open();
+
+newCardPopup.close();
