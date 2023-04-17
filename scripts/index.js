@@ -1,6 +1,5 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { openModal, closeModal, closeModalOnRemoteClick } from "./utils.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -96,16 +95,12 @@ function closeEditModalPopup() {
 function closeAddCardModalPopup() {
   closeModal(addCardEditModal);
 }
-function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template");
-  cardsWrap.prepend(card.getCard());
-}
-function handleProfileEditForm(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileSubheading.textContent = profileSubheadingInput.value;
-  closeModal(profileEditModal);
-}
+//function renderCard(cardData) {
+
+//}
+/*function handleProfileEditForm(evt) {
+  
+}*/
 function handleAddCardForm(evt) {
   evt.preventDefault();
   const titleValue = {
@@ -116,8 +111,7 @@ function handleAddCardForm(evt) {
   closeModal(addCardEditModal);
   addCardForm.reset();
   //this._toggleButtonState
-  addCardFormValidator
-    .toggleButtonState();
+  addCardFormValidator.toggleButtonState();
 }
 
 const cardElement = cardTemplateInput.cloneNode(true);
@@ -147,36 +141,42 @@ imageModalCloseBtn.addEventListener("click", () => {
   closeModal(imageModal);
 });
 
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
-
 export default class Section {
-  constructor({items, renderer}, cardSelector) {
-this.cardSelector = document.querySelectorAll(".modal");
-    renderItems() {
-
-}
-renderer() {
-
-}
-addItem() {
-
-}
+  constructor({ items, renderer }, cardSelector) {
+    this.cardSelector = document.querySelectorAll(".modal");
   }
+  renderItems() {
+    initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+  }
+  renderer() {
+    const card = new Card(cardData, "#card-template");
+    cardsWrap.prepend(card.getCard());
+  }
+  addItem() {}
 }
- class UserInfo {
-  constructor({name, title}) {
-
-  
+class UserInfo {
+  constructor({ name, title }) {}
   getUserInfo() {
+    this._cardElement = this._getTemplate();
+    //get the card view
 
+    this._cardElement.querySelector("#card-image").src = this._link;
+    this._cardElement.querySelector("#card-title").textContent = this._name;
+    this._cardElement.querySelector("#card-image").alt = this._name;
+    //set the event listeners
+    this._setEventListeners();
+    //return the card
+    return this._cardElement;
   }
-  setUserInfo() {
-
+  setUserInfo(evt) {
+    evt.preventDefault();
+    this.name.textContent = profileTitleInput.value;
+    this.title.textContent = profileSubheadingInput.value;
+    closeModal(profileEditModal);
   }
 }
- }
 
- const newModal = new PopupWithForm("#profile-edit-modal", ()=>{});
- newCardPopup.open();
+const newModal = new PopupWithForm("#profile-edit-modal", () => {});
+newCardPopup.open();
 
 newCardPopup.close();
