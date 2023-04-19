@@ -1,4 +1,3 @@
-import { openModal, closeModal } from "./utils.js";
 const imageModal = document.querySelector("#image-modal");
 //const imageButton = document.querySelector("#image-button");
 const imageModalCard = imageModal.querySelector("#modal-image");
@@ -12,12 +11,13 @@ const addCardEditModal = document.querySelector("#add-card-edit-modal");
 //const cardImageElement = cardElement.querySelector("#card-image");
 
 export default class Card {
-  constructor(cardData, cardSelector) {
+  constructor({ cardData, cardSelector }, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._cardElement = cardElement;
     this._modal = document.querySelector(".modal");
+    this._handleCardClick = handleCardClick;
   }
 
   _setEventListeners() {
@@ -46,7 +46,7 @@ export default class Card {
     imageModalCaption.textContent = this._name;
     imageModalCard.src = this._link;
     imageModalCard.alt = this._name;
-    openModal(imageModal);
+    open(imageModal);
   }
 
   _getTemplate() {
@@ -56,16 +56,7 @@ export default class Card {
       .cloneNode(true);
   }
 
-  getCard() {
-    this._cardElement = this._getTemplate();
-    //get the card view
-
-    this._cardElement.querySelector("#card-image").src = this._link;
-    this._cardElement.querySelector("#card-title").textContent = this._name;
-    this._cardElement.querySelector("#card-image").alt = this._name;
-    //set the event listeners
-    this._setEventListeners();
-    //return the card
-    return this._cardElement;
-  }
+  /*getCard() {
+    
+  }*/
 }
