@@ -1,6 +1,9 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import "../pages/index.css";
+import Section from "./Section.js";
+import Popup from "./Popup.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -99,9 +102,15 @@ function closeAddCardModalPopup() {
 //function renderCard(cardData) {
 
 //}
-/*function handleProfileEditForm(evt) {
-  
-}*/
+function handleProfileEditForm(evt) {}
+function closeModalOnRemoteClick(evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(evt.target);
+  }
+}
 function handleAddCardForm(evt) {
   evt.preventDefault();
   const titleValue = {
@@ -142,43 +151,29 @@ imageModalCloseBtn.addEventListener("click", () => {
   closeModal(imageModal);
 });
 
-export default class Section {
-  constructor({ items, renderer }, cardSelector) {
-    this.items = Array.from();
-    this.renderer = renderer;
-    this.cardSelector = document.querySelectorAll(".modal");
-  }
-  renderItems() {
-    initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
-  }
-  renderer() {
-    const card = new Card(cardData, "#card-template");
-    cardsWrap.prepend(card.getCard());
-  }
-  addItem(Card) {
-    const cardList = document.querySelector(".cards__list");
-    cardList.appendChild(Card);
-  }
-}
+const section = new Section({ items, renderer: () => {} }, ".cards__list");
+
+section.renderItems();
+
 class UserInfo {
-  constructor({ name, title }) {}
-  getUserInfo() {
+  constructor({ name, job }) {}
+  getUserInfo(evt) {
+    evt.preventDefault();
+    this.name.textContent = profileTitleInput.value;
+    this.job.textContent = profileSubheadingInput.value;
+    closeModal(profileEditModal);
+  }
+  setUserInfo() {
     this._cardElement = this._getTemplate();
     //get the card view
 
     this._cardElement.querySelector("#card-image").src = this._link;
-    this._cardElement.querySelector("#card-title").textContent = this._name;
+    this._cardElement.querySelector().textContent = this._name;
     this._cardElement.querySelector("#card-image").alt = this._name;
     //set the event listeners
     this._setEventListeners();
     //return the card
     return this._cardElement;
-  }
-  setUserInfo(evt) {
-    evt.preventDefault();
-    this.name.textContent = profileTitleInput.value;
-    this.title.textContent = profileSubheadingInput.value;
-    closeModal(profileEditModal);
   }
 }
 
