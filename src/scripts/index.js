@@ -144,6 +144,8 @@ imageModalCloseBtn.addEventListener("click", () => {
 
 export default class Section {
   constructor({ items, renderer }, cardSelector) {
+    this.items = Array.from();
+    this.renderer = renderer;
     this.cardSelector = document.querySelectorAll(".modal");
   }
   renderItems() {
@@ -153,7 +155,10 @@ export default class Section {
     const card = new Card(cardData, "#card-template");
     cardsWrap.prepend(card.getCard());
   }
-  addItem() {}
+  addItem(Card) {
+    const cardList = document.querySelector(".cards__list");
+    cardList.appendChild(Card);
+  }
 }
 class UserInfo {
   constructor({ name, title }) {}
