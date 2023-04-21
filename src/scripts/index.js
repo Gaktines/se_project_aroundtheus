@@ -3,6 +3,7 @@ import FormValidator from "./FormValidator.js";
 import "../pages/index.css";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import UserInfo from "./UserInfo.js";
 
 const initialCards = [
   {
@@ -155,27 +156,13 @@ const section = new Section({ items, renderer: () => {} }, ".cards__list");
 
 section.renderItems();
 
-class UserInfo {
-  constructor({ name, job }) {}
-  getUserInfo(evt) {
-    evt.preventDefault();
-    this.name.textContent = profileTitleInput.value;
-    this.job.textContent = profileSubheadingInput.value;
-    closeModal(profileEditModal);
-  }
-  setUserInfo() {
-    this._cardElement = this._getTemplate();
-    //get the card view
+const userInfo = new UserInfo({
+  name: ".profile__title",
+  job: ".profile__subheading",
+});
 
-    this._cardElement.querySelector("#card-image").src = this._link;
-    this._cardElement.querySelector().textContent = this._name;
-    this._cardElement.querySelector("#card-image").alt = this._name;
-    //set the event listeners
-    this._setEventListeners();
-    //return the card
-    return this._cardElement;
-  }
-}
+const getUInfo = userInfo.getUserInfo();
+userInfo.setUserInfo({ name, job });
 
 const newModal = new PopupWithForm("#profile-edit-modal", () => {});
 newCardPopup.open();
