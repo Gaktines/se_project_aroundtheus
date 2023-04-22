@@ -93,6 +93,10 @@ const profileEditFormElement = profileEditModal.querySelector(
 const addCardEditFormElement = addCardEditModal.querySelector(
   "#add-card-modal-form"
 );
+const userInfo = new UserInfo({
+  name: ".profile__title",
+  job: ".profile__subheading",
+});
 
 function closeEditModalPopup() {
   closeModal(profileEditModal);
@@ -103,7 +107,11 @@ function closeAddCardModalPopup() {
 //function renderCard(cardData) {
 
 //}
-function handleProfileEditForm(evt) {}
+/*function handleProfileEditForm(evt) {}
+evt.preventDefault();
+  profileTitle.textContent = profileTitleInput.value;
+  profileSubheading.textContent = profileSubheadingInput.value;
+  closeModal(profileEditModal);*/
 function closeModalOnRemoteClick(evt) {
   if (
     evt.target === evt.currentTarget ||
@@ -135,34 +143,29 @@ addCardEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
 imageModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-profileEditForm.addEventListener("submit", handleProfileEditForm);
+profileEditForm.addEventListener("submit", userInfo.setUserInfo());
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileSubheadingInput.value = profileSubheading.textContent;
-  openModal(profileEditModal);
+  open(profileEditModal);
+  userInfo.setUserInfo({ name, job });
 });
 
-addCardButton.addEventListener("click", () => openModal(addCardEditModal));
+addCardButton.addEventListener("click", () => open(addCardEditModal));
 
 addCardForm.addEventListener("submit", handleAddCardForm);
 profileModalCloseButton.addEventListener("click", closeEditModalPopup);
 addCardModalCloseButton.addEventListener("click", closeAddCardModalPopup);
-profileEditForm.addEventListener("submit", handleProfileEditForm);
+//profileEditForm.addEventListener("submit", userInfo.setUserInfo());
 imageModalCloseBtn.addEventListener("click", () => {
-  closeModal(imageModal);
+  close(imageModal);
 });
 
 const section = new Section({ items, renderer: () => {} }, ".cards__list");
 
 section.renderItems();
 
-const userInfo = new UserInfo({
-  name: ".profile__title",
-  job: ".profile__subheading",
-});
-
 const getUInfo = userInfo.getUserInfo();
-userInfo.setUserInfo({ name, job });
 
 const newModal = new PopupWithForm("#profile-edit-modal", () => {});
 newCardPopup.open();
