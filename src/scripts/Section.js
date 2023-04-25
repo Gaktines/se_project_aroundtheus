@@ -3,15 +3,12 @@ export default class Section {
     this.items = items;
     this.renderer = renderer;
     this.cardSelector = cardSelector;
-    this.container = document.querySelector(".cards__list");
+    this.container = document.querySelector(cardSelector);
   }
   renderItems() {
-    this.items.forEach((cardData) => renderCard(cardData));
+    this.items.forEach((cardData) => this.renderer(cardData));
   }
-  renderer() {
-    const card = new Card(cardData, "#card-template");
-  }
-  addItem() {
+  addItem(card) {
     this.container.prepend(card.getCard());
   }
 }

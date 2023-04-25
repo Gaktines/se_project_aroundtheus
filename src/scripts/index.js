@@ -112,12 +112,22 @@ evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileSubheading.textContent = profileSubheadingInput.value;
   closeModal(profileEditModal);*/
+
+function openModal() {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscClose);
+}
+function closeModal() {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscClose);
+}
+
 function closeModalOnRemoteClick(evt) {
   if (
     evt.target === evt.currentTarget ||
     evt.target.classList.contains("modal__close")
   ) {
-    closeModal(evt.target);
+    this.close(evt.target);
   }
 }
 function handleAddCardForm(evt) {
@@ -127,7 +137,7 @@ function handleAddCardForm(evt) {
     link: addCardLinkInput.value,
   };
   renderCard(titleValue, cardsWrap);
-  closeModal(addCardEditModal);
+  this.close(addCardEditModal);
   addCardForm.reset();
   //this._toggleButtonState
   addCardFormValidator.toggleButtonState();
@@ -136,6 +146,10 @@ function handleAddCardForm(evt) {
 const cardElement = cardTemplateInput.cloneNode(true);
 
 const cardImageElement = cardElement.querySelector("#card-image");
+
+this._modalForm.addEventListener("submit", () => {
+  this._handleFormSubmit(this._getInputValues());
+});
 
 profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
@@ -147,18 +161,18 @@ profileEditForm.addEventListener("submit", userInfo.setUserInfo());
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileSubheadingInput.value = profileSubheading.textContent;
-  open(profileEditModal);
+  this.open(profileEditModal);
   userInfo.setUserInfo({ name, job });
 });
 
-addCardButton.addEventListener("click", () => open(addCardEditModal));
+addCardButton.addEventListener("click", () => this.open(addCardEditModal));
 
 addCardForm.addEventListener("submit", handleAddCardForm);
 profileModalCloseButton.addEventListener("click", closeEditModalPopup);
 addCardModalCloseButton.addEventListener("click", closeAddCardModalPopup);
 //profileEditForm.addEventListener("submit", userInfo.setUserInfo());
 imageModalCloseBtn.addEventListener("click", () => {
-  close(imageModal);
+  this.close(imageModal);
 });
 
 const section = new Section({ items, renderer: () => {} }, ".cards__list");

@@ -1,16 +1,14 @@
-import Card from "./Card.js";
-
 export default class Popup {
-  constructor({ cardSelector }) {
-    this._modalElement = document.querySelector(cardSelector);
+  constructor({ modalSelector }) {
+    this._modalElement = document.querySelector(modalSelector);
   }
   open() {
-    modal.classList.add("modal_opened");
-    document.addEventListener("keydown", handleEscClose);
+    this._modalElement.classList.add("modal_opened");
+    document.addEventListener("keydown", this._handleEscClose);
   }
   close() {
-    modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", handleEscClose);
+    this._modalElement.classList.remove("modal_opened");
+    document.removeEventListener("keydown", this._handleEscClose);
   }
   _handleEscClose() {
     const ESC_KEYCODE = 27;
