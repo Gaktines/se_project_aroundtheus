@@ -1,6 +1,9 @@
 export default class Popup {
-  constructor({ modalSelector }) {
-    this._modalElement = document.querySelector(modalSelector);
+  constructor({ popupSelector }) {
+    this._modalElement = document.querySelector(".modal");
+    this.modalCloseButton = this._modalElement.querySelector(
+      "#modal-close-button"
+    );
   }
   open() {
     this._modalElement.classList.add("modal_opened");
@@ -10,18 +13,15 @@ export default class Popup {
     this._modalElement.classList.remove("modal_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
-  _handleEscClose() {
+  _handleEscClose(evt) {
     const ESC_KEYCODE = 27;
-    this._handleEscClose = (evt) => {
-      if (evt.which === ESC_KEYCODE) {
-        const activeModal = document.querySelector(".modal_opened");
-        close(activeModal);
-      }
-    };
+    if (evt.which === ESC_KEYCODE) {
+      this.close();
+    }
   }
   setEventListeners() {
     modalCloseButton.addEventListener("click", () => {
-      close(activeModal);
+      this.close();
     });
   }
   closeModalOnRemoteClick(evt) {
@@ -29,7 +29,7 @@ export default class Popup {
       evt.target === evt.currentTarget ||
       evt.target.classList.contains("modal__close")
     ) {
-      closeModal(evt.target);
+      this.close(evt.target);
     }
   }
 }
