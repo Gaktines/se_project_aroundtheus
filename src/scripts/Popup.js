@@ -19,18 +19,16 @@ export default class Popup {
       this.close();
     }
   }
-  
+
   setEventListeners() {
-    modalCloseButton.addEventListener("click", () => {
-      this.close();
-    });
+    this._modalElement.addEventListener("click", this.closeModalOnRemoteClick);
   }
-  closeModalOnRemoteClick(evt) {
+  closeModalOnRemoteClick = (evt) => {
     if (
       evt.target === evt.currentTarget ||
       evt.target.classList.contains("modal__close")
     ) {
       this.close(evt.target);
     }
-  }
+  };
 }

@@ -13,17 +13,16 @@ export default class PopupWithForm extends Popup {
   }
   setEventListeners() {
     //submit event
-    modalSubmitButton.addEventListener("submit", () => {
+    this._modalElement.addEventListener("submit", () => {
       this.close();
     });
-    
   }
 
   open() {
     super.open();
   }
   close() {
-    this._modalForm.reset();
+    //this._modalForm.reset();
     super.close();
   }
 }

@@ -5,6 +5,7 @@ import Section from "./Section.js";
 import Popup from "./Popup.js";
 import UserInfo from "./UserInfo.js";
 import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const initialCards = [
   {
@@ -104,14 +105,13 @@ const editModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
   handleFormSubmit,
 });
-//editModal.setEventListeners();
 
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-edit-modal",
   handleFormSubmit,
 });
 
-const imageModal = new PopupWithForm({
+const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
   handleFormSubmit,
 });
@@ -122,9 +122,10 @@ const imageModal = new PopupWithForm({
 function closeAddCardModalPopup() {
   closeModal(addCardEditModal);
 }*/
-//function renderCard(cardData) {
-
-//}
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template");
+  cardsWrap.prepend(card.getCard());
+}
 
 function handleFormSubmit() {
   const modalSubmitButton = this._modalForm
@@ -161,7 +162,8 @@ function handleAddCardForm(evt) {
   //this._toggleButtonState
   addCardFormValidator.toggleButtonState();
 }
-
+editModal.setEventListeners();
+addCardModal.setEventListeners();
 const cardElement = cardTemplateInput.cloneNode(true);
 
 const cardImageElement = cardElement.querySelector("#card-image");
