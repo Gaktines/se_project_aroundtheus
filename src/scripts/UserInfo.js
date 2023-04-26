@@ -5,9 +5,10 @@ export default class UserInfo {
   }
   getUserInfo() {
     // return the text properties of this.name and this.job
-    return { name: this.title.textContent, job: this.job.textContent };
+    return { title: this.title.textContent, job: this.job.textContent };
   }
   setUserInfo({ title, job }) {
+    // When form is submitted, set the profile info
     this.title.textContent = title.value;
     this.job.textContent = job.value;
   }
