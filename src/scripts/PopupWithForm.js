@@ -16,6 +16,7 @@ export default class PopupWithForm extends Popup {
     modalSubmitButton.addEventListener("submit", () => {
       this.close();
     });
+    
   }
 
   open() {
