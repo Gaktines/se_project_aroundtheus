@@ -1,10 +1,10 @@
 import Popup from "./Popup.js";
 export default class PopupWithImage extends Popup {
-  /*constructor({ cardData }) {
-    super({ });
+  constructor({ popupSelector: cardData }) {
+    super({ popupSelector: cardData });
     this.name = cardData.name;
     this.link = cardData.link;
-  }*/
+  }
   open() {
     /*In the open() method of the PopupWithImage class, 
     you need to add an image to the popup and the 

@@ -170,8 +170,7 @@ addCardButton.addEventListener("click", () => addCardModal.open());
 cardImageElement.addEventListener("click", () => imageModal.open());
 
 addCardForm.addEventListener("submit", handleAddCardForm);
-//profileModalCloseButton.addEventListener("click", closeEditModalPopup);
-//addCardModalCloseButton.addEventListener("click", closeAddCardModalPopup);
+
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 imageModalCloseBtn.addEventListener("click", () => {
   editModal.close();
@@ -180,5 +179,4 @@ imageModalCloseBtn.addEventListener("click", () => {
 const section = new Section({ items: initialCards, renderer: renderCard });
 section.renderItems();
 
-//const getUInfo = userInfo.getUserInfo();
-//userInfo.setUserInfo({ title, job });
+
