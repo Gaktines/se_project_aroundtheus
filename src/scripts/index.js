@@ -50,7 +50,7 @@ const profileSubheadingInput = document.querySelector("#modal-subheading");
 const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
-const cardListTemplate = document.querySelector("#card-list");
+const cardList = document.querySelector("#card-list");
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
 const addCardModalCloseButton = document.querySelector(
   "#add-card-modal-close-button"
@@ -123,7 +123,7 @@ function closeAddCardModalPopup() {
   closeModal(addCardEditModal);
 }*/
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template");
+  const card = new Card({cardData, cardSelector: "#card-template"});
   cardsWrap.prepend(card.getCard());
 }
 
@@ -192,7 +192,8 @@ imageModalCloseBtn.addEventListener("click", () => {
   editModal.close();
 });
 
-//const section = new Section({ items, renderer: () => {} }, ".cards__list");
+const section = new Section({ items: initialCards, renderer: renderCard });
+section.renderItems();
 
 //section.renderItems();
 

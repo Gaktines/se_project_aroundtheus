@@ -11,7 +11,7 @@ const addCardEditModal = document.querySelector("#add-card-edit-modal");
 //const cardImageElement = cardElement.querySelector("#card-image");
 
 export default class Card {
-  constructor({ cardData, cardSelector }, handleCardClick) {
+  constructor({ cardData, cardSelector, handleCardClick }) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;

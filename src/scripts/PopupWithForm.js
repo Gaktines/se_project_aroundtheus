@@ -11,12 +11,12 @@ export default class PopupWithForm extends Popup {
       this._modalForm.querySelectorAll(".modal__input").values;
     return inputValues;
   }
-  setEventListeners() {
-    //submit event
-    this._modalElement.addEventListener("submit", () => {
-      this.close();
-    });
-  }
+  //setEventListeners() {
+  //submit event
+  //this._modalElement.addEventListener("submit", () => {
+  //this.close();
+  // });
+  // }
 
   open() {
     super.open();
