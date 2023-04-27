@@ -117,7 +117,14 @@ const imageModal = new PopupWithImage({
 });
 
 function renderCard(cardData) {
-  const card = new Card({ cardData, cardSelector: "#card-template" });
+  const card = new Card({
+    cardData,
+    cardSelector: "#card-template",
+    handleCardClick: ({ name, link }) => {
+      //here is where we want to open our popupWithImage instance.
+      imageModal.open();
+    },
+  });
   cardsWrap.prepend(card.getCard());
 }
 
@@ -167,7 +174,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => addCardModal.open());
-cardImageElement.addEventListener("click", () => imageModal.open());
 
 addCardForm.addEventListener("submit", handleAddCardForm);
 
@@ -178,5 +184,3 @@ imageModalCloseBtn.addEventListener("click", () => {
 
 const section = new Section({ items: initialCards, renderer: renderCard });
 section.renderItems();
-
-

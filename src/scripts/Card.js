@@ -34,7 +34,7 @@ export default class Card {
     //image
     this._cardElement
       .querySelector("#card-image")
-      .addEventListener("click", () => this._handleImageModal());
+      .addEventListener("click", () => this._handleCardClick({name: this._name, link: this._link}));
   }
   _handleLikeIcon() {
     this._likeButton.classList.toggle("card__button_active");
@@ -42,12 +42,12 @@ export default class Card {
   _handleDeleteBtn() {
     this._cardElement.remove();
   }
-  _handleImageModal() {
+  /*_handleImageModal() {
     imageModalCaption.textContent = this._name;
     imageModalCard.src = this._link;
     imageModalCard.alt = this._name;
     open(imageModal);
-  }
+  }*/
 
   _getTemplate() {
     return document
