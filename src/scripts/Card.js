@@ -1,13 +1,9 @@
 
-//const imageButton = document.querySelector("#image-button");
-
-//const imageModalCloseBtn = document.querySelector("#modal-close-button");
 
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
 const cardElement = cardTemplateInput.cloneNode(true);
-const addCardEditModal = document.querySelector("#add-card-edit-modal");
-//const cardImageElement = cardElement.querySelector("#card-image");
+
 
 export default class Card {
   constructor({ cardData, cardSelector, handleCardClick }) {
@@ -15,7 +11,6 @@ export default class Card {
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._cardElement = cardElement;
-    this._modal = document.querySelector(".modal");
     this._handleCardClick = handleCardClick;
   }
 
@@ -40,13 +35,9 @@ export default class Card {
   }
   _handleDeleteBtn() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
-  /*_handleImageModal() {
-    imageModalCaption.textContent = this._name;
-    imageModalCard.src = this._link;
-    imageModalCard.alt = this._name;
-    open(imageModal);
-  }*/
+ 
 
   _getTemplate() {
     return document
