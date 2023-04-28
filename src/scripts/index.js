@@ -122,7 +122,7 @@ function renderCard(cardData) {
     cardSelector: "#card-template",
     handleCardClick: ({ name, link }) => {
       //here is where we want to open our popupWithImage instance.
-      imageModal.open();
+      imageModal.open({ name, link });
     },
   });
   cardsWrap.prepend(card.getCard());
