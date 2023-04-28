@@ -102,17 +102,17 @@ const editModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
   handleFormSubmit,
 });
-
+editModal.setEventListeners();
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-edit-modal",
   handleFormSubmit,
 });
-
+addCardModal.setEventListeners();
 const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
   handleFormSubmit,
 });
-
+imageModal.setEventListeners();
 function renderCard(cardData) {
   const card = new Card({
     cardData,
@@ -149,8 +149,9 @@ function handleAddCardForm(evt) {
   //this._toggleButtonState
   addCardFormValidator.toggleButtonState();
 }
-editModal.setEventListeners();
-addCardModal.setEventListeners();
+
+
+
 
 const cardElement = cardTemplateInput.cloneNode(true);
 

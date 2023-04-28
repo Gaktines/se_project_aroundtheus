@@ -13,12 +13,12 @@ export default class Popup {
     this._modalElement.classList.remove("modal_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) => {
     const ESC_KEYCODE = 27;
     if (evt.which === ESC_KEYCODE) {
       this.close();
     }
-  }
+  };
 
   setEventListeners() {
     this._modalElement.addEventListener("click", this.closeModalOnRemoteClick);
