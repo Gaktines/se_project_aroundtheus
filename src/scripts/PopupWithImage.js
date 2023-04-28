@@ -6,13 +6,18 @@ export default class PopupWithImage extends Popup {
   open(cardData) {
     this.name = cardData.name;
     this.link = cardData.link;
+    this.imageModal = document.querySelector("#image-modal");
+    this.imageModalCard = this.imageModal.querySelector("#modal-image");
+    this.imageModalCaption = this.imageModal.querySelector("#modal-caption");
+
     /*In the open() method of the PopupWithImage class, 
     you need to add an image to the popup and the 
     corresponding image src attribute along with a 
     caption for the image.*/
-    /*imageModalCaption.textContent = this.name;
-    imageModalCard.src = this.link;
-    imageModalCard.alt = this.name;*/
+    this.imageModalCaption.textContent = this.name;
+    this.imageModalCard.src = this.link;
+    this.imageModalCard.alt = this.name;
     super.open();
   }
+ 
 }

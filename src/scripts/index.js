@@ -37,7 +37,7 @@ const cardData = {
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
 };
-const modalCloseButton = document.querySelectorAll(".modal__close");
+//const modalCloseButton = document.querySelectorAll(".modal__close");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(
@@ -50,7 +50,7 @@ const profileSubheadingInput = document.querySelector("#modal-subheading");
 const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
-const cardList = document.querySelector("#card-list");
+//const cardList = document.querySelector("#card-list");
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
 const addCardModalCloseButton = document.querySelector(
   "#add-card-modal-close-button"
@@ -58,18 +58,15 @@ const addCardModalCloseButton = document.querySelector(
 const addCardButton = document.querySelector("#profile-add-button");
 const addCardTitleInput = document.querySelector("#add-card-modal-title");
 const addCardLinkInput = document.querySelector("#add-card-link");
-const addCardTitle = document.querySelector(".modal__title_card");
-/*const addCardLink = document.querySelector("#add-card-link");
-const addCardTitlePlaceholder = document.querySelector("#Title");
-const addCardLinkPlaceholder = document.querySelector("#Image Link");*/
+//const addCardTitle = document.querySelector(".modal__title_card");
+
 const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 const cardsWrap = document.querySelector("#card-list");
-//const imageModal = document.querySelector("#image-modal");
 
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
 
 //const cardFormSubmitButton = document.querySelector(".modal__button_add_card");
-const modal = document.querySelectorAll(".modal");
+//const modal = document.querySelectorAll(".modal");
 const validationOptions = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -159,12 +156,6 @@ const cardElement = cardTemplateInput.cloneNode(true);
 
 const cardImageElement = cardElement.querySelector("#card-image");
 
-//editModal.addEventListener("mousedown", closeModalOnRemoteClick);
-
-//addCardModal.addEventListener("mousedown", closeModalOnRemoteClick);
-
-//imageModal.addEventListener("mousedown", closeModalOnRemoteClick);
-
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
@@ -179,7 +170,7 @@ addCardForm.addEventListener("submit", handleAddCardForm);
 
 profileEditForm.addEventListener("submit", handleProfileEditForm);
 imageModalCloseBtn.addEventListener("click", () => {
-  editModal.close();
+  imageModal.close();
 });
 
 const section = new Section({ items: initialCards, renderer: renderCard });

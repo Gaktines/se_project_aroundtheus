@@ -1,7 +1,6 @@
-const imageModal = document.querySelector("#image-modal");
+
 //const imageButton = document.querySelector("#image-button");
-const imageModalCard = imageModal.querySelector("#modal-image");
-const imageModalCaption = imageModal.querySelector("#modal-caption");
+
 //const imageModalCloseBtn = document.querySelector("#modal-close-button");
 
 const cardTemplateInput =
