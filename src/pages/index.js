@@ -1,11 +1,11 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "../scripts/Card.js";
+import FormValidator from "../scripts/FormValidator.js";
 import "../pages/index.css";
-import Section from "./Section.js";
-import Popup from "./Popup.js";
-import UserInfo from "./UserInfo.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
+import Section from "../scripts/Section.js";
+import Popup from "../scripts/Popup.js";
+import UserInfo from "../scripts/UserInfo.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -110,7 +110,6 @@ const addCardModal = new PopupWithForm({
 addCardModal.setEventListeners();
 const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
-  handleFormSubmit,
 });
 imageModal.setEventListeners();
 function renderCard(cardData) {
@@ -122,13 +121,13 @@ function renderCard(cardData) {
       imageModal.open({ name, link });
     },
   });
-  cardsWrap.prepend(card.getCard());
+ 
 }
 
 function handleFormSubmit() {
   const modalSubmitButton = this._modalForm
     .querySelectorAll(".modal__button")
-    .addEventListeners("submit", closeModal);
+    .addEventListeners("submit", this.close);
 }
 function handleProfileEditForm(evt) {
   evt.preventDefault();
@@ -147,7 +146,7 @@ function handleAddCardForm(evt) {
   //closeModal(addCardEditModal);
   addCardForm.reset();
   //this._toggleButtonState
-  addCardFormValidator.toggleButtonState();
+  //addCardFormValidator.toggleButtonState();
 }
 
 
@@ -157,7 +156,7 @@ const cardElement = cardTemplateInput.cloneNode(true);
 
 const cardImageElement = cardElement.querySelector("#card-image");
 
-profileEditForm.addEventListener("submit", handleProfileEditForm);
+//profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
   profileTitleInput.value = profileData.title;
@@ -170,9 +169,9 @@ addCardButton.addEventListener("click", () => addCardModal.open());
 addCardForm.addEventListener("submit", handleAddCardForm);
 
 profileEditForm.addEventListener("submit", handleProfileEditForm);
-imageModalCloseBtn.addEventListener("click", () => {
+/*imageModalCloseBtn.addEventListener("click", () => {
   imageModal.close();
-});
+});*/
 
 const section = new Section({ items: initialCards, renderer: renderCard });
 section.renderItems();

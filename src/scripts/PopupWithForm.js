@@ -16,16 +16,16 @@ inputValues[name] = value;
     });
       return inputValues;
   }
- //setEventListeners() {
+ setEventListeners() {
   //submit event 
 
-  //this._modalElement.addEventListener("submit", () => { 
-//handleFormSubmit(this._getInputValues);
+  this._modalForm.addEventListener("submit", () => { 
+handleFormSubmit(this._getInputValues);
    
 
-  // }); 
+   }); 
 
-   //} 
+   } 
   open() {
     super.open();
   }
