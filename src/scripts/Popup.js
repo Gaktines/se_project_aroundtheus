@@ -19,7 +19,9 @@ export default class Popup {
       this.close();
     }
   };
+ 
 
+  
   setEventListeners() {
     this._modalElement.addEventListener("click", this.closeModalOnRemoteClick);
   }

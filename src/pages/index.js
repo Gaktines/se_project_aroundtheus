@@ -100,12 +100,12 @@ const userInfo = new UserInfo({
 
 const editModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
-  handleFormSubmit,
+  handleEditModalFormSubmit,
 });
 editModal.setEventListeners();
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-edit-modal",
-  handleFormSubmit,
+  handleAddCardFormSubmit,
 });
 addCardModal.setEventListeners();
 const imageModal = new PopupWithImage({
@@ -123,11 +123,28 @@ function renderCard(cardData) {
   });
  
 }
-
-function handleFormSubmit() {
+function handleEditModalFormSubmit(inputValues){_
+  modalSubmitButton.addEventListeners("submit", this.close);
+}
+function handleAddCardFormSubmit(inputValues) {
   const modalSubmitButton = this._modalForm
     .querySelectorAll(".modal__button")
     .addEventListeners("submit", this.close);
+   function renderCard(cardData) {
+      const card = new Card({
+        cardData,
+  
+        cardSelector: "#card-template",
+  
+        handleCardClick: ({ name, link }) => {
+          //here is where we want to open our popupWithImage instance.
+  
+          imageModal.open({ name, link });
+        },
+      });
+      
+    cardsWrap.prepend(card.getCard());
+    }
 }
 function handleProfileEditForm(evt) {
   evt.preventDefault();
