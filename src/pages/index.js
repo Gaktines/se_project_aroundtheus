@@ -112,7 +112,7 @@ const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
 });
 imageModal.setEventListeners();
-const section = new Section({ items: initialCards, renderer: renderCard }, "#cards-list");
+const section = new Section({ items: initialCards, renderer: renderCard }, ".cards__list");
 section.renderItems();
 function renderCard(cardData) {
   const card = new Card({
