@@ -126,10 +126,10 @@ function renderCard(cardData) {
   //cardsWrap.prepend(card.getCard());
  section.addItem(card.getCard());
 }
-function handleEditModalFormSubmit(inputValues){
+function handleEditModalFormSubmit(inputValues) {
   modalSubmitButton.addEventListeners("submit", editModal.close);
 }
-function handleAddCardFormSubmit(inputValues) {
+function handleAddCardFormSubmit (inputValues)  {
  console.log(inputValues);
   //renderCard(inputValues);
   const modalSubmitButton = this._modalForm

@@ -1,11 +1,11 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor({ popupSelector, handleAddCardFormSubmit, handleEditModalFormSubmit }) {
+  constructor({ popupSelector, handleAddCardFormSubmit }) {
     super({ popupSelector });
     this._modalForm = this._modalElement.querySelector(".modal__form");
     this._handleAddCardFormSubmit = handleAddCardFormSubmit;
-    this._handleEditModalFormSubmit = handleEditModalFormSubmit;
+    
   }
   _getInputValues() {
     const inputValues = {};
@@ -20,16 +20,15 @@ inputValues[name] = value;
  setEventListeners() {
   //submit event 
   super.setEventListeners();
-  this._modalForm.addEventListener("submit", () => { 
-  this._handleAddCardFormSubmit(this._getInputValues);
-   
-
-   }); 
-   this._modalForm.addEventListener("submit", () => {
+  
+  this._modalForm.addEventListener("submit", () => {
+    this._handleAddCardFormSubmit(this._getInputValues);
+  });
+  this._modalForm.addEventListener("submit", () => {
     this._handleEditModalFormSubmit(this._getInputValues);
-   });
-
-   } 
+  });
+}
+   
   
   open() {
     super.open();
