@@ -112,7 +112,9 @@ const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
 });
 imageModal.setEventListeners();
-/*function renderCard(cardData) {
+const section = new Section({ items: initialCards, renderer: renderCard }, "#cards-list");
+section.renderItems();
+function renderCard(cardData) {
   const card = new Card({
     cardData,
     cardSelector: "#card-template",
@@ -121,13 +123,15 @@ imageModal.setEventListeners();
       imageModal.open({ name, link });
     },
   });
-  cardsWrap.prepend(card.getCard());
- 
-}*/
+  //cardsWrap.prepend(card.getCard());
+ section.addItem(card.getCard());
+}
 function handleEditModalFormSubmit(inputValues){
   modalSubmitButton.addEventListeners("submit", editModal.close);
 }
 function handleAddCardFormSubmit(inputValues) {
+ console.log(inputValues);
+  //renderCard(inputValues);
   const modalSubmitButton = this._modalForm
     .querySelectorAll(".modal__button")
     .addEventListeners("submit", this.close);
@@ -179,5 +183,4 @@ profileEditForm.addEventListener("submit", handleProfileEditForm);
   imageModal.close();
 });*/
 
-const section = new Section({ items: initialCards, renderer });
-section.renderItems();
+
