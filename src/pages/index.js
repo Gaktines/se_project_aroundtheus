@@ -121,31 +121,20 @@ function renderCard(cardData) {
       imageModal.open({ name, link });
     },
   });
+  cardsWrap.prepend(card.getCard());
  
 }
-function handleEditModalFormSubmit(inputValues){_
-  modalSubmitButton.addEventListeners("submit", this.close);
+function handleEditModalFormSubmit(inputValues){
+  modalSubmitButton.addEventListeners("submit", editModal.close);
 }
 function handleAddCardFormSubmit(inputValues) {
   const modalSubmitButton = this._modalForm
     .querySelectorAll(".modal__button")
     .addEventListeners("submit", this.close);
-   function renderCard(cardData) {
-      const card = new Card({
-        cardData,
-  
-        cardSelector: "#card-template",
-  
-        handleCardClick: ({ name, link }) => {
-          //here is where we want to open our popupWithImage instance.
-  
-          imageModal.open({ name, link });
-        },
-      });
-      
-    cardsWrap.prepend(card.getCard());
+    //renderCard(cardData);
+    
     }
-}
+
 function handleProfileEditForm(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
