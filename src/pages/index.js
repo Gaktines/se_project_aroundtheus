@@ -112,7 +112,7 @@ const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
 });
 imageModal.setEventListeners();
-function renderCard(cardData) {
+/*function renderCard(cardData) {
   const card = new Card({
     cardData,
     cardSelector: "#card-template",
@@ -123,7 +123,7 @@ function renderCard(cardData) {
   });
   cardsWrap.prepend(card.getCard());
  
-}
+}*/
 function handleEditModalFormSubmit(inputValues){
   modalSubmitButton.addEventListeners("submit", editModal.close);
 }
@@ -179,5 +179,5 @@ profileEditForm.addEventListener("submit", handleProfileEditForm);
   imageModal.close();
 });*/
 
-const section = new Section({ items: initialCards, renderer: renderCard });
+const section = new Section({ items: initialCards, renderer });
 section.renderItems();
