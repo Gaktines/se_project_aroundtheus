@@ -100,12 +100,12 @@ const userInfo = new UserInfo({
 
 const editModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
-  handleEditModalFormSubmit,
+  handleFormSubmit: handleEditModalFormSubmit,
 });
 editModal.setEventListeners();
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-edit-modal",
-  handleAddCardFormSubmit,
+  handleFormSubmit: handleAddCardFormSubmit,
 });
 addCardModal.setEventListeners();
 const imageModal = new PopupWithImage({
@@ -127,15 +127,10 @@ function renderCard(cardData) {
  section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
-  modalSubmitButton.addEventListeners("submit", editModal.close);
+  editModal.close();
 }
 function handleAddCardFormSubmit (inputValues)  {
- console.log(inputValues);
-  //renderCard(inputValues);
-  const modalSubmitButton = this._modalForm
-    .querySelectorAll(".modal__button")
-    .addEventListeners("submit", this.close);
-    //renderCard(cardData);
+  addCardModal.close();
     
     }
 
