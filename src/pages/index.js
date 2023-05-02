@@ -87,12 +87,7 @@ const addCardFormValidator = new FormValidator(
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-/*const profileEditFormElement = profileEditModal.querySelector(
-  "#profile-modal-form"
-);
-const addCardEditFormElement = addCardEditModal.querySelector(
-  "#add-card-modal-form"
-);*/
+
 const userInfo = new UserInfo({
   name: ".profile__title",
   subheading: ".profile__subheading",
@@ -130,7 +125,6 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
-  console.log(inputValues);
   userInfo.setUserInfo(inputValues);
   editModal.close();
 }
@@ -166,8 +160,9 @@ const cardImageElement = cardElement.querySelector("#card-image");
 //profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
-  profileTitleInput.value = profileData.title;
-  profileSubheadingInput.value = profileData.job;
+  console.log(profileData);
+  profileTitleInput.value = profileData.name;
+  profileSubheadingInput.value = profileData.subheading;
   editModal.open();
 });
 

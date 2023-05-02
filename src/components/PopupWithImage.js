@@ -4,7 +4,7 @@ export default class PopupWithImage extends Popup {
     super({ popupSelector });
   }
   open(cardData) {
-    this.imageModalCard = this._modalElement.querySelector("#modal-image");
+   const imageModalCard = this._modalElement.querySelector("#modal-image");
     this.imageModalCaption = this._modalElement.querySelector("#modal-caption");
 
     /*In the open() method of the PopupWithImage class, 
@@ -12,8 +12,8 @@ export default class PopupWithImage extends Popup {
     corresponding image src attribute along with a 
     caption for the image.*/
     this.imageModalCaption.textContent = cardData.name;
-    this.imageModalCard.src = cardData.link;
-    this.imageModalCard.alt = cardData.name;
+    imageModalCard.src = cardData.link;
+    imageModalCard.alt = cardData.name;
     super.open();
   }
  
