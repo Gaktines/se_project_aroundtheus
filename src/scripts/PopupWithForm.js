@@ -26,6 +26,7 @@ inputValues[name] = value;
     this._handleFormSubmit(this._getInputValues);
   });
 }
+
    
   
   open() {
@@ -34,7 +35,7 @@ inputValues[name] = value;
   close() {
     
     super.close();
-    this._modalForm.setUserInfo();
+    
     this._modalForm.reset();
   }
 }
