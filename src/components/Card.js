@@ -1,8 +1,5 @@
 
 
-const cardTemplateInput =
-  document.querySelector("#card-template").content.firstElementChild;
-const cardElement = cardTemplateInput.cloneNode(true);
 
 
 export default class Card {
@@ -10,7 +7,8 @@ export default class Card {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
-    this._cardElement = cardElement;
+    this._cardTemplateInput = document.querySelector("#card-template").content.firstElementChild;
+    this._cardElement = this._cardTemplateInput.cloneNode(true);
     this._handleCardClick = handleCardClick;
   }
 

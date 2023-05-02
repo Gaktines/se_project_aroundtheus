@@ -1,11 +1,11 @@
-import Card from "../scripts/Card.js";
-import FormValidator from "../scripts/FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
-import Section from "../scripts/Section.js";
-import Popup from "../scripts/Popup.js";
-import UserInfo from "../scripts/UserInfo.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -94,8 +94,8 @@ const addCardEditFormElement = addCardEditModal.querySelector(
   "#add-card-modal-form"
 );*/
 const userInfo = new UserInfo({
-  title: ".profile__title",
-  job: ".profile__subheading",
+  name: ".profile__title",
+  subheading: ".profile__subheading",
 });
 
 const editModal = new PopupWithForm({
@@ -130,6 +130,7 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
+  console.log(inputValues);
   userInfo.setUserInfo(inputValues);
   editModal.close();
 }
