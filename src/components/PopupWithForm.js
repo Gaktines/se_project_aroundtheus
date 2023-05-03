@@ -20,7 +20,8 @@ export default class PopupWithForm extends Popup {
     //submit event
     super.setEventListeners();
 
-    this._modalForm.addEventListener("submit", () => {
+    this._modalForm.addEventListener("submit", (evt) => {
+      evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     });
   }
@@ -30,6 +31,8 @@ export default class PopupWithForm extends Popup {
   }
   close() {
     super.close();
+    this._modalForm.reset();
+    
 
     
   }

@@ -37,7 +37,7 @@ const cardData = {
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
 };
-//const modalCloseButton = document.querySelectorAll(".modal__close");
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(
@@ -50,7 +50,7 @@ const profileSubheadingInput = document.querySelector("#modal-subheading");
 const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
-//const cardList = document.querySelector("#card-list");
+
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
 const addCardModalCloseButton = document.querySelector(
   "#add-card-modal-close-button"
@@ -58,15 +58,12 @@ const addCardModalCloseButton = document.querySelector(
 const addCardButton = document.querySelector("#profile-add-button");
 const addCardTitleInput = document.querySelector("#add-card-modal-title");
 const addCardLinkInput = document.querySelector("#add-card-link");
-//const addCardTitle = document.querySelector(".modal__title_card");
 
 const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 const cardsWrap = document.querySelector("#card-list");
 
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
 
-//const cardFormSubmitButton = document.querySelector(".modal__button_add_card");
-//const modal = document.querySelectorAll(".modal");
 const validationOptions = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -86,7 +83,6 @@ const addCardFormValidator = new FormValidator(
 );
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-
 
 const userInfo = new UserInfo({
   name: ".profile__title",
@@ -121,7 +117,7 @@ function renderCard(cardData) {
       imageModal.open({ name, link });
     },
   });
-  //cardsWrap.prepend(card.getCard());
+
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
@@ -129,7 +125,7 @@ function handleEditModalFormSubmit(inputValues) {
   editModal.close();
 }
 function handleAddCardFormSubmit(inputValues) {
-  addCardForm.addEventListener("submit", handleAddCardForm);
+  renderCard(inputValues);
   addCardModal.close();
 }
 
@@ -137,7 +133,6 @@ function handleProfileEditForm(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileSubheading.textContent = profileSubheadingInput.value;
-  //closeModal(profileEditModal);
 }
 
 function handleAddCardForm(evt) {
@@ -147,17 +142,12 @@ function handleAddCardForm(evt) {
     link: addCardLinkInput.value,
   };
   renderCard(titleValue, cardsWrap);
-  //closeModal(addCardEditModal);
-  addCardForm.reset();
-  //this._toggleButtonState
-  //addCardFormValidator.toggleButtonState();
 }
 
 const cardElement = cardTemplateInput.cloneNode(true);
 
 const cardImageElement = cardElement.querySelector("#card-image");
 
-//profileEditForm.addEventListener("submit", handleProfileEditForm);
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
   console.log(profileData);
@@ -167,8 +157,3 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => addCardModal.open());
-
-profileEditForm.addEventListener("submit", handleProfileEditForm);
-/*imageModalCloseBtn.addEventListener("click", () => {
-  imageModal.close();
-});*/
