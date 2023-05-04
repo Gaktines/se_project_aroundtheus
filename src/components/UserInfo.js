@@ -9,7 +9,7 @@ export default class UserInfo {
   }
   setUserInfo({ name, subheading }) {
     // When form is submitted, set the profile info
-    this.name.textContent = name.value;
-    this.subheading.textContent = subheading.value;
+    this.name.textContent = name;
+    this.subheading.textContent = subheading;
   }
 }
