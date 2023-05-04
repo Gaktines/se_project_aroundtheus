@@ -150,4 +150,4 @@ profileEditButton.addEventListener("click", () => {
 
 
 addCardButton.addEventListener("click", () => addCardModal.open());
-addFormValidator.toggleButtonState();
+addCardFormValidator.toggleButtonState();
