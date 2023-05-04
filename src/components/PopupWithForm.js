@@ -30,8 +30,9 @@ export default class PopupWithForm extends Popup {
     super.open();
   }
   close() {
-    super.close();
     this._modalForm.reset();
+    super.close();
+   
     
 
     

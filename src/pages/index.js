@@ -135,14 +135,6 @@ function handleProfileEditForm(evt) {
   profileSubheading.textContent = profileSubheadingInput.value;
 }
 
-function handleAddCardForm(evt) {
-  evt.preventDefault();
-  const titleValue = {
-    name: addCardTitleInput.value,
-    link: addCardLinkInput.value,
-  };
-  renderCard(titleValue, cardsWrap);
-}
 
 const cardElement = cardTemplateInput.cloneNode(true);
 
@@ -156,4 +148,6 @@ profileEditButton.addEventListener("click", () => {
   editModal.open();
 });
 
+
 addCardButton.addEventListener("click", () => addCardModal.open());
+addFormValidator.toggleButtonState();
