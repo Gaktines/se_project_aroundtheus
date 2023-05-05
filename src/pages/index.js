@@ -151,3 +151,4 @@ profileEditButton.addEventListener("click", () => {
 
 addCardButton.addEventListener("click", () => addCardModal.open());
 addCardFormValidator.toggleButtonState();
+//The change is on line 153 
