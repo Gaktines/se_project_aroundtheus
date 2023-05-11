@@ -28,7 +28,16 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   
     
     }
-  
+  postInitialCards() {
+
+  }
+
+  getProfileInfo() {
+
+  }
+  postProfileInfo() {
+    
+  }
     // other methods for working with the API
   }
   
