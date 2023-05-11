@@ -8,7 +8,7 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
     console.log(result);
   });
 
-  class Api {
+  export default class Api {
     constructor(name, link) {
       this.name = name;
       this.link = link;
@@ -41,6 +41,8 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   });
 
   api.getInitialCards()
+  .then(res => res.json())
+  
   .then((result) => {
     // process the result
     return result.json;
