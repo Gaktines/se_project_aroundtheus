@@ -118,6 +118,28 @@
         <p class="modal__caption" id="modal-caption"></p>
       </div>
     </div>
+    <div class= "modal" id="modal-delete">
+      <div class="modal__container">
+        <h2 class="modal__heading">Are you sure?</h2>
+        <button class="modal__button" id="modal-delete-btn">Yes</button>
+      </div>
+    </div>
+    l<div class="modal" id="modal-profile-image">
+      <div class ="modal__container">
+        <button class="modal__close" id="profile-image-close-button"></button>
+        <form class="modal__form" id="profile-change-image">
+          <h2 class ="modal__heading">Change profile picture</h2>
+          <input class="modal__input"
+          id="profile-image-link"
+          type="url"
+          name="link"
+          placeholder="Image Link"
+          required
+        />
+        <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
     <template class="card__template" id="card-template">
       <li class="card" id="card">
         <button

@@ -1,4 +1,4 @@
-fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+/*fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   headers: {
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
   }
@@ -6,7 +6,7 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   .then(res => res.json())
   .then((result) => {
     console.log(result);
-  });
+  });*/
 
   export default class Api {
     constructor(name, link) {
@@ -15,7 +15,7 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
     }
   
     getInitialCards() {
-      fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+      return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   headers: {
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
   }
@@ -55,6 +55,30 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
     about: "Aspiring Software Engineer"
   })
 });
+  }
+  deleteCard() {
+    fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId", {
+    method: "delete",  
+    headers: {
+        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
+      }
+    })
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  }
+  cardLike() {
+    fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId ", {
+      method: "Put",  
+      headers: {
+          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
+        }
+      })
+        .then(res => res.json())
+        .then((result) => {
+          console.log(result);
+        });
   }
     // other methods for working with the API
   }

@@ -6,7 +6,7 @@ import Popup from "../components/Popup.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import Api from "../components/API.js";
+import api from "../components/API.js";
 
 const initialCards = [
   {
@@ -154,4 +154,4 @@ addCardButton.addEventListener("click", () => {
   addCardModal.open()
 }); 
 
-Api.getInitialCards();
+api. getInitialCards();
