@@ -122,6 +122,7 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
+  console.log(inputValues);
   userInfo.setUserInfo(inputValues);
   editModal.close();
 }
@@ -154,4 +155,14 @@ addCardButton.addEventListener("click", () => {
   addCardModal.open()
 }); 
 
-api. getInitialCards();
+
+  const api = new Api({
+    baseUrl: "https://around.nomoreparties.co/v1/group-12",
+    headers: {
+      authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
+      "Content-Type": "application/json"
+    }
+  }); 
+
+api.getInitialCards();
+
