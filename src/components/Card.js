@@ -8,6 +8,8 @@ export default class Card {
     this._cardElement = this._cardTemplateInput.cloneNode(true);
     this._handleCardClick = handleCardClick;
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
+    this._number = document.querySelector("#number");
+    this.likes = [];
   }
 
   _setEventListeners() {
@@ -32,9 +34,23 @@ export default class Card {
       handleModalDeleteButton();
     });
   }
-  _handleLikeIcon() {
-    this._likeButton.classList.toggle("card__button_active");
+  setLikesInfo() {
+    this._likeButton.addEventListener("click", () => {
+      this.likes = this.likes + 1;
+      return this.likes;
+    });
   }
+  _updateLikesView() {
+    this._number.innerText.textContent = likes;
+    console.log(likes);
+    //  that edits the .textContent of the span with the number
+    //in it to match how many this._likes there are,
+  }
+
+  _handleLikeIcon = () => {
+    this._likeButton.classList.toggle("card__button_active");
+    
+  };
   _handleDeleteBtn() {
     const deleteBtnModal = document.querySelector("#modal-delete");
     deleteBtnModal.classList.add(".modal_opened");
@@ -61,5 +77,11 @@ export default class Card {
     this._setEventListeners();
     //return the card
     return this._cardElement;
+    this._updateLikesView();
+    this._setLikesInfo();
   }
+  
 }
+//_updateLikesView is called in getView (which returns the card
+//HTML initially), and in setLikesInfo which updates the
+//this._likes array based on the arguments passed into it
