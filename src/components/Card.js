@@ -8,7 +8,6 @@ export default class Card {
     this._cardElement = this._cardTemplateInput.cloneNode(true);
     this._handleCardClick = handleCardClick;
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
-    this._number = document.querySelector("#number");
     this.likes = [];
   }
 
@@ -41,8 +40,8 @@ export default class Card {
     });
   }
   _updateLikesView() {
-    this._number.innerText.textContent = likes;
-    console.log(likes);
+    this._cardElement.querySelector(".card__number").textContent = this.likes.length;
+    
     //  that edits the .textContent of the span with the number
     //in it to match how many this._likes there are,
   }
@@ -75,10 +74,11 @@ export default class Card {
     this._cardElement.querySelector("#card-image").alt = this._name;
     //set the event listeners
     this._setEventListeners();
+    this._updateLikesView();
+    this.setLikesInfo();
     //return the card
     return this._cardElement;
-    this._updateLikesView();
-    this._setLikesInfo();
+    
   }
   
 }

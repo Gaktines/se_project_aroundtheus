@@ -16,7 +16,8 @@
   
     getInitialCards() {
       return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-  headers: {
+  method: "Get",
+      headers: {
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
   }
 })
@@ -34,8 +35,9 @@
     
     }
   postInitialCards() {
-    fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-      headers: {
+   return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+      method: "Get",
+   headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
       }
     })
@@ -49,7 +51,7 @@
 
   }
   postProfileInfo() {
-    fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+   return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   method: "PATCH",
   headers: {
     authorization: "cbb2f5d86-90ca-441b-9ac8-a1ee02058df5",
@@ -62,7 +64,7 @@
 });
   }
   deleteCard() {
-    fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId", {
+   return fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId", {
     method: "delete",  
     headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
@@ -74,7 +76,7 @@
       });
   }
   cardLike() {
-    fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId ", {
+   return fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId ", {
       method: "Put",  
       headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"

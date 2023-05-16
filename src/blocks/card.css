@@ -31,6 +31,20 @@
   border: none;
   width: 21px;
   height: 18px;
+
+}
+.card__number {
+  width: 9px;
+  height: 13px;
+  left: 748px;
+  top: 656px;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
 }
 .card__button:hover {
   cursor: pointer;
