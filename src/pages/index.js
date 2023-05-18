@@ -104,11 +104,7 @@ const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
 });
 imageModal.setEventListeners();
-const section = new Section(
-  { items: initialCards, renderer: renderCard },
-  ".cards__list"
-);
-section.renderItems();
+
 function renderCard(cardData) {
   const card = new Card({
     cardData,
@@ -122,7 +118,6 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
-  console.log(inputValues);
   userInfo.setUserInfo(inputValues);
   editModal.close();
 }
@@ -163,9 +158,17 @@ addCardButton.addEventListener("click", () => {
       "Content-Type": "application/json"
     }
   }); 
+let section;
 
 api.getInitialCards().then((res) => {
-  renderCard(res);
+  section = new Section(
+    { items: res, renderer: renderCard },
+    ".cards__list"
+  );
+  section.renderItems();
+  
 });
 
 api.postProfileInfo();
+api.deleteCard();
+api.cardLike();
