@@ -15,7 +15,7 @@
     }
   
     getInitialCards() {
-      return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+      return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
   method: "Get",
       headers: {
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
@@ -34,18 +34,7 @@
   
     
     }
-  postInitialCards() {
-   return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-      method: "Get",
-   headers: {
-        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
-      }
-    })
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result);
-      });
-  }
+  
 
   getProfileInfo() {
 

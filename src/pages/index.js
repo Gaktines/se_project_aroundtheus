@@ -164,5 +164,8 @@ addCardButton.addEventListener("click", () => {
     }
   }); 
 
-api.getInitialCards();
+api.getInitialCards().then((res) => {
+  renderCard(res);
+});
 
+api.postProfileInfo();
