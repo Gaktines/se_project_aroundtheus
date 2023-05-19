@@ -139,7 +139,6 @@ const cardImageElement = cardElement.querySelector("#card-image");
 
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
-  console.log(profileData);
   profileTitleInput.value = profileData.name;
   profileSubheadingInput.value = profileData.subheading;
   editModal.open();
@@ -160,9 +159,9 @@ addCardButton.addEventListener("click", () => {
   }); 
 let section;
 
-api.getAppInfo().then((res) => {
+api.getAppInfo().then(([cards, userInfo]) => {
   section = new Section(
-    { items: res, renderer: renderCard },
+    { items: cards, renderer: renderCard },
     ".cards__list"
   );
   section.renderItems();
@@ -170,5 +169,5 @@ api.getAppInfo().then((res) => {
 });
 
 
-//api.deleteCard();
+api.deleteCard();
 //api.cardLike();

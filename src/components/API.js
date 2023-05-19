@@ -58,16 +58,16 @@
     .then(res => res.json())
   }
   deleteCard() {
-   return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+   return delete("https://around.nomoreparties.co/v1/group-12/cards", {
     method: "Delete",  
     headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
       }
     })
-      .then(res => res.json())
+     .then(() => deleteCard );
       
   }
-  cardLike() {
+  addCardLike() {
    return fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId ", {
       method: "Put",  
       headers: {
@@ -76,6 +76,15 @@
       })
         .then(res => res.json())
         
+  }
+  removeCardLike() {
+    return fetch("https://around.nomoreparties.co/v1/groupId/cards/likes/cardId", {
+      method: "Delete",  
+      headers: {
+          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
+        }
+    })
+    .then(res => res.json())
   }
     // other methods for working with the API
   }
