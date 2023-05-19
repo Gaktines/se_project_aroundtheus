@@ -13,7 +13,10 @@
       this.name = name;
       this.link = link;
     }
-  
+    getAppInfo() {
+      return Promise.all([this.getInitialCards(), this.getUserInfo()])
+    }
+    
     getInitialCards() {
       return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
   method: "Get",
@@ -31,7 +34,7 @@
       console.error(err); // log the error to the console
   });
     }
-  postProfileInfo() {
+  getUserInfo() {
     return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
       method: "PATCH",
       headers: {

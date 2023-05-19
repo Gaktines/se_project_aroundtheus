@@ -160,7 +160,7 @@ addCardButton.addEventListener("click", () => {
   }); 
 let section;
 
-api.getInitialCards().then((res) => {
+api.getAppInfo().then((res) => {
   section = new Section(
     { items: res, renderer: renderCard },
     ".cards__list"
@@ -169,6 +169,6 @@ api.getInitialCards().then((res) => {
   
 });
 
-api.postProfileInfo();
-api.deleteCard();
-api.cardLike();
+
+//api.deleteCard();
+//api.cardLike();
