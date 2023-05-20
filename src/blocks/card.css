@@ -34,10 +34,11 @@
 
 }
 .card__number {
+  position: relative;
   width: 9px;
   height: 13px;
-  left: 748px;
-  top: 656px;
+  bottom: -15px;
+  right: 15px;
   font-family: 'Inter', Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;

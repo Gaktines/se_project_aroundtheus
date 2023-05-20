@@ -19,7 +19,7 @@
     
     getInitialCards() {
       return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-  method: "Get",
+  method: "GET",
       headers: {
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
   }
@@ -49,7 +49,7 @@
   }
   addCard() {
     return fetch("https://around.nomoreparties.co/v1/groupId/cards", {
-      method: "Post",
+      method: "POST",
       headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
         "Content-Type": "application/json"
@@ -58,18 +58,18 @@
     .then(res => res.json())
   }
   deleteCard() {
-   return delete("https://around.nomoreparties.co/v1/group-12/cards", {
-    method: "Delete",  
+   return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+    method: "DELETE",  
     headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
       }
     })
-     .then(() => deleteCard );
+     .then(delete(this._cardElement));
       
   }
   addCardLike() {
    return fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId ", {
-      method: "Put",  
+      method: "PUT",  
       headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
         }
@@ -79,7 +79,7 @@
   }
   removeCardLike() {
     return fetch("https://around.nomoreparties.co/v1/groupId/cards/likes/cardId", {
-      method: "Delete",  
+      method: "DELETE",  
       headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
         }

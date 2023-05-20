@@ -170,4 +170,4 @@ api.getAppInfo().then(([cards, userInfo]) => {
 
 
 api.deleteCard();
-//api.cardLike();
+api.addCardLike();
