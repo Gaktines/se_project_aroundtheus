@@ -151,10 +151,11 @@ function handleDeleteClick(card) {
   const deleteBtnModal = document.querySelector("#modal-delete");
     deleteBtnModal.classList.add("modal_opened");
   // set a submit action
+  super._setEventListenters();
   api.deleteCard(this._userId) 
   .then((res) => {
 //if(this._userId == )
-console.log(card);
+
   });
 }
 
