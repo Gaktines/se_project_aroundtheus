@@ -8,32 +8,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
-  },
-];
+
 const cardData = {
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
@@ -113,6 +88,7 @@ function renderCard(cardData) {
       //here is where we want to open our popupWithImage instance.
       imageModal.open({ name, link });
     },
+    handleDeleteClick
   });
 
   section.addItem(card.getCard());
@@ -158,6 +134,7 @@ addCardButton.addEventListener("click", () => {
     }
   }); 
 let section;
+let userId;
 
 api.getAppInfo().then(([cards, userInfo]) => {
   section = new Section(
@@ -165,9 +142,20 @@ api.getAppInfo().then(([cards, userInfo]) => {
     ".cards__list"
   );
   section.renderItems();
-  
+  userId = userInfo._id;
 });
 
+function handleDeleteClick(card) {
+  // open the modal
+ 
+  const deleteBtnModal = document.querySelector("#modal-delete");
+    deleteBtnModal.classList.add("modal_opened");
+  // set a submit action
+  api.deleteCard(this._userId) 
+  .then((res) => {
+//if(this._userId == )
+console.log(card);
+  });
+}
 
-api.deleteCard();
-api.addCardLike();
+

@@ -57,18 +57,25 @@
     })
     .then(res => res.json())
   }
-  deleteCard() {
-   return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+  deleteCard(id) {
+   return fetch(`https://around.nomoreparties.co/v1/group-12/cards/${id}`, {
     method: "DELETE",  
     headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
       }
     })
-     .then(delete(this._cardElement));
+     .then(res => res.json())
       
   }
-  addCardLike() {
-   return fetch("https://around.nomoreparties.co/v1/group-12/cards/likes/cardId ", {
+  handleDeleteButton() {
+    this.deleteBtnModal = document.querySelector("#modal-delete");
+    this.deleteBtnModal.classList.add(".modal_opened");
+  }
+  handleCardLikes() {
+    return Promise.all([this.addCardLike(), this.removeCardLike()])
+  }
+  addCardLike(id) {
+   return fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`, {
       method: "PUT",  
       headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
