@@ -75,13 +75,13 @@
     return Promise.all([this.addCardLike(), this.removeCardLike()])
   }
   addCardLike(id) {
-   return fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`, {
-      method: "PUT",  
-      headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
-        }
-      })
-        .then(res => res.json())
+    return fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`, {
+    method: "PUT",  
+    headers: {
+        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
+      }
+    })
+      .then(res => res.json())
         
   }
   removeCardLike() {

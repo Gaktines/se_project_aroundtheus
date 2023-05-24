@@ -21,7 +21,8 @@ export default class Card {
       this._handleLikeIcon();
     });
     //"#card-delete-button"
-    this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
+    
+    
     this._deleteBtn.addEventListener("click", () => {
       this._handleDeleteClick(this);
     });
@@ -73,6 +74,7 @@ export default class Card {
     this._cardElement.querySelector("#card-image").src = this._link;
     this._cardElement.querySelector("#card-name").textContent = this._name;
     this._cardElement.querySelector("#card-image").alt = this._name;
+    this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
     if(this._currentUserId == this._userId){
       this._deleteBtn.style.display="block"
     }else{
