@@ -36,9 +36,7 @@ export default class Card {
         this._handleCardClick({ name: this._name, link: this._link })
       );
     //"#modal-delete-btn"
-    this._modalDeleteButton.addEventListener("click", () => {
-      this.handleModalDeleteButton();
-    });
+   
   }
   setLikesInfo() {
     
@@ -62,7 +60,7 @@ export default class Card {
   }*/
   handleModalDeleteButton() {
     this._cardElement.remove();
-    this._cardElement = null;
+    
     
   }
 

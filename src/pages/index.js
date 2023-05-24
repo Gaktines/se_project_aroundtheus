@@ -162,15 +162,19 @@ api.getAppInfo().then(([cards, userInfo]) => {
 
 function handleDeleteClick(card) {
   // open the modal
- 
-  const deleteBtnModal = document.querySelector("#modal-delete");
-    deleteBtnModal.classList.add("modal_opened");
+  card.handleModalDeleteButton();
+  openDeleteModal();
   // set a submit action
   //super._setEventListeners();
-  api.deleteCard(userId) 
+  api.deleteCard(card._currentUserId) 
   .then((res) => {
     card.handleModalDeleteButton();
+    
   });
+  
 }
 
-
+function openDeleteModal() {
+  const deleteBtnModal = document.querySelector("#modal-delete");
+    deleteBtnModal.classList.add("modal_opened");
+}
