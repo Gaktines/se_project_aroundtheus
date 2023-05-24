@@ -156,7 +156,7 @@ api.getAppInfo().then(([cards, userInfo]) => {
   );
   section.renderItems();
   card.setLikesInfo();
-  card.handleModalDeleteButton();
+  
   userId = userInfo._id;
 });
 
@@ -169,10 +169,7 @@ function handleDeleteClick(card) {
   //super._setEventListeners();
   api.deleteCard(userId) 
   .then((res) => {
-   
-    this._cardElement.remove();
-    this._cardElement = null;
-
+    card.handleModalDeleteButton();
   });
 }
 
