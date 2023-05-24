@@ -6,6 +6,12 @@
   margin-bottom: 47.25px;
 }
 .profile__image {
+  background-image: url("../images/pencil.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  background-color: rgba(0 , 0 , 0 , .2);
+transition: opacity .5s ease-in;
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -13,7 +19,7 @@
   align-self: center;
 }
 .profile__image:hover{
-  background-image: url(../images/image.jpg);
+  opacity: 1;
   cursor: pointer;
 }
 .profile__grid {

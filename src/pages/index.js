@@ -155,7 +155,8 @@ api.getAppInfo().then(([cards, userInfo]) => {
     ".cards__list"
   );
   section.renderItems();
-  cards.setLikesInfo();
+  card.setLikesInfo();
+  card.handleModalDeleteButton();
   userId = userInfo._id;
 });
 
@@ -166,7 +167,7 @@ function handleDeleteClick(card) {
     deleteBtnModal.classList.add("modal_opened");
   // set a submit action
   //super._setEventListeners();
-  api.deleteCard(this._userId) 
+  api.deleteCard(userId) 
   .then((res) => {
    
     this._cardElement.remove();
