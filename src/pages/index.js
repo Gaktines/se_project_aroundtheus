@@ -84,12 +84,12 @@ function renderCard(cardData) {
   const card = new Card({
     cardData,
     cardSelector: "#card-template",
-    handleCardClick: ({ name, link }) => {
+    _handleCardClick: ({ name, link }) => {
       //here is where we want to open our popupWithImage instance.
       imageModal.open({ name, link });
     },
     handleDeleteClick,
-    handleLikeClick: () => {
+    _handleLikeClick: () => {
       //tell API to add like
       return fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`, {
     method: "PUT",  
@@ -99,7 +99,7 @@ function renderCard(cardData) {
     })
       //get response from API
     .then(res => res.json())
-    card.setLikesInfo();
+    
     }
     
   });
@@ -155,6 +155,7 @@ api.getAppInfo().then(([cards, userInfo]) => {
     ".cards__list"
   );
   section.renderItems();
+  cards.setLikesInfo();
   userId = userInfo._id;
 });
 

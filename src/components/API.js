@@ -85,7 +85,7 @@
         
   }
   removeCardLike() {
-    return fetch("https://around.nomoreparties.co/v1/groupId/cards/likes/cardId", {
+    return fetch(`https://around.nomoreparties.co/v1/groupId/cards/likes/${id}`, {
       method: "DELETE",  
       headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
