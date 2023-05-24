@@ -19,6 +19,7 @@ export default class Card {
     this._likeButton = this._cardElement.querySelector(".card__button");
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
+      
     });
     //"#card-delete-button"
     
@@ -34,11 +35,12 @@ export default class Card {
       );
     //"#modal-delete-btn"
     this._modalDeleteButton.addEventListener("click", () => {
-      handleModalDeleteButton();
+      this.handleModalDeleteButton();
     });
   }
   setLikesInfo() {
-    
+    this._likes = this.likes ++;
+    return this._likes;
     
   }
   _updateLikesView() {
@@ -59,6 +61,7 @@ export default class Card {
   handleModalDeleteButton() {
     this._cardElement.remove();
     this._cardElement = null;
+    
   }
 
   _getTemplate() {

@@ -12,6 +12,10 @@
   margin: 0;
   align-self: center;
 }
+.profile__image:hover{
+  background-image: url(../images/image.jpg);
+  cursor: pointer;
+}
 .profile__grid {
   display: grid;
   grid-template-areas:

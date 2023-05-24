@@ -99,9 +99,9 @@ function renderCard(cardData) {
     })
       //get response from API
     .then(res => res.json())
-      
     card.setLikesInfo();
     }
+    
   });
 
   section.addItem(card.getCard());
