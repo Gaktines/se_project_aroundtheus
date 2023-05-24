@@ -88,7 +88,12 @@ function renderCard(cardData) {
       //here is where we want to open our popupWithImage instance.
       imageModal.open({ name, link });
     },
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick: () => {
+      //tell API to add like
+      //get response from API
+      //call card.setLikesInfo
+    }
   });
 
   section.addItem(card.getCard());
@@ -151,7 +156,7 @@ function handleDeleteClick(card) {
   const deleteBtnModal = document.querySelector("#modal-delete");
     deleteBtnModal.classList.add("modal_opened");
   // set a submit action
-  super._setEventListenters();
+  //super._setEventListeners();
   api.deleteCard(this._userId) 
   .then((res) => {
 //if(this._userId == )

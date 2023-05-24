@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ cardData, cardSelector, handleCardClick, handleDeleteClick, userId }) {
+  constructor({ cardData, cardSelector, handleCardClick, handleDeleteClick, userId, currentUserId }) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
@@ -9,6 +9,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._userId = userId;
+    this._currentUserId = cardData._id;
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
     this.likes = [];
   }
@@ -36,10 +37,8 @@ export default class Card {
     });
   }
   setLikesInfo() {
-    this._likeButton.addEventListener("click", () => {
-      this.likes = this.likes + 1;
-      return this.likes;
-    });
+    
+    
   }
   _updateLikesView() {
     this._cardElement.querySelector(".card__number").textContent = this.likes.length;
@@ -74,6 +73,11 @@ export default class Card {
     this._cardElement.querySelector("#card-image").src = this._link;
     this._cardElement.querySelector("#card-name").textContent = this._name;
     this._cardElement.querySelector("#card-image").alt = this._name;
+    if(this._currentUserId == this._userId){
+      this._deleteBtn.style.display="block"
+    }else{
+      this._deleteBtn.style.display="none"
+    }
     //set the event listeners
     this._setEventListeners();
     this._updateLikesView();
