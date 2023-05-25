@@ -48,7 +48,7 @@ const validationOptions = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-const profileImageButton = document.querySelector("#profile-image-button");
+const profileImageButton = document.querySelector(".profile__image_button");
 
 const editFormValidator = new FormValidator(
   validationOptions,
@@ -83,7 +83,7 @@ imageModal.setEventListeners();
 
 profileImageButton.addEventListener("click", () => {
 const profileImageModal = document.querySelector("#modal-profile-image");
-profileImageModal.classList.add("modal-opened");
+profileImageModal.classList.add(".modal_opened");
 })
 
 function renderCard(cardData) {
@@ -105,9 +105,9 @@ function renderCard(cardData) {
     })
       //get response from API
     .then(res => res.json())
-    
+    card.setLikesInfo(likes);
     }
-    
+
   });
 
   section.addItem(card.getCard());

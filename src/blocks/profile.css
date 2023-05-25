@@ -27,6 +27,10 @@ opacity: 0;
 position: absolute;
 width: 26px;
 height: 26px;
+top: 47px;
+bottom: 47px;
+right: 47px;
+left: 47px;
 
 }
 .profile__grid {

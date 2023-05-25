@@ -12,7 +12,9 @@ export default class Card {
     this._userId = userId;
     this._currentUserId = cardData._id;
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
-    this.likes = cardData.likes;
+    this._likes = cardData.likes;
+    console.log(this._likes);
+    
   }
 
   _setEventListeners() {
@@ -20,7 +22,7 @@ export default class Card {
     this._likeButton = this._cardElement.querySelector(".card__button");
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
-      this._handleLikeClick();
+      //this._handleLikeClick();
       
     });
     //"#card-delete-button"
@@ -38,13 +40,14 @@ export default class Card {
     //"#modal-delete-btn"
    
   }
-  setLikesInfo() {
-    this._likes = this.likes ++;
-    return this._likes;
+  setLikesInfo(likes) {
+    //this._likes = likes;
+    this._updateLikesView();
     
   }
   _updateLikesView() {
-    this._cardElement.querySelector(".card__number").textContent = this.likes.length;
+    
+    this._cardElement.querySelector(".card__number").textContent = this._likes.length;
     
     //  that edits the .textContent of the span with the number
     //in it to match how many this._likes there are,
@@ -52,14 +55,16 @@ export default class Card {
 
   _handleLikeIcon = () => {
     this._likeButton.classList.toggle("card__button_active");
-    
-  };
+  
+  }
   /*_handleDeleteBtn() {
     const deleteBtnModal = document.querySelector("#modal-delete");
     deleteBtnModal.classList.add("modal_opened");
   }*/
   handleModalDeleteButton() {
-this._modalDeleteButton.addEventListener(("click") ,this._cardElement.remove())
+this._modalDeleteButton.addEventListener(("click") ,() => {
+  this._cardElement.remove();
+});
 
   }
 
