@@ -17,11 +17,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <button
+          <div>
+          <img
             class="profile__image"
             src="<%=require('./images/jacques-cousteau.svg')%>"
             alt="Logo"
-          ></button>
+          />
+          <button class="profile__image_button" id="profile-image-button</button>
+          </div>
           <div class="profile__grid">
             <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
@@ -140,12 +143,13 @@
             type="url"
             name="link"
             placeholder="Image Link"
-            required
+          <  required
           />
           <button class="modal__button">Save</button>
         </form>
       </div>
     </div>
+    
     <template class="card__template" id="card-template">
       <li class="card" id="card">
         <button
