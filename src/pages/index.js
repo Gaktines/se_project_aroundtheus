@@ -85,7 +85,13 @@ profileImageButton.addEventListener("click", () => {
 const profileImageModal = document.querySelector("#modal-profile-image");
 profileImageModal.classList.add(".modal_opened");
 })
-
+function processLikeClick() {
+  api.handeLikeClick()
+  .then(res => res.json())
+   .then((data) => {
+     card.setLikesInfo(data);
+   })
+}
 function renderCard(cardData) {
   const card = new Card({
     cardData,
@@ -95,11 +101,7 @@ function renderCard(cardData) {
       imageModal.open({ name, link });
     },
     handleDeleteClick,
-   api.handeLikeClick()
-   .then(res => res.json())
-    .then((data) => {
-      card.setLikesInfo(data);
-    })
+   processLikeClick
   
 
   });

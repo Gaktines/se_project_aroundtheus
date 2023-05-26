@@ -91,7 +91,7 @@ this._modalDeleteButton.addEventListener(("click") ,() => {
     //set the event listeners
     this._setEventListeners();
     this._updateLikesView();
-    this.setLikesInfo();
+ 
  
     //return the card
     return this._cardElement;
