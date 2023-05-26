@@ -9,10 +9,10 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
 
 
-const cardData = {
+/*const cardData = {
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
-};
+};*/
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -95,18 +95,12 @@ function renderCard(cardData) {
       imageModal.open({ name, link });
     },
     handleDeleteClick,
-    _handleLikeClick: () => {
-      //tell API to add like
-      return fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`, {
-    method: "PUT",  
-    headers: {
-        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
-      }
+   api.handeLikeClick()
+   .then(res => res.json())
+    .then((data) => {
+      card.setLikesInfo(data);
     })
-      //get response from API
-    .then(res => res.json())
-    card.setLikesInfo(likes);
-    }
+  
 
   });
 
@@ -116,9 +110,13 @@ function handleEditModalFormSubmit(inputValues) {
   userInfo.setUserInfo(inputValues);
   editModal.close();
 }
-function handleAddCardFormSubmit(inputValues) {
-  renderCard(inputValues);
-  addCardModal.close();
+function handleAddCardFormSubmit(res) {
+  api.addCard(res)
+  .then(() =>{
+    renderCard(res);
+    addCardModal.close();
+  })
+  
 }
 
 function handleProfileEditForm(evt) {

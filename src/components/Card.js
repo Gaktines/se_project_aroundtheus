@@ -41,7 +41,8 @@ export default class Card {
    
   }
   setLikesInfo(likes) {
-    //this._likes = likes;
+    console.log(this._likes);
+    this._likes = likes;
     this._updateLikesView();
     
   }
