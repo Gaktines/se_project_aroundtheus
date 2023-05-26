@@ -112,10 +112,10 @@ function handleEditModalFormSubmit(inputValues) {
   userInfo.setUserInfo(inputValues);
   editModal.close();
 }
-function handleAddCardFormSubmit(res) {
-  api.addCard(res)
-  .then(() =>{
-    renderCard(res);
+function handleAddCardFormSubmit(cardData) {
+  api.addCard(cardData)
+  .then((cardData) =>{
+    renderCard(cardData);
     addCardModal.close();
   })
   
