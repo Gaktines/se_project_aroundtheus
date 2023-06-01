@@ -48,17 +48,21 @@
     }); 
   }
   addCard() {
-    return fetch(`POST https://around.nomoreparties.co/v1/group-12/cards/${id}`, {
+    return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
       method: "POST",
       headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
         "Content-Type": "application/json"
-      }
+      },
+      body:JSON.stringify({
+        name: "cardData.name",
+        link: "cardData.link"
+      })
     })
     .then(res => res.json())
   }
   deleteCard(id) {
-   return fetch(`POST https://around.nomoreparties.co/v1/group-12/cards/${id}`, {
+   return fetch(`https://around.nomoreparties.co/v1/group-12/cards/${id}`, {
     method: "DELETE",  
     headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
