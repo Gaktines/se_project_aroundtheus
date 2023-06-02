@@ -36,17 +36,28 @@
     }
   getUserInfo() {
     return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-      method: "PATCH",
+      method: "GET",
+      headers: {
+        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
+        "Content-Type": "application/json"
+      }
+      
+    }).then(res => res.json()); 
+  }
+  updateUserInfo(name, about) {
+    return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+      method: "GET",
       headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        about: "Physicist and Chemist"
+      name,
+      about
       })
-    }); 
+    }).then(res => res.json()); 
   }
+  
   addCard() {
     return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
       method: "POST",

@@ -161,8 +161,9 @@ api.getAppInfo().then(([cards, userInfo]) => {
     ".cards__list"
   );
   section.renderItems();
-  
+  console.log(userInfo);
   userId = userInfo._id;
+  
 });
 
 function handleDeleteClick(card) {
