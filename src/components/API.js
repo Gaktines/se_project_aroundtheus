@@ -117,6 +117,7 @@
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
       }
     })
+    .then(res => res.json());
       //get response from API
     
   }

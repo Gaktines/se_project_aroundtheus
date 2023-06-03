@@ -8,7 +8,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
 
-
 /*const cardData = {
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
@@ -82,15 +81,16 @@ const imageModal = new PopupWithImage({
 imageModal.setEventListeners();
 
 profileImageButton.addEventListener("click", () => {
-const profileImageModal = document.querySelector("#modal-profile-image");
-profileImageModal.classList.add(".modal_opened");
-})
+  const profileImageModal = document.querySelector("#modal-profile-image");
+  profileImageModal.classList.add(".modal_opened");
+});
 function processLikeClick() {
-  api.handeLikeClick()
-  .then(res => res.json())
-   .then((data) => {
-     card.setLikesInfo(data);
-   })
+  api
+    .handeLikeClick()
+    .then((res) => res.json())
+    .then((data) => {
+      card.setLikesInfo(data);
+    });
 }
 function renderCard(cardData) {
   const card = new Card({
@@ -101,9 +101,8 @@ function renderCard(cardData) {
       imageModal.open({ name, link });
     },
     handleDeleteClick,
-   processLikeClick
-  
-
+    processLikeClick,
+    userId,
   });
 
   section.addItem(card.getCard());
@@ -113,12 +112,10 @@ function handleEditModalFormSubmit(inputValues) {
   editModal.close();
 }
 function handleAddCardFormSubmit(cardData) {
-  api.addCard(cardData)
-  .then((cardData) =>{
+  api.addCard(cardData).then((cardData) => {
     renderCard(cardData);
     addCardModal.close();
-  })
-  
+  });
 }
 
 function handleProfileEditForm(evt) {
@@ -126,7 +123,6 @@ function handleProfileEditForm(evt) {
   profileTitle.textContent = profileTitleInput.value;
   profileSubheading.textContent = profileSubheadingInput.value;
 }
-
 
 const cardElement = cardTemplateInput.cloneNode(true);
 
@@ -141,47 +137,41 @@ profileEditButton.addEventListener("click", () => {
 
 addCardButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
-  addCardModal.open()
-}); 
+  addCardModal.open();
+});
 
-
-  const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/group-12",
-    headers: {
-      authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-      "Content-Type": "application/json"
-    }
-  }); 
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
+    "Content-Type": "application/json",
+  },
+});
 let section;
 let userId;
 
 api.getAppInfo().then(([cards, userInfo]) => {
-  section = new Section(
-    { items: cards, renderer: renderCard },
-    ".cards__list"
-  );
+  section = new Section({ items: cards, renderer: renderCard }, ".cards__list");
   section.renderItems();
   console.log(userInfo);
   userId = userInfo._id;
-  
 });
+
+//api.updateUserInfo();
 
 function handleDeleteClick(card) {
   // open the modal
-  
+
   openDeleteModal();
   card.handleModalDeleteButton();
   // set a submit action
   //super._setEventListeners();
-  api.deleteCard(card._currentUserId) 
-  .then((res) => {
+  api.deleteCard(card._currentUserId).then((res) => {
     card.handleModalDeleteButton();
-    
   });
-
 }
 
 function openDeleteModal() {
   const deleteBtnModal = document.querySelector("#modal-delete");
-    deleteBtnModal.classList.add("modal_opened");
+  deleteBtnModal.classList.add("modal_opened");
 }
