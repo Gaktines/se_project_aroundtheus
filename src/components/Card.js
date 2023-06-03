@@ -1,3 +1,5 @@
+import Popup from "./Popup.js";
+
 export default class Card {
   constructor({
     cardData,
@@ -67,8 +69,10 @@ export default class Card {
     deleteBtnModal.classList.add("modal_opened");
   }*/
   handleModalDeleteButton() {
+    const deleteModal = document.querySelector("#modal-delete");
     this._modalDeleteButton.addEventListener("click", () => {
       this._cardElement.remove();
+      
     });
   }
   handleDeleteButton() {

@@ -48,6 +48,7 @@ const validationOptions = {
   errorClass: "modal__error_visible",
 };
 const profileImageButton = document.querySelector(".profile__image_button");
+const profileImageModal = document.querySelector("#modal-profile-image");
 
 const editFormValidator = new FormValidator(
   validationOptions,
@@ -102,6 +103,7 @@ function renderCard(cardData) {
     },
     handleDeleteClick,
     processLikeClick,
+  
     userId,
   });
 
@@ -151,13 +153,15 @@ let section;
 let userId;
 
 api.getAppInfo().then(([cards, userInfo]) => {
+  userId = userInfo._id;
   section = new Section({ items: cards, renderer: renderCard }, ".cards__list");
   section.renderItems();
-  console.log(userInfo);
-  userId = userInfo._id;
+
+  
 });
 
 //api.updateUserInfo();
+openProfileImageModal();
 
 function handleDeleteClick(card) {
   // open the modal
@@ -169,6 +173,12 @@ function handleDeleteClick(card) {
   api.deleteCard(card._currentUserId).then((res) => {
     card.handleModalDeleteButton();
   });
+}
+
+function openProfileImageModal() {
+profileImageButton.addEventListener("click", ()=> {
+  profileImageModal.classList.add("modal_opened");
+})
 }
 
 function openDeleteModal() {

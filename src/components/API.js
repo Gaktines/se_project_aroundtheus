@@ -66,8 +66,8 @@
         "Content-Type": "application/json"
       },
       body:JSON.stringify({
-        name: "cardData.name",
-        link: "cardData.link"
+        name: cardData,
+        link: link
       })
     })
     .then(res => res.json())
