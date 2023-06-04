@@ -10,6 +10,7 @@ export default class Card {
     userId
     
   }) {
+    this._cardId = cardData._id;
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
@@ -38,7 +39,7 @@ export default class Card {
     //"#card-delete-button"
 
     this._deleteBtn.addEventListener("click", () => {
-      this._handleDeleteClick(this);
+      this._handleDeleteClick(this._cardId);
     });
     //image
     this._cardElement

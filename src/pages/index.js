@@ -80,6 +80,11 @@ const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
 });
 imageModal.setEventListeners();
+const cardDeleteModal = new PopupWithForm({
+  popupSelector: "#modal-delete",
+  handleFormSubmit: handleDeleteFormSubmit,
+});
+cardDeleteModal.setEventListeners();
 
 profileImageButton.addEventListener("click", () => {
   const profileImageModal = document.querySelector("#modal-profile-image");
@@ -117,6 +122,12 @@ function handleAddCardFormSubmit(cardData) {
   api.addCard(cardData).then((cardData) => {
     renderCard(cardData);
     addCardModal.close();
+  });
+}
+function handleDeleteFormSubmit() {
+  this._modalDeleteButton.addEventListener("click", () => {
+    this._cardElement.remove();
+    
   });
 }
 
@@ -163,14 +174,14 @@ api.getAppInfo().then(([cards, userInfo]) => {
 //api.updateUserInfo();
 openProfileImageModal();
 
-function handleDeleteClick(card) {
+function handleDeleteClick(cardId) {
   // open the modal
 
   openDeleteModal();
-  card.handleModalDeleteButton();
+  //card.handleModalDeleteButton();
   // set a submit action
   //super._setEventListeners();
-  api.deleteCard(card._currentUserId).then((res) => {
+  api.deleteCard(cardId).then((res) => {
     card.handleModalDeleteButton();
   });
 }
