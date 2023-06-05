@@ -38,7 +38,7 @@ const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
 const cardsWrap = document.querySelector("#card-list");
 
 const imageModalCloseBtn = document.querySelector("#modal-close-button");
-
+const deleteBtnModal = document.querySelector("#modal-delete");
 const validationOptions = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -82,7 +82,9 @@ const imageModal = new PopupWithImage({
 imageModal.setEventListeners();
 const cardDeleteModal = new PopupWithForm({
   popupSelector: "#modal-delete",
-  handleFormSubmit: handleDeleteFormSubmit,
+  handleFormSubmit: () => {
+    
+  },
 });
 cardDeleteModal.setEventListeners();
 
@@ -90,10 +92,9 @@ profileImageButton.addEventListener("click", () => {
   const profileImageModal = document.querySelector("#modal-profile-image");
   profileImageModal.classList.add(".modal_opened");
 });
-function processLikeClick() {
+function processLikeClick(card) {
   api
-    .handeLikeClick()
-    .then((res) => res.json())
+    .addCardLike(card._id)
     .then((data) => {
       card.setLikesInfo(data);
     });
@@ -106,7 +107,17 @@ function renderCard(cardData) {
       //here is where we want to open our popupWithImage instance.
       imageModal.open({ name, link });
     },
-    handleDeleteClick,
+    handleDeleteClick: (cardId)=> {
+        // open the modal
+  openDeleteModal();
+  // set a submit action
+ cardDeleteModal.setSubmitAction(() => {
+  api.deleteCard(cardId).then((res) => {
+    card.handleModalDeleteButton();
+    closeDeleteModal();
+  });
+ })
+  },
     processLikeClick,
   
     userId,
@@ -124,12 +135,7 @@ function handleAddCardFormSubmit(cardData) {
     addCardModal.close();
   });
 }
-function handleDeleteFormSubmit() {
-  this._modalDeleteButton.addEventListener("click", () => {
-    this._cardElement.remove();
-    
-  });
-}
+
 
 function handleProfileEditForm(evt) {
   evt.preventDefault();
@@ -174,17 +180,9 @@ api.getAppInfo().then(([cards, userInfo]) => {
 //api.updateUserInfo();
 openProfileImageModal();
 
-function handleDeleteClick(cardId) {
-  // open the modal
+/*function handleDeleteClick(cardId) {
 
-  openDeleteModal();
-  //card.handleModalDeleteButton();
-  // set a submit action
-  //super._setEventListeners();
-  api.deleteCard(cardId).then((res) => {
-    card.handleModalDeleteButton();
-  });
-}
+}*/
 
 function openProfileImageModal() {
 profileImageButton.addEventListener("click", ()=> {
@@ -193,6 +191,10 @@ profileImageButton.addEventListener("click", ()=> {
 }
 
 function openDeleteModal() {
-  const deleteBtnModal = document.querySelector("#modal-delete");
+  
   deleteBtnModal.classList.add("modal_opened");
+}
+
+function closeDeleteModal() {
+  deleteBtnModal.classList.remove("modal_opened");
 }

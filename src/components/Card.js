@@ -33,7 +33,7 @@ export default class Card {
     //".card__button"
     this._likeButton = this._cardElement.querySelector(".card__button");
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeIcon();
+      this._processLikeClick(this);
       //this._handleLikeClick();
     });
     //"#card-delete-button"
@@ -70,11 +70,7 @@ export default class Card {
     deleteBtnModal.classList.add("modal_opened");
   }*/
   handleModalDeleteButton() {
-    const deleteModal = document.querySelector("#modal-delete");
-    this._modalDeleteButton.addEventListener("click", () => {
       this._cardElement.remove();
-      
-    });
   }
   handleDeleteButton() {
     this._deleteBtn = this._cardElement.querySelector("#card-delete-button");

@@ -58,7 +58,7 @@
     }).then(res => res.json()); 
   }
   
-  addCard() {
+  addCard(name, link) {
     return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
       method: "POST",
       headers: {
@@ -66,8 +66,8 @@
         "Content-Type": "application/json"
       },
       body:JSON.stringify({
-        name: cardData,
-        link: link
+        name,
+        link
       })
     })
     .then(res => res.json())
@@ -99,7 +99,7 @@
       .then(res => res.json())
         
   }
-  removeCardLike() {
+  removeCardLike(id) {
     return fetch(`https://around.nomoreparties.co/v1/groupId/cards/likes/${id}`, {
       method: "DELETE",  
       headers: {
