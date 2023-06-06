@@ -50,7 +50,6 @@ export default class Card {
     //"#modal-delete-btn"
   }
   setLikesInfo(likes) {
-    console.log(this._likes);
     this._likes = likes;
     this._updateLikesView();
   }
@@ -64,6 +63,7 @@ export default class Card {
 
   _handleLikeIcon = () => {
     this._likeButton.classList.toggle("card__button_active");
+
   };
   /*_handleDeleteBtn() {
     const deleteBtnModal = document.querySelector("#modal-delete");

@@ -82,9 +82,7 @@ const imageModal = new PopupWithImage({
 imageModal.setEventListeners();
 const cardDeleteModal = new PopupWithForm({
   popupSelector: "#modal-delete",
-  handleFormSubmit: () => {
-    
-  },
+  handleFormSubmit: () => {},
 });
 cardDeleteModal.setEventListeners();
 
@@ -93,11 +91,9 @@ profileImageButton.addEventListener("click", () => {
   profileImageModal.classList.add(".modal_opened");
 });
 function processLikeClick(card) {
-  api
-    .addCardLike(card._id)
-    .then((data) => {
-      card.setLikesInfo(data);
-    });
+  api.addCardLike(card._cardId).then((data) => {
+    card.setLikesInfo(data);
+  });
 }
 function renderCard(cardData) {
   const card = new Card({
@@ -107,19 +103,19 @@ function renderCard(cardData) {
       //here is where we want to open our popupWithImage instance.
       imageModal.open({ name, link });
     },
-    handleDeleteClick: (cardId)=> {
-        // open the modal
-  openDeleteModal();
-  // set a submit action
- cardDeleteModal.setSubmitAction(() => {
-  api.deleteCard(cardId).then((res) => {
-    card.handleModalDeleteButton();
-    closeDeleteModal();
-  });
- })
-  },
+    handleDeleteClick: (cardId) => {
+      // open the modal
+      openDeleteModal();
+      // set a submit action
+      cardDeleteModal.setSubmitAction(() => {
+        api.deleteCard(cardId).then((res) => {
+          card.handleModalDeleteButton();
+          closeDeleteModal();
+        });
+      });
+    },
     processLikeClick,
-  
+
     userId,
   });
 
@@ -135,7 +131,6 @@ function handleAddCardFormSubmit(cardData) {
     addCardModal.close();
   });
 }
-
 
 function handleProfileEditForm(evt) {
   evt.preventDefault();
@@ -173,8 +168,6 @@ api.getAppInfo().then(([cards, userInfo]) => {
   userId = userInfo._id;
   section = new Section({ items: cards, renderer: renderCard }, ".cards__list");
   section.renderItems();
-
-  
 });
 
 //api.updateUserInfo();
@@ -185,13 +178,12 @@ openProfileImageModal();
 }*/
 
 function openProfileImageModal() {
-profileImageButton.addEventListener("click", ()=> {
-  profileImageModal.classList.add("modal_opened");
-})
+  profileImageButton.addEventListener("click", () => {
+    profileImageModal.classList.add("modal_opened");
+  });
 }
 
 function openDeleteModal() {
-  
   deleteBtnModal.classList.add("modal_opened");
 }
 
