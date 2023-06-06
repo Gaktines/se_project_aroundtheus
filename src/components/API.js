@@ -58,7 +58,7 @@
     }).then(res => res.json()); 
   }
   
-  addCard(name, link) {
+  addCard({name, link}) {
     return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
       method: "POST",
       headers: {
