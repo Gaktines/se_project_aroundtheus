@@ -49,6 +49,7 @@ const validationOptions = {
 };
 const profileImageButton = document.querySelector(".profile__image_button");
 const profileImageModal = document.querySelector("#modal-profile-image");
+const profileImageSaveButton = document.querySelector(".modal__button_save");
 
 const editFormValidator = new FormValidator(
   validationOptions,
@@ -90,9 +91,14 @@ profileImageButton.addEventListener("click", () => {
   const profileImageModal = document.querySelector("#modal-profile-image");
   profileImageModal.classList.add(".modal_opened");
 });
+
+profileImageSaveButton.addEventListener("click", () => {
+  handleProfileImageForm();
+});
+
 function processLikeClick(card) {
   api.addCardLike(card._cardId).then((data) => {
-    card.setLikesInfo(data);
+    card.setLikesInfo(data.likes);
   });
 }
 function renderCard(cardData) {
@@ -136,6 +142,13 @@ function handleProfileEditForm(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileSubheading.textContent = profileSubheadingInput.value;
+}
+
+function handleProfileImageForm(evt) {
+  evt.preventDefault();
+  const profileImage = document.querySelector(".profile__image");
+  const profileImageInput = document.querySelector("#profile-image-link");
+  profileImage = profileImageInput.value;
 }
 
 const cardElement = cardTemplateInput.cloneNode(true);

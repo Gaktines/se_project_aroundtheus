@@ -109,7 +109,7 @@
     .then(res => res.json())
   }
     // other methods for working with the API
-    handleLikeClick()  {
+   /* handleLikeClick()  {
       //tell API to add like
       return fetch(`https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`, {
     method: "PUT",  
@@ -120,7 +120,7 @@
     .then(res => res.json());
       //get response from API
     
-  }
+  }*/
   
   
 }
