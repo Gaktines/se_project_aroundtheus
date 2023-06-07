@@ -48,7 +48,7 @@ const validationOptions = {
   errorClass: "modal__error_visible",
 };
 const profileImageButton = document.querySelector(".profile__image_button");
-const profileImageModal = document.querySelector("#modal-profile-image");
+
 const profileImageSaveButton = document.querySelector(".modal__button_save");
 
 const editFormValidator = new FormValidator(
@@ -59,13 +59,10 @@ const addCardFormValidator = new FormValidator(
   validationOptions,
   addCardEditModal
 );
-const profileImageValidator = new FormValidator(
-  validationOptions,
-  profileImageModal
-);
+
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-profileImageValidator.enableValidation();
+
 
 const userInfo = new UserInfo({
   name: ".profile__title",
@@ -91,7 +88,15 @@ const cardDeleteModal = new PopupWithForm({
   handleFormSubmit: () => {},
 });
 cardDeleteModal.setEventListeners();
-
+const profileImageModal = new PopupWithForm({
+  popupSelector: "#modal-profile-image",
+  handleFormSubmit: handleProfileImageForm,
+});
+const profileImageValidator = new FormValidator(
+  validationOptions,
+  profileImageModal
+);
+profileImageValidator.enableValidation();
 profileImageButton.addEventListener("click", () => {
   profileImageModal.classList.add(".modal_opened");
 });
@@ -161,7 +166,7 @@ function handleProfileImageForm() {
  //evt.preventDefault();
   const profileImage = document.querySelector(".profile__image");
   const profileImageInput = document.querySelector("#profile-image-link");
-  profileImage = profileImageInput.value;
+  profileImage.src = profileImageInput.value;
   profileImageModal.close();
 }
 
