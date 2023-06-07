@@ -97,9 +97,16 @@ profileImageSaveButton.addEventListener("click", () => {
 });
 
 function processLikeClick(card) {
-  api.addCardLike(card._cardId).then((data) => {
+  if (this._likes >= 0){
+    api.removeCardLike(card._cardId).then((data) => {
     card.setLikesInfo(data.likes);
-  });
+  });} else {
+    api.addCardLike(card._cardId).then((data) => {
+      card.setLikesInfo(data.likes);
+    });
+  }
+  
+  
 }
 function renderCard(cardData) {
   const card = new Card({
