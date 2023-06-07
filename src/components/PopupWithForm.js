@@ -16,6 +16,15 @@ export default class PopupWithForm extends Popup {
     });
     return inputValues;
   }
+  setLoading(isLoading) {
+    const modalSubmitButton = document.querySelector(".modal__button");
+    if (isLoading) {
+      modalSubmitButton.textContent = "Saving";
+    } else {
+      modalSubmitButton.textContent =
+        modalSubmitButton.textContent.defaultvalue;
+    }
+  }
   setEventListeners() {
     //submit event
     super.setEventListeners();
@@ -31,7 +40,7 @@ export default class PopupWithForm extends Popup {
   }
   close() {
     this._modalForm.reset();
-    super.close(); 
+    super.close();
   }
 
   setSubmitAction(action) {

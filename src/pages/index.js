@@ -59,8 +59,13 @@ const addCardFormValidator = new FormValidator(
   validationOptions,
   addCardEditModal
 );
+const profileImageValidator = new FormValidator(
+  validationOptions,
+  profileImageModal
+);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+profileImageValidator.enableValidation();
 
 const userInfo = new UserInfo({
   name: ".profile__title",
@@ -88,7 +93,6 @@ const cardDeleteModal = new PopupWithForm({
 cardDeleteModal.setEventListeners();
 
 profileImageButton.addEventListener("click", () => {
-  const profileImageModal = document.querySelector("#modal-profile-image");
   profileImageModal.classList.add(".modal_opened");
 });
 
@@ -97,16 +101,16 @@ profileImageSaveButton.addEventListener("click", () => {
 });
 
 function processLikeClick(card) {
-  if (this._likes >= 0){
+  this._likeButton.classList.toggle("card__button_active");
+  if (this._likes > 0) {
     api.removeCardLike(card._cardId).then((data) => {
-    card.setLikesInfo(data.likes);
-  });} else {
+      card.setLikesInfo(data.likes);
+    });
+  } else {
     api.addCardLike(card._cardId).then((data) => {
       card.setLikesInfo(data.likes);
     });
   }
-  
-  
 }
 function renderCard(cardData) {
   const card = new Card({
@@ -139,7 +143,9 @@ function handleEditModalFormSubmit(inputValues) {
   editModal.close();
 }
 function handleAddCardFormSubmit(cardData) {
+  addCardModal.setLoading(true);
   api.addCard(cardData).then((cardData) => {
+    addCardModal.setLoading(false);
     renderCard(cardData);
     addCardModal.close();
   });
@@ -151,11 +157,12 @@ function handleProfileEditForm(evt) {
   profileSubheading.textContent = profileSubheadingInput.value;
 }
 
-function handleProfileImageForm(evt) {
-  evt.preventDefault();
+function handleProfileImageForm() {
+ //evt.preventDefault();
   const profileImage = document.querySelector(".profile__image");
   const profileImageInput = document.querySelector("#profile-image-link");
   profileImage = profileImageInput.value;
+  profileImageModal.close();
 }
 
 const cardElement = cardTemplateInput.cloneNode(true);

@@ -61,10 +61,10 @@ export default class Card {
     //in it to match how many this._likes there are,
   }
 
-  _handleLikeIcon = () => {
+  /*_handleLikeIcon = () => {
     this._likeButton.classList.toggle("card__button_active");
 
-  };
+  };*/
   /*_handleDeleteBtn() {
     const deleteBtnModal = document.querySelector("#modal-delete");
     deleteBtnModal.classList.add("modal_opened");
