@@ -129,8 +129,11 @@ function renderCard(cardData) {
       openDeleteModal();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
+        
         api.deleteCard(cardId).then((res) => {
+          cardDeleteModal.setLoading(true);
           card.handleModalDeleteButton();
+          cardDeleteModal.setLoading(false);
           closeDeleteModal();
         });
       });
@@ -143,8 +146,11 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
+  editModal.setLoading(true);
   userInfo.setUserInfo(inputValues);
+  editModal.setLoading(false);
   editModal.close();
+  
 }
 function handleAddCardFormSubmit(cardData) {
   addCardModal.setLoading(true);
@@ -155,23 +161,20 @@ function handleAddCardFormSubmit(cardData) {
   });
 }
 
-function handleProfileEditForm(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileSubheading.textContent = profileSubheadingInput.value;
-}
+
 
 function handleProfileImageForm() {
   //evt.preventDefault();
+  profileImageModal.setLoading(true);
   const profileImage = document.querySelector(".profile__image");
   const profileImageInput = document.querySelector("#profile-image-link");
   profileImage.src = profileImageInput.value;
+  profileImageModal.setLoading(false);
+
   profileImageModal.close();
 }
 
-const cardElement = cardTemplateInput.cloneNode(true);
 
-const cardImageElement = cardElement.querySelector("#card-image");
 
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
