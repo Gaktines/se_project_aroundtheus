@@ -63,7 +63,6 @@ const addCardFormValidator = new FormValidator(
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-
 const userInfo = new UserInfo({
   name: ".profile__title",
   subheading: ".profile__subheading",
@@ -98,7 +97,7 @@ const profileImageValidator = new FormValidator(
 );
 profileImageValidator.enableValidation();
 profileImageButton.addEventListener("click", () => {
-  profileImageModal.classList.add(".modal_opened");
+  profileImageModal.open();
 });
 
 profileImageSaveButton.addEventListener("click", () => {
@@ -163,7 +162,7 @@ function handleProfileEditForm(evt) {
 }
 
 function handleProfileImageForm() {
- //evt.preventDefault();
+  //evt.preventDefault();
   const profileImage = document.querySelector(".profile__image");
   const profileImageInput = document.querySelector("#profile-image-link");
   profileImage.src = profileImageInput.value;
@@ -211,7 +210,7 @@ openProfileImageModal();
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {
-    profileImageModal.classList.add("modal_opened");
+    profileImageModal.open();
   });
 }
 
