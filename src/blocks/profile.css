@@ -13,11 +13,11 @@
   margin: 0;
   align-self: center;
 }
-.profile__image_button:hover{
+.profile__image-button:hover{
   opacity: 1;
   cursor: pointer;
 }
-.profile__image_button {
+.profile__image-button {
   background-image: url("../images/pencil.svg");
   background-repeat: no-repeat;
   background-position: center;

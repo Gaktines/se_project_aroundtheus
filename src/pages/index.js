@@ -47,7 +47,7 @@ const validationOptions = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-const profileImageButton = document.querySelector(".profile__image_button");
+const profileImageButton = document.querySelector(".profile__image-button");
 
 const profileImageSaveButton = document.querySelector(".modal__button_save");
 
