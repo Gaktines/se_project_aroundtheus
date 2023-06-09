@@ -50,7 +50,7 @@ const validationOptions = {
 const profileImageButton = document.querySelector(".profile__image-button");
 
 const profileImageSaveButton = document.querySelector(".modal__button_save");
-
+const profileImage = document.querySelector("#modal-profile-image");
 const editFormValidator = new FormValidator(
   validationOptions,
   profileEditModal
@@ -91,9 +91,10 @@ const profileImageModal = new PopupWithForm({
   popupSelector: "#modal-profile-image",
   handleFormSubmit: handleProfileImageForm,
 });
+profileImageModal.setEventListeners();
 const profileImageValidator = new FormValidator(
   validationOptions,
-  profileImageModal
+  profileImage
 );
 profileImageValidator.enableValidation();
 profileImageButton.addEventListener("click", () => {
@@ -106,7 +107,7 @@ profileImageSaveButton.addEventListener("click", () => {
 
 function processLikeClick(card) {
   this._likeButton.classList.toggle("card__button_active");
-  if (this._likes > 0) {
+  if (isLiked) {
     api.removeCardLike(card._cardId).then((data) => {
       card.setLikesInfo(data.likes);
     });
@@ -194,6 +195,8 @@ const api = new Api({
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
     "Content-Type": "application/json",
   },
+}).catch((err) => {
+  console.error(err);// log the error to the console
 });
 let section;
 let userId;
@@ -207,9 +210,7 @@ api.getAppInfo().then(([cards, userInfo]) => {
 //api.updateUserInfo();
 openProfileImageModal();
 
-/*function handleDeleteClick(cardId) {
 
-}*/
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {

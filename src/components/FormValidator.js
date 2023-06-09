@@ -7,7 +7,7 @@ export default class FormValidator {
     this._inputErrorClass = "modal__input_type_error";
     this._errorClass = "modal__error_visible";
 
-    this._form = document.querySelector(".modal__form");
+    this._form = formElement;
 
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
