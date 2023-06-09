@@ -22,7 +22,7 @@
         method: "GET",
             headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5"
-        }}).then(this._checkResponse);
+        }});
         
 }
 
@@ -34,7 +34,7 @@
             headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
           "Content-Type": "application/json"
-        }}).then(this._checkResponse);
+        }});
   }
   updateUserInfo(name, about) {
       return this._request("https://around.nomoreparties.co/v1/group-12/users/me", {
@@ -46,7 +46,7 @@
             name,
             about
             })
-        }}).then(this._checkResponse);
+        }});
       }
   
   addCard({name, link}) {
@@ -60,14 +60,14 @@
             name,
             link
             })
-        }}).then(this._checkResponse);
+        }});
   }
   deleteCard(id) {
     return this._request(`https://around.nomoreparties.co/v1/group-12/cards/${id}`, {
       method: "DELETE",
           headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-      }}).then(this._checkResponse);
+      }});
       
   }
   handleDeleteButton() {
@@ -82,7 +82,7 @@
       method: "PUT",
           headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-      }}).then(this._checkResponse);
+      }});
         
   }
   removeCardLike(id) {
@@ -90,7 +90,7 @@
       method: "DELETE",
           headers: {
         authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-      }}).then(this._checkResponse);
+      }});
     
   }
     // other methods for working with the API
@@ -99,12 +99,12 @@
       if (res.ok) {
           return res.json();
       }
-      return Promise.reject(`Error ${res.status}`);
+      return Promise.reject(`Error ${JSON.stringify(res)}`);
   
   }
   
   _request(url, options) {
-    return fetch(url, options).then(this._checkResponse)
+    return fetch(url, options).then(this._checkResponse);
   }
  
 }

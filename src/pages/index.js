@@ -165,8 +165,6 @@ function handleAddCardFormSubmit(cardData) {
     addCardModal.setLoading(false);
     renderCard(cardData);
     addCardModal.close();
-  }).catch((err) => {
-    console.error(err);
   });
 }
 
