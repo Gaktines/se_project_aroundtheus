@@ -110,10 +110,14 @@ function processLikeClick(card) {
   if (isLiked) {
     api.removeCardLike(card._cardId).then((data) => {
       card.setLikesInfo(data.likes);
+    }).catch((err) => {
+      console.error(err);
     });
   } else {
     api.addCardLike(card._cardId).then((data) => {
       card.setLikesInfo(data.likes);
+    }).catch((err) => {
+      console.error(err);
     });
   }
 }
@@ -136,6 +140,8 @@ function renderCard(cardData) {
           card.handleModalDeleteButton();
           cardDeleteModal.setLoading(false);
           closeDeleteModal();
+        }).catch((err) => {
+          console.error(err);
         });
       });
     },
@@ -159,6 +165,8 @@ function handleAddCardFormSubmit(cardData) {
     addCardModal.setLoading(false);
     renderCard(cardData);
     addCardModal.close();
+  }).catch((err) => {
+    console.error(err);
   });
 }
 
@@ -195,9 +203,8 @@ const api = new Api({
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
     "Content-Type": "application/json",
   },
-}).catch((err) => {
-  console.error(err);// log the error to the console
-});
+});// log the error to the console
+
 let section;
 let userId;
 
@@ -205,9 +212,10 @@ api.getAppInfo().then(([cards, userInfo]) => {
   userId = userInfo._id;
   section = new Section({ items: cards, renderer: renderCard }, ".cards__list");
   section.renderItems();
+}).catch((err) => {
+  console.error(err);
 });
 
-//api.updateUserInfo();
 openProfileImageModal();
 
 
