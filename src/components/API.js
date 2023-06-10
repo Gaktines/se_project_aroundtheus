@@ -41,13 +41,13 @@
         method: "GET",
             headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"},
            body: JSON.stringify({
             name,
             about
             })
-        }});
-      }
+        });
+  }
   
   addCard({name, link}) {
 
@@ -55,12 +55,12 @@
         method: "POST",
             headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"},
            body: JSON.stringify({
             name,
             link
             })
-        }});
+        });
   }
   deleteCard(id) {
     return this._request(`https://around.nomoreparties.co/v1/group-12/cards/${id}`, {
