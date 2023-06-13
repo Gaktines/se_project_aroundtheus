@@ -107,7 +107,7 @@ profileImageSaveButton.addEventListener("click", () => {
 
 function processLikeClick(card) {
   this._likeButton.classList.toggle("card__button_active");
-  if (isLiked) {
+  if (card.isLiked) {
     api.removeCardLike(card._cardId).then((data) => {
       card.setLikesInfo(data.likes);
     }).catch((err) => {
@@ -177,7 +177,7 @@ function handleProfileImageForm() {
   const profileImageInput = document.querySelector("#profile-image-link");
   profileImage.src = profileImageInput.value;
   profileImageModal.setLoading(false);
-
+  api.updateProfileImage();
   profileImageModal.close();
 }
 
@@ -187,6 +187,7 @@ profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
   profileTitleInput.value = profileData.name;
   profileSubheadingInput.value = profileData.subheading;
+  api.updateUserInfo();
   editModal.open();
 });
 
@@ -215,6 +216,8 @@ api.getAppInfo().then(([cards, userInfo]) => {
 });
 
 openProfileImageModal();
+
+api.getUserInfo();
 
 
 
