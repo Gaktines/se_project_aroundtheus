@@ -108,17 +108,23 @@ profileImageSaveButton.addEventListener("click", () => {
 function processLikeClick(card) {
   this._likeButton.classList.toggle("card__button_active");
   if (card.isLiked) {
-    api.removeCardLike(card._cardId).then((data) => {
-      card.setLikesInfo(data.likes);
-    }).catch((err) => {
-      console.error(err);
-    });
+    api
+      .removeCardLike(card._cardId)
+      .then((data) => {
+        card.setLikesInfo(data.likes);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   } else {
-    api.addCardLike(card._cardId).then((data) => {
-      card.setLikesInfo(data.likes);
-    }).catch((err) => {
-      console.error(err);
-    });
+    api
+      .addCardLike(card._cardId)
+      .then((data) => {
+        card.setLikesInfo(data.likes);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
 function renderCard(cardData) {
@@ -134,15 +140,17 @@ function renderCard(cardData) {
       openDeleteModal();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
-        
-        api.deleteCard(cardId).then((res) => {
-          cardDeleteModal.setLoading(true);
-          card.handleModalDeleteButton();
-          cardDeleteModal.setLoading(false);
-          closeDeleteModal();
-        }).catch((err) => {
-          console.error(err);
-        });
+        api
+          .deleteCard(cardId)
+          .then((res) => {
+            cardDeleteModal.setLoading(true);
+            card.handleModalDeleteButton();
+            cardDeleteModal.setLoading(false);
+            closeDeleteModal();
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       });
     },
     processLikeClick,
@@ -154,10 +162,11 @@ function renderCard(cardData) {
 }
 function handleEditModalFormSubmit(inputValues) {
   editModal.setLoading(true);
-  userInfo.setUserInfo(inputValues);
+  api.updateUserInfo(inputValues).then((data) => {
+    userInfo.setUserInfo(data);
+  });
   editModal.setLoading(false);
   editModal.close();
-  
 }
 function handleAddCardFormSubmit(cardData) {
   addCardModal.setLoading(true);
@@ -167,8 +176,6 @@ function handleAddCardFormSubmit(cardData) {
     addCardModal.close();
   });
 }
-
-
 
 function handleProfileImageForm() {
   //evt.preventDefault();
@@ -181,13 +188,10 @@ function handleProfileImageForm() {
   profileImageModal.close();
 }
 
-
-
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
   profileTitleInput.value = profileData.name;
   profileSubheadingInput.value = profileData.subheading;
-  api.updateUserInfo();
   editModal.open();
 });
 
@@ -202,24 +206,28 @@ const api = new Api({
     authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
     "Content-Type": "application/json",
   },
-});// log the error to the console
+}); // log the error to the console
 
 let section;
 let userId;
 
-api.getAppInfo().then(([cards, userInfo]) => {
-  userId = userInfo._id;
-  section = new Section({ items: cards, renderer: renderCard }, ".cards__list");
-  section.renderItems();
-}).catch((err) => {
-  console.error(err);
-});
+api
+  .getAppInfo()
+  .then(([cards, userInfo]) => {
+    userId = userInfo._id;
+    section = new Section(
+      { items: cards, renderer: renderCard },
+      ".cards__list"
+    );
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 openProfileImageModal();
 
 api.getUserInfo();
-
-
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {
