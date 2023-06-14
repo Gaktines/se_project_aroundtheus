@@ -60,7 +60,7 @@ export default class Card {
 
   isLiked() {
     return this._likes.some(() => {
-      this._userId = this._currentUserId;
+      this._userId === this._currentUserId;
     });
   }
   handleModalDeleteButton() {
