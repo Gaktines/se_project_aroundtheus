@@ -107,6 +107,7 @@ profileImageSaveButton.addEventListener("click", () => {
 
 function processLikeClick(card) {
   const isLiked = card.isLiked();
+  console.log(isLiked);
   this._likeButton.classList.toggle("card__button_active");
   if (isLiked) {
     api
@@ -165,9 +166,11 @@ function handleEditModalFormSubmit(inputValues) {
   editModal.setLoading(true);
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
     userInfo.setUserInfo(data);
-  });
-  editModal.setLoading(false);
-  editModal.close();
+    editModal.close();
+  }).catch((err) => {
+    console.error(err);
+  editModal.setLoading(false);  
+});
 }
 function handleAddCardFormSubmit(cardData) {
   addCardModal.setLoading(true);
@@ -175,7 +178,9 @@ function handleAddCardFormSubmit(cardData) {
     addCardModal.setLoading(false);
     renderCard(cardData);
     addCardModal.close();
-  });
+  }).catch((err) => {
+    console.error(err);
+});
 }
 
 function handleProfileImageForm() {
