@@ -114,7 +114,7 @@ export default class Api {
   }
   removeCardLike(id) {
     return this._request(
-      `https://around.nomoreparties.co/v1/groupId/cards/likes/${id}`,
+      `https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`,
       {
         method: "DELETE",
         headers: {

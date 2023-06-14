@@ -110,19 +110,13 @@ function processLikeClick(card) {
   console.log(isLiked);
   this._likeButton.classList.toggle("card__button_active");
   if (isLiked) {
-    api
-      .removeCardLike(card._cardId)
-      .then((data) => {
-        card.setLikesInfo(data.likes);
-      });
-      
+    api.removeCardLike(card._cardId).then((data) => {
+      card.setLikesInfo(data.likes);
+    });
   } else {
-    api
-      .addCardLike(card._cardId)
-      .then((data) => {
-        card.setLikesInfo(data.likes);
-      });
-      
+    api.addCardLike(card._cardId).then((data) => {
+      card.setLikesInfo(data.likes);
+    });
   }
 }
 function renderCard(cardData) {
@@ -164,18 +158,20 @@ function handleEditModalFormSubmit(inputValues) {
     userInfo.setUserInfo(data);
     editModal.close();
   });
-  editModal.setLoading(false);  
-
+  editModal.setLoading(false);
 }
 function handleAddCardFormSubmit(cardData) {
   addCardModal.setLoading(true);
-  api.addCard(cardData).then((cardData) => {
-    addCardModal.setLoading(false);
-    renderCard(cardData);
-    addCardModal.close();
-  }).catch((err) => {
-    console.error(err);
-});
+  api
+    .addCard(cardData)
+    .then((cardData) => {
+      addCardModal.setLoading(false);
+      renderCard(cardData);
+      addCardModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function handleProfileImageForm() {
