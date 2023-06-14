@@ -61,7 +61,9 @@ export default class Api {
         headers: {
           authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
           "Content-Type": "application/json",
-        }},{
+        },
+      },
+      {
         body: JSON.stringify({
           name,
           about,

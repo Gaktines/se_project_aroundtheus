@@ -19,9 +19,9 @@ const profileModalCloseButton = document.querySelector(
   "#profile-modal-close-button"
 );
 const profileTitle = document.querySelector("#profile-title");
-const profileSubheading = document.querySelector("#profile-subheading");
+const profileAbout = document.querySelector("#profile-about");
 const profileTitleInput = document.querySelector("#profile-modal-title");
-const profileSubheadingInput = document.querySelector("#modal-subheading");
+const profileAboutInput = document.querySelector("#modal-about");
 const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
@@ -65,7 +65,7 @@ addCardFormValidator.enableValidation();
 
 const userInfo = new UserInfo({
   name: ".profile__title",
-  subheading: ".profile__subheading",
+  about: ".profile__about",
 });
 
 const editModal = new PopupWithForm({
@@ -106,8 +106,9 @@ profileImageSaveButton.addEventListener("click", () => {
 });
 
 function processLikeClick(card) {
+  const isLiked = this._likes > 0;
   this._likeButton.classList.toggle("card__button_active");
-  if (card.isLiked) {
+  if (isLiked) {
     api
       .removeCardLike(card._cardId)
       .then((data) => {
@@ -191,7 +192,7 @@ function handleProfileImageForm() {
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfo.getUserInfo();
   profileTitleInput.value = profileData.name;
-  profileSubheadingInput.value = profileData.subheading;
+  profileAboutInput.value = profileData.about;
   editModal.open();
 });
 
