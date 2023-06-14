@@ -114,19 +114,15 @@ function processLikeClick(card) {
       .removeCardLike(card._cardId)
       .then((data) => {
         card.setLikesInfo(data.likes);
-      })
-      .catch((err) => {
-        console.error(err);
       });
+      
   } else {
     api
       .addCardLike(card._cardId)
       .then((data) => {
         card.setLikesInfo(data.likes);
-      })
-      .catch((err) => {
-        console.error(err);
       });
+      
   }
 }
 function renderCard(cardData) {
@@ -167,10 +163,9 @@ function handleEditModalFormSubmit(inputValues) {
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
     userInfo.setUserInfo(data);
     editModal.close();
-  }).catch((err) => {
-    console.error(err);
+  });
   editModal.setLoading(false);  
-});
+
 }
 function handleAddCardFormSubmit(cardData) {
   addCardModal.setLoading(true);
