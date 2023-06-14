@@ -106,7 +106,7 @@ profileImageSaveButton.addEventListener("click", () => {
 });
 
 function processLikeClick(card) {
-  const isLiked = this._likes > 0;
+  const isLiked = card.isLiked();
   this._likeButton.classList.toggle("card__button_active");
   if (isLiked) {
     api
@@ -163,7 +163,7 @@ function renderCard(cardData) {
 }
 function handleEditModalFormSubmit(inputValues) {
   editModal.setLoading(true);
-  api.updateUserInfo(inputValues).then((data) => {
+  api.updateUserInfo(name, about).then((data) => {
     userInfo.setUserInfo(data);
   });
   editModal.setLoading(false);
