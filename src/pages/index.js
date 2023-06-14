@@ -163,7 +163,7 @@ function renderCard(cardData) {
 }
 function handleEditModalFormSubmit(inputValues) {
   editModal.setLoading(true);
-  api.updateUserInfo(name, about).then((data) => {
+  api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
     userInfo.setUserInfo(data);
   });
   editModal.setLoading(false);
