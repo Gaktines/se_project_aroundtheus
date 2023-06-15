@@ -27,7 +27,7 @@ export default class Api {
   }
   updateProfileImage() {
     return this._request(
-      "https://around.nomoreparties.co/v1/group-12/users/me",
+      "https://around.nomoreparties.co/v1/group-12/users/me/avatar",
       {
         method: "PATCH",
         headers: {
