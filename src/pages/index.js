@@ -217,6 +217,7 @@ api
       ".cards__list"
     );
     section.renderItems();
+    userInfo.setUserInfo();
   })
   .catch((err) => {
     console.error(err);
