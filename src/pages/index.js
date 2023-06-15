@@ -217,7 +217,7 @@ api
       ".cards__list"
     );
     section.renderItems();
-    userInfo.setUserInfo({name: userData.name,about: userData.about});
+    userInfo.setUserInfo({name: userData.name,about: userData.about });
   })
   .catch((err) => {
     console.error(err);
