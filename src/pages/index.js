@@ -210,22 +210,20 @@ let userId;
 
 api
   .getAppInfo()
-  .then(([cards, userInfo]) => {
-    userId = userInfo._id;
+  .then(([cards, userData]) => {
+    userId = userData._id;
     section = new Section(
       { items: cards, renderer: renderCard },
       ".cards__list"
     );
     section.renderItems();
-    userInfo.setUserInfo();
+    userInfo.setUserInfo({name: userData.name,about: userData.about});
   })
   .catch((err) => {
     console.error(err);
   });
 
 openProfileImageModal();
-
-api.getUserInfo();
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {
