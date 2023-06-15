@@ -223,7 +223,7 @@ api
     console.error(err);
   });
 
-openProfileImageModal();
+  openProfileImageModal();
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {
