@@ -101,10 +101,6 @@ profileImageButton.addEventListener("click", () => {
   profileImageModal.open();
 });
 
-profileImageSaveButton.addEventListener("click", () => {
-  handleProfileImageForm();
-});
-
 function processLikeClick(card) {
   const isLiked = card.isLiked();
   console.log(isLiked);
@@ -174,15 +170,18 @@ function handleAddCardFormSubmit(cardData) {
     });
 }
 
-function handleProfileImageForm() {
+function handleProfileImageForm(inputValues) {
   //evt.preventDefault();
+  console.log(inputValues);
   profileImageModal.setLoading(true);
   const profileImage = document.querySelector(".profile__image");
   const profileImageInput = document.querySelector("#profile-image-link");
   profileImage.src = profileImageInput.value;
   profileImageModal.setLoading(false);
-  api.updateProfileImage();
-  profileImageModal.close();
+  api.updateProfileImage(inputValues).then((res) => {
+    console.log(res);
+    profileImageModal.close();
+  });
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -217,13 +216,13 @@ api
       ".cards__list"
     );
     section.renderItems();
-    userInfo.setUserInfo({name: userData.name,about: userData.about });
+    userInfo.setUserInfo({ name: userData.name, about: userData.about });
   })
   .catch((err) => {
     console.error(err);
   });
 
-  openProfileImageModal();
+openProfileImageModal();
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {

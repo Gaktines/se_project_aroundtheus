@@ -25,7 +25,7 @@ export default class Api {
       },
     });
   }
-  updateProfileImage() {
+  updateProfileImage(data) {
     return this._request(
       "https://around.nomoreparties.co/v1/group-12/users/me/avatar",
       {
@@ -35,7 +35,7 @@ export default class Api {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          avatar: ".profile__image",
+          avatar: data.link,
         }),
       }
     );
