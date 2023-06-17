@@ -25,7 +25,7 @@ const profileAboutInput = document.querySelector("#modal-about");
 const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
-
+  const deleteBtn = document.querySelector("#card-delete-button");
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
 const addCardModalCloseButton = document.querySelector(
   "#add-card-modal-close-button"
@@ -103,8 +103,6 @@ profileImageButton.addEventListener("click", () => {
 
 function processLikeClick(card) {
   const isLiked = card.isLiked();
-  console.log(isLiked);
-  this._likeButton.classList.toggle("card__button_active");
   if (isLiked) {
     api.removeCardLike(card._cardId).then((data) => {
       card.setLikesInfo(data.likes);
@@ -231,7 +229,9 @@ function openProfileImageModal() {
 }
 
 function openDeleteModal() {
-  deleteBtnModal.classList.add("modal_opened");
+  deleteBtn.addEventListener("click", () => {
+    deleteBtnModal.open();
+  });
 }
 
 function closeDeleteModal() {
