@@ -12,28 +12,28 @@ export default class Api {
   constructor(name, link) {
     this.name = name;
     this.link = link;
+    this._baseURL = "https://around.nomoreparties.co/v1/group-12";
+    this._headers = {
+      authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
+      "Content-Type": "application/json",
+    };
   }
   getAppInfo() {
     return Promise.all([this.getInitialCards(), this.getUserInfo()]);
   }
 
   getInitialCards() {
-    return this._request("https://around.nomoreparties.co/v1/group-12/cards", {
+    return this._request(`${this._baseURL}/cards`, {
       method: "GET",
-      headers: {
-        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-      },
+      headers: this._headers,
     });
   }
   updateProfileImage(data) {
     return this._request(
-      "https://around.nomoreparties.co/v1/group-12/users/me/avatar",
+      `${this._baseURL}/users/me/avatar`,
       {
         method: "PATCH",
-        headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-          "Content-Type": "application/json",
-        },
+       headers: this._headers,
         body: JSON.stringify({
           avatar: data.link,
         }),
@@ -43,25 +43,19 @@ export default class Api {
 
   getUserInfo() {
     return this._request(
-      "https://around.nomoreparties.co/v1/group-12/users/me",
+      `${this._baseURL}/users/me`,
       {
         method: "GET",
-        headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-          "Content-Type": "application/json",
-        },
+        headers: this._headers,
       }
     );
   }
   updateUserInfo(name, about) {
     return this._request(
-      "https://around.nomoreparties.co/v1/group-12/users/me",
+      `${this._baseURL}/users/me`,
       {
         method: "PATCH",
-        headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-          "Content-Type": "application/json",
-        },
+        headers: this._headers,
         body: JSON.stringify({
           name,
           about,
@@ -71,12 +65,9 @@ export default class Api {
   }
 
   addCard({ name, link }) {
-    return this._request("https://around.nomoreparties.co/v1/group-12/cards", {
+    return this._request(`${this._baseURL}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link,
@@ -85,12 +76,10 @@ export default class Api {
   }
   deleteCard(id) {
     return this._request(
-      `https://around.nomoreparties.co/v1/group-12/cards/${id}`,
+      `${this._baseURL}/cards/${id}`,
       {
         method: "DELETE",
-        headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-        },
+        headers: this._headers,
       }
     );
   }
@@ -103,23 +92,19 @@ export default class Api {
   }
   addCardLike(id) {
     return this._request(
-      `https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`,
+      `${this._baseURL}/cards/likes/${id}`,
       {
         method: "PUT",
-        headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-        },
+        headers: this._headers,
       }
     );
   }
   removeCardLike(id) {
     return this._request(
-      `https://around.nomoreparties.co/v1/group-12/cards/likes/${id}`,
+      `${this._baseURL}/cards/likes/${id}`,
       {
         method: "DELETE",
-        headers: {
-          authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-        },
+        headers: this._headers,
       }
     );
   }

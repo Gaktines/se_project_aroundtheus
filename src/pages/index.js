@@ -8,10 +8,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
 
-/*const cardData = {
-  name: "Lago di Braies",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
-};*/
+
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -48,7 +45,7 @@ const validationOptions = {
   errorClass: "modal__error_visible",
 };
 const profileImageButton = document.querySelector(".profile__image-button");
-
+const deleteBtn = document.querySelector("#card-delete-button");
 const profileImageSaveButton = document.querySelector(".modal__button_save");
 const profileImage = document.querySelector("#modal-profile-image");
 const editFormValidator = new FormValidator(
@@ -103,18 +100,18 @@ profileImageButton.addEventListener("click", () => {
 
 function processLikeClick(card) {
   const isLiked = card.isLiked();
-  console.log(isLiked);
-  this._likeButton.classList.toggle("card__button_active");
-  if (isLiked) {
-    api.removeCardLike(card._cardId).then((data) => {
-      card.setLikesInfo(data.likes);
-    });
-  } else {
-    api.addCardLike(card._cardId).then((data) => {
-      card.setLikesInfo(data.likes);
-    });
+    if (isLiked) {
+      api.removeCardLike(card._cardId).then((data) => {
+        card.setLikesInfo(data.likes);
+      });
+    } else {
+      api.addCardLike(card._cardId).then((data) => {
+        card.setLikesInfo(data.likes);
+      });
+    }
   }
-}
+  
+
 function renderCard(cardData) {
   const card = new Card({
     cardData,
@@ -148,6 +145,7 @@ function renderCard(cardData) {
 
   section.addItem(card.getCard());
 }
+
 function handleEditModalFormSubmit(inputValues) {
   editModal.setLoading(true);
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
@@ -231,7 +229,10 @@ function openProfileImageModal() {
 }
 
 function openDeleteModal() {
-  deleteBtnModal.classList.add("modal_opened");
+  deleteBtn.addEventListener("click", () => {
+    deleteModal.open();
+  });
+  
 }
 
 function closeDeleteModal() {

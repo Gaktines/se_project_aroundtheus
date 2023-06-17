@@ -31,7 +31,7 @@ export default class Card {
     //".card__button"
     this._likeButton = this._cardElement.querySelector(".card__button");
     this._likeButton.addEventListener("click", () => {
-      this._processLikeClick(this);
+     
     });
     //"#card-delete-button"
 
@@ -53,15 +53,20 @@ export default class Card {
   _updateLikesView() {
     this._cardElement.querySelector(".card__number").textContent =
       this._likes.length;
+      if(this.isLiked()) {
+  this._likeButton.classList.add("card__button_active");
+      }else{
+        this._likeButton.classList.remove("card__button_active");
+      }
+  }
 
     //  that edits the .textContent of the span with the number
     //in it to match how many this._likes there are,
-  }
+  
 
   isLiked() {
     return this._likes.some(() => {
-     
-      return this._currenUserId == this._likes._id;
+      return this._currenUserId === this._likes._id;
     });
   }
   handleModalDeleteButton() {
@@ -69,7 +74,6 @@ export default class Card {
   }
   handleDeleteButton() {
     this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
-    console.log(this._userId);
     if (this._currentUserId != this._userId) {
       this._deleteBtn.remove();
     }
