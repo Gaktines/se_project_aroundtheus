@@ -46,39 +46,3 @@ export const profileImageSaveButton = document.querySelector(
   ".modal__button_save"
 );
 export const profileImage = document.querySelector("#modal-profile-image");
-export const editFormValidator = new FormValidator(
-  validationOptions,
-  profileEditModal
-);
-export const addCardFormValidator = new FormValidator(
-  validationOptions,
-  addCardEditModal
-);
-export const userInfo = new UserInfo({
-  name: ".profile__title",
-  about: ".profile__about",
-});
-
-export const editModal = new PopupWithForm({
-  popupSelector: "#profile-edit-modal",
-  handleFormSubmit: handleEditModalFormSubmit,
-});
-export const addCardModal = new PopupWithForm({
-  popupSelector: "#add-card-edit-modal",
-  handleFormSubmit: handleAddCardFormSubmit,
-});
-export const imageModal = new PopupWithImage({
-  popupSelector: "#image-modal",
-});
-export const cardDeleteModal = new PopupWithForm({
-  popupSelector: "#modal-delete",
-  handleFormSubmit: () => {},
-});
-export const profileImageModal = new PopupWithForm({
-  popupSelector: "#modal-profile-image",
-  handleFormSubmit: handleProfileImageForm,
-});
-export const profileImageValidator = new FormValidator(
-  validationOptions,
-  profileImage
-);

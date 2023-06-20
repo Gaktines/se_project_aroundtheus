@@ -7,47 +7,75 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
+import {
+  profileEditButton,
+  profileImage,
+  profileImageSaveButton,
+  profileImageButton,
+  validationOptions,
+  deleteBtnModal,
+  imageModalCloseBtn,
+  cardsWrap,
+  addCardForm,
+  addCardLinkInput,
+  addCardTitleInput,
+  addCardButton,
+  addCardModalCloseButton,
+  addCardEditModal,
+  deleteBtn,
+  cardTemplateInput,
+  profileEditForm,
+  profileAboutInput,
+  profileTitleInput,
+  profileAbout,
+  profileTitle,
+  profileEditModal,
+  profileModalCloseButton,
+} from "../utils/constants.js";
 
-import {profileEditButton} from "../utils/constants.js";
-import {profileEditModal} from "../utils/constants.js";
-import {profileModalCloseButton} from "../utils/constants.js";
-import {profileTitle} from "../utils/constants.js";
-import {profileAbout} from "../utils/constants.js";
-import {profileTitleInput} from "../utils/constants.js";
-import {profileAboutInput} from "../utils/constants.js";
-import {profileEditForm} from "../utils/constants.js";
-import {cardTemplateInput} from "../utils/constants.js";
-import {deleteBtn} from "../utils/constants.js";
-import {addCardEditModal} from "../utils/constants.js";
-import {addCardModalCloseButton} from "../utils/constants.js";
-import {addCardButton} from "../utils/constants.js";
-import {addCardTitleInput} from "../utils/constants.js";
-import {addCardLinkInput} from "../utils/constants.js";
-import {addCardForm} from "../utils/constants.js";
-import {cardsWrap} from "../utils/constants.js";
-import {imageModalCloseBtn} from "../utils/constants.js";
-import {deleteBtnModal} from "../utils/constants.js";
-import {validationOptions} from "../utils/constants.js";
-import {profileImageButton} from "../utils/constants.js";
-import {profileImageSaveButton} from "../utils/constants.js";
-import {profileImage} from "../utils/constants.js";
-import {editFormValidator} from "../utils/constants.js";
-import {addCardFormValidator} from "../utils/constants.js";
-import {userInfo} from "../utils/constants.js";
-import {editModal} from "../utils/constants.js";
-import {addCardModal} from "../utils/constants.js";
-import {imageModal} from "../utils/constants.js";
-import {cardDeleteModal} from "../utils/constants.js";
-import {profileImageValidator} from "../utils/constants.js";
 
+profileImageButton.addEventListener("click", () => {
+  profileImageModal.open();
+});
+const editFormValidator = new FormValidator(
+  validationOptions,
+  profileEditModal
+);
+const addCardFormValidator = new FormValidator(
+  validationOptions,
+  addCardEditModal
+);
+const userInfo = new UserInfo({
+  name: ".profile__title",
+  about: ".profile__about",
+});
+
+const editModal = new PopupWithForm({
+  popupSelector: "#profile-edit-modal",
+  handleFormSubmit: handleEditModalFormSubmit,
+});
+const addCardModal = new PopupWithForm({
+  popupSelector: "#add-card-edit-modal",
+  handleFormSubmit: handleAddCardFormSubmit,
+});
+const imageModal = new PopupWithImage({
+  popupSelector: "#image-modal",
+});
+const cardDeleteModal = new PopupWithForm({
+  popupSelector: "#modal-delete",
+  handleFormSubmit: () => {},
+});
+const profileImageModal = new PopupWithForm({
+  popupSelector: "#modal-profile-image",
+  handleFormSubmit: handleProfileImageForm,
+});
+const profileImageValidator = new FormValidator(
+  validationOptions,
+  profileImage
+);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 profileImageValidator.enableValidation();
-    profileImageButton.addEventListener("click", () => {
-      profileImageModal.open();
-    });
-
-
 editModal.setEventListeners();
 
 addCardModal.setEventListeners();
@@ -57,7 +85,6 @@ imageModal.setEventListeners();
 cardDeleteModal.setEventListeners();
 
 profileImageModal.setEventListeners();
-
 
 function processLikeClick(card) {
   const isLiked = card.isLiked();
@@ -172,7 +199,11 @@ api
       ".cards__list"
     );
     section.renderItems();
-    userInfo.setUserInfo({ name: userData.name, about: userData.about, avatar: userData.avatar });
+    userInfo.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+      avatar: userData.avatar,
+    });
   })
   .catch((err) => {
     console.error(err);
@@ -185,6 +216,3 @@ function openProfileImageModal() {
     profileImageModal.open();
   });
 }
-
-
-
