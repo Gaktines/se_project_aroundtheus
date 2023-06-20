@@ -25,7 +25,7 @@ const profileAboutInput = document.querySelector("#modal-about");
 const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
 const cardTemplateInput =
   document.querySelector("#card-template").content.firstElementChild;
-  const deleteBtn = document.querySelector("#card-delete-button");
+  const deleteBtn = document.querySelector(".card__delete_button");
 const addCardEditModal = document.querySelector("#add-card-edit-modal");
 const addCardModalCloseButton = document.querySelector(
   "#add-card-modal-close-button"

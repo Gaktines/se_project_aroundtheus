@@ -15,14 +15,14 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._cardTemplateInput =
       document.querySelector("#card-template").content.firstElementChild;
-    this._cardElement = this._cardTemplateInput.cloneNode(true);
+    
     this._handleCardClick = _handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     //this._handleLikeClick = handleLikeClick;
     this._userId = userId;
     this._currentUserId = cardData.owner._id;
     this._processLikeClick = processLikeClick;
-   this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
+    
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
     this._likes = cardData.likes;
   }
@@ -53,11 +53,11 @@ export default class Card {
   _updateLikesView() {
     this._cardElement.querySelector(".card__number").textContent =
       this._likes.length;
-if(this.isLiked()){
-  this._likeButton.classList.add("card__button_active");
-}else{
-  this._likeButton.classList.remove("card__button_active");
-}
+    if (this.isLiked()) {
+      this._likeButton.classList.add("card__button_active");
+    } else {
+      this._likeButton.classList.remove("card__button_active");
+    }
     //  that edits the .textContent of the span with the number
     //in it to match how many this._likes there are,
   }
@@ -71,7 +71,7 @@ if(this.isLiked()){
     this._cardElement.remove();
   }
   handleDeleteButton() {
-    if (this._currentUserId != this._userId) {
+    if (this._currentUserId !== this._userId) {
       this._deleteBtn.remove();
     }
   }
@@ -89,7 +89,7 @@ if(this.isLiked()){
     this._cardElement.querySelector("#card-image").src = this._link;
     this._cardElement.querySelector("#card-name").textContent = this._name;
     this._cardElement.querySelector("#card-image").alt = this._name;
-
+    this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
     this.handleDeleteButton();
     //set the event listeners
     this._setEventListeners();
