@@ -8,98 +8,56 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
 
-/*const cardData = {
-  name: "Lago di Braies",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
-};*/
-
-const profileEditButton = document.querySelector("#profile-edit-button");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileModalCloseButton = document.querySelector(
-  "#profile-modal-close-button"
-);
-const profileTitle = document.querySelector("#profile-title");
-const profileAbout = document.querySelector("#profile-about");
-const profileTitleInput = document.querySelector("#profile-modal-title");
-const profileAboutInput = document.querySelector("#modal-about");
-const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
-const cardTemplateInput =
-  document.querySelector("#card-template").content.firstElementChild;
-  const deleteBtn = document.querySelector(".card__delete_button");
-const addCardEditModal = document.querySelector("#add-card-edit-modal");
-const addCardModalCloseButton = document.querySelector(
-  "#add-card-modal-close-button"
-);
-const addCardButton = document.querySelector("#profile-add-button");
-const addCardTitleInput = document.querySelector("#add-card-modal-title");
-const addCardLinkInput = document.querySelector("#add-card-link");
-
-const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
-const cardsWrap = document.querySelector("#card-list");
-
-const imageModalCloseBtn = document.querySelector("#modal-close-button");
-const deleteBtnModal = document.querySelector("#modal-delete");
-const validationOptions = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-const profileImageButton = document.querySelector(".profile__image-button");
-
-const profileImageSaveButton = document.querySelector(".modal__button_save");
-const profileImage = document.querySelector("#modal-profile-image");
-const editFormValidator = new FormValidator(
-  validationOptions,
-  profileEditModal
-);
-const addCardFormValidator = new FormValidator(
-  validationOptions,
-  addCardEditModal
-);
+import {profileEditButton} from "../utils/constants.js";
+import {profileEditModal} from "../utils/constants.js";
+import {profileModalCloseButton} from "../utils/constants.js";
+import {profileTitle} from "../utils/constants.js";
+import {profileAbout} from "../utils/constants.js";
+import {profileTitleInput} from "../utils/constants.js";
+import {profileAboutInput} from "../utils/constants.js";
+import {profileEditForm} from "../utils/constants.js";
+import {cardTemplateInput} from "../utils/constants.js";
+import {deleteBtn} from "../utils/constants.js";
+import {addCardEditModal} from "../utils/constants.js";
+import {addCardModalCloseButton} from "../utils/constants.js";
+import {addCardButton} from "../utils/constants.js";
+import {addCardTitleInput} from "../utils/constants.js";
+import {addCardLinkInput} from "../utils/constants.js";
+import {addCardForm} from "../utils/constants.js";
+import {cardsWrap} from "../utils/constants.js";
+import {imageModalCloseBtn} from "../utils/constants.js";
+import {deleteBtnModal} from "../utils/constants.js";
+import {validationOptions} from "../utils/constants.js";
+import {profileImageButton} from "../utils/constants.js";
+import {profileImageSaveButton} from "../utils/constants.js";
+import {profileImage} from "../utils/constants.js";
+import {editFormValidator} from "../utils/constants.js";
+import {addCardFormValidator} from "../utils/constants.js";
+import {userInfo} from "../utils/constants.js";
+import {editModal} from "../utils/constants.js";
+import {addCardModal} from "../utils/constants.js";
+import {imageModal} from "../utils/constants.js";
+import {cardDeleteModal} from "../utils/constants.js";
+import {profileImageValidator} from "../utils/constants.js";
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-
-const userInfo = new UserInfo({
-  name: ".profile__title",
-  about: ".profile__about",
-});
-
-const editModal = new PopupWithForm({
-  popupSelector: "#profile-edit-modal",
-  handleFormSubmit: handleEditModalFormSubmit,
-});
-editModal.setEventListeners();
-const addCardModal = new PopupWithForm({
-  popupSelector: "#add-card-edit-modal",
-  handleFormSubmit: handleAddCardFormSubmit,
-});
-addCardModal.setEventListeners();
-const imageModal = new PopupWithImage({
-  popupSelector: "#image-modal",
-});
-imageModal.setEventListeners();
-const cardDeleteModal = new PopupWithForm({
-  popupSelector: "#modal-delete",
-  handleFormSubmit: () => {},
-});
-cardDeleteModal.setEventListeners();
-const profileImageModal = new PopupWithForm({
-  popupSelector: "#modal-profile-image",
-  handleFormSubmit: handleProfileImageForm,
-});
-profileImageModal.setEventListeners();
-const profileImageValidator = new FormValidator(
-  validationOptions,
-  profileImage
-);
 profileImageValidator.enableValidation();
-profileImageButton.addEventListener("click", () => {
-  profileImageModal.open();
-});
+    profileImageButton.addEventListener("click", () => {
+      profileImageModal.open();
+    });
+
+
+editModal.setEventListeners();
+
+addCardModal.setEventListeners();
+
+imageModal.setEventListeners();
+
+cardDeleteModal.setEventListeners();
+
+profileImageModal.setEventListeners();
+
 
 function processLikeClick(card) {
   const isLiked = card.isLiked();
@@ -123,7 +81,7 @@ function renderCard(cardData) {
     },
     handleDeleteClick: (cardId) => {
       // open the modal
-      openDeleteModal();
+      cardDeleteModal.open();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
         api
@@ -132,7 +90,7 @@ function renderCard(cardData) {
             cardDeleteModal.setLoading(true);
             card.handleModalDeleteButton();
             cardDeleteModal.setLoading(false);
-            closeDeleteModal();
+            cardDeleteModal.close();
           })
           .catch((err) => {
             console.error(err);
@@ -228,12 +186,5 @@ function openProfileImageModal() {
   });
 }
 
-function openDeleteModal() {
-  deleteBtn.addEventListener("click", () => {
-    deleteBtnModal.open();
-  });
-}
 
-function closeDeleteModal() {
-  deleteBtnModal.classList.remove("modal_opened");
-}
+

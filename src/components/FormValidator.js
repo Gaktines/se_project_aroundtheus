@@ -1,18 +1,16 @@
 export default class FormValidator {
   constructor(validationOptions, formElement) {
-    this._formSelector = ".modal__form";
-    this._inputSelector = ".modal__input";
-    this._submitButtonSelector = ".modal__button";
-    this._inactiveButtonClass = "modal__button_disabled";
-    this._inputErrorClass = "modal__input_type_error";
-    this._errorClass = "modal__error_visible";
-
+    console.log(validationOptions);
+    this._formSelector = validationOptions.formSelector;
+    this._inputSelector = validationOptions.inputSelector;
+    this._submitButtonSelector = validationOptions.submitButtonSelector;
+    this._inactiveButtonClass = validationOptions.inactiveButtonClass;
+    this._inputErrorClass = validationOptions.inputErrorClass;
+    this._errorClass = validationOptions.errorClass;
     this._form = formElement;
-
     this._inputList = Array.from(
       this._form.querySelectorAll(this._inputSelector)
     );
-
     this._saveButton = this._form.querySelector(this._submitButtonSelector);
   }
 
