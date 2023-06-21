@@ -126,7 +126,8 @@ function handleEditModalFormSubmit(inputValues) {
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
     userInfo.setUserInfo(data);
     editModal.close();
-  });
+  }).catch((err) => {
+    console.error(err)});
   editModal.setLoading(false);
 }
 function handleAddCardFormSubmit(cardData) {
@@ -145,7 +146,6 @@ function handleAddCardFormSubmit(cardData) {
 
 function handleProfileImageForm(inputValues) {
   //evt.preventDefault();
-  console.log(inputValues);
   profileImageModal.setLoading(true);
   const profileImage = document.querySelector(".profile__image");
   const profileImageInput = document.querySelector("#profile-image-link");
@@ -154,7 +154,8 @@ function handleProfileImageForm(inputValues) {
   api.updateProfileImage(inputValues).then((res) => {
     console.log(res);
     profileImageModal.close();
-  });
+  }).catch((err) => {
+    console.error(err)});
 }
 
 profileEditButton.addEventListener("click", () => {

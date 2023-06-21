@@ -1,5 +1,5 @@
 import Popup from "./Popup.js";
-import Api from "./Api.js";
+import Api from "./API.js";
 
 export default class Card {
   constructor({
@@ -49,6 +49,13 @@ export default class Card {
   }
   processLikeClick(card) {
     const isLiked = card.isLiked();
+    const api = new Api({
+      baseUrl: "https://around.nomoreparties.co/v1/group-12",
+      headers: {
+        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
+        "Content-Type": "application/json",
+      },
+    });
     if (isLiked) {
       api.removeCardLike(card._cardId).then((data) => {
         this.setLikesInfo(data.likes);
