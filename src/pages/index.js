@@ -100,17 +100,19 @@ function renderCard(cardData) {
       cardDeleteModal.open();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
+        cardDeleteModal.setLoading(true); 
         api
           .deleteCard(cardId)
           .then((res) => {
-            cardDeleteModal.setLoading(true);
             card.handleModalDeleteButton();
-            cardDeleteModal.setLoading(false);
             cardDeleteModal.close();
           })
           .catch((err) => {
             console.error(err);
-          });
+          })
+          .finally(()=>{
+            cardDeleteModal.setLoading(false);
+          }); 
       });
       card.processLikeClick();
     },
@@ -122,25 +124,29 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
-  editModal.setLoading(true);
+  
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
+    editModal.setLoading(true);
     userInfo.setUserInfo(data);
     editModal.close();
   }).catch((err) => {
-    console.error(err)});
-  editModal.setLoading(false);
+    console.error(err)})
+    .finally(()=>{
+      editModal.setLoading(false);
+    }); 
 }
 function handleAddCardFormSubmit(cardData) {
   addCardModal.setLoading(true);
   api
     .addCard(cardData)
     .then((cardData) => {
-      addCardModal.setLoading(false);
       renderCard(cardData);
       addCardModal.close();
     })
     .catch((err) => {
       console.error(err);
+    }).finally(()=>{
+      addCardModal.setLoading(false);
     });
 }
 
@@ -148,14 +154,14 @@ function handleProfileImageForm(inputValues) {
   //evt.preventDefault();
   profileImageModal.setLoading(true);
   const profileImage = document.querySelector(".profile__image");
-  const profileImageInput = document.querySelector("#profile-image-link");
-  profileImage.src = profileImageInput.value;
-  profileImageModal.setLoading(false);
-  api.updateProfileImage(inputValues).then((res) => {
-    console.log(res);
+ api.updateProfileImage(inputValues).then((res) => {
+  profileImage.src = inputValues.link;
     profileImageModal.close();
   }).catch((err) => {
-    console.error(err)});
+    console.error(err)})
+    .finally(()=>{
+      profileImageModal.setLoading(false);
+    });
 }
 
 profileEditButton.addEventListener("click", () => {

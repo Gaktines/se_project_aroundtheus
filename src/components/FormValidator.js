@@ -1,6 +1,5 @@
 export default class FormValidator {
   constructor(validationOptions, formElement) {
-    console.log(validationOptions);
     this._formSelector = validationOptions.formSelector;
     this._inputSelector = validationOptions.inputSelector;
     this._submitButtonSelector = validationOptions.submitButtonSelector;
