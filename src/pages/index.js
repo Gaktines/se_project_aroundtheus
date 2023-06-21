@@ -73,6 +73,7 @@ const profileImageValidator = new FormValidator(
   validationOptions,
   profileImage
 );
+
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 profileImageValidator.enableValidation();
@@ -85,6 +86,7 @@ imageModal.setEventListeners();
 cardDeleteModal.setEventListeners();
 
 profileImageModal.setEventListeners();
+
 
 
 function renderCard(cardData) {
@@ -100,7 +102,7 @@ function renderCard(cardData) {
       cardDeleteModal.open();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
-        cardDeleteModal.setLoading(true); 
+        cardDeleteModal.renderLoading(true); 
         api
           .deleteCard(cardId)
           .then((res) => {
@@ -111,7 +113,7 @@ function renderCard(cardData) {
             console.error(err);
           })
           .finally(()=>{
-            cardDeleteModal.setLoading(false);
+            cardDeleteModal.renderLoading(false);
           }); 
       });
       card.processLikeClick();
@@ -126,17 +128,17 @@ function renderCard(cardData) {
 function handleEditModalFormSubmit(inputValues) {
   
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
-    editModal.setLoading(true);
+    editModal.renderLoading(true);
     userInfo.setUserInfo(data);
     editModal.close();
   }).catch((err) => {
     console.error(err)})
     .finally(()=>{
-      editModal.setLoading(false);
+      editModal.renderLoading(false);
     }); 
 }
 function handleAddCardFormSubmit(cardData) {
-  addCardModal.setLoading(true);
+  addCardModal.renderLoading(true);
   api
     .addCard(cardData)
     .then((cardData) => {
@@ -146,13 +148,13 @@ function handleAddCardFormSubmit(cardData) {
     .catch((err) => {
       console.error(err);
     }).finally(()=>{
-      addCardModal.setLoading(false);
+      addCardModal.renderLoading(false);
     });
 }
 
 function handleProfileImageForm(inputValues) {
   //evt.preventDefault();
-  profileImageModal.setLoading(true);
+  profileImageModal.renderLoading(true);
   const profileImage = document.querySelector(".profile__image");
  api.updateProfileImage(inputValues).then((res) => {
   profileImage.src = inputValues.link;
@@ -160,7 +162,7 @@ function handleProfileImageForm(inputValues) {
   }).catch((err) => {
     console.error(err)})
     .finally(()=>{
-      profileImageModal.setLoading(false);
+      profileImageModal.renderLoading(false);
     });
 }
 
@@ -175,6 +177,10 @@ addCardButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
   addCardModal.open();
 });
+profileImageButton.addEventListener("click", () => {
+  profileImageValidator.toggleButtonState();
+  imageModal.open();
+})
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",

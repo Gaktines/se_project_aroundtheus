@@ -48,7 +48,7 @@ export default class Card {
     //"#modal-delete-btn"
   }
   processLikeClick(card) {
-    const isLiked = card.isLiked();
+    const isLiked = this.isLiked();
     const api = new Api({
       baseUrl: "https://around.nomoreparties.co/v1/group-12",
       headers: {
@@ -57,7 +57,7 @@ export default class Card {
       },
     });
     if (isLiked) {
-      api.removeCardLike(card._cardId).then((data) => {
+      api.removeCardLike(this._cardId).then((data) => {
         this.setLikesInfo(data.likes);
       });
     } else {
