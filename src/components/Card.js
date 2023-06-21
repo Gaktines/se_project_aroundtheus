@@ -1,4 +1,5 @@
 import Popup from "./Popup.js";
+import Api from "./Api.js";
 
 export default class Card {
   constructor({
@@ -31,7 +32,7 @@ export default class Card {
     //".card__button"
     this._likeButton = this._cardElement.querySelector(".card__button");
     this._likeButton.addEventListener("click", () => {
-      this._processLikeClick(this);
+      this.processLikeClick(this);
     });
     //"#card-delete-button"
 
@@ -45,6 +46,18 @@ export default class Card {
         this._handleCardClick({ name: this._name, link: this._link })
       );
     //"#modal-delete-btn"
+  }
+  processLikeClick(card) {
+    const isLiked = card.isLiked();
+    if (isLiked) {
+      api.removeCardLike(card._cardId).then((data) => {
+        this.setLikesInfo(data.likes);
+      });
+    } else {
+      api.addCardLike(this._cardId).then((data) => {
+        this.setLikesInfo(data.likes);
+      });
+    }
   }
   setLikesInfo(likes) {
     this._likes = likes;

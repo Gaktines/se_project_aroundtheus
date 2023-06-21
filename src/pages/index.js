@@ -86,18 +86,7 @@ cardDeleteModal.setEventListeners();
 
 profileImageModal.setEventListeners();
 
-function processLikeClick(card) {
-  const isLiked = card.isLiked();
-  if (isLiked) {
-    api.removeCardLike(card._cardId).then((data) => {
-      card.setLikesInfo(data.likes);
-    });
-  } else {
-    api.addCardLike(card._cardId).then((data) => {
-      card.setLikesInfo(data.likes);
-    });
-  }
-}
+
 function renderCard(cardData) {
   const card = new Card({
     cardData,
@@ -123,8 +112,9 @@ function renderCard(cardData) {
             console.error(err);
           });
       });
+      card.processLikeClick();
     },
-    processLikeClick,
+   
 
     userId,
   });
