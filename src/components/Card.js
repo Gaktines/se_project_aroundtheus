@@ -26,6 +26,9 @@ export default class Card {
 
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
     this._likes = cardData.likes;
+    this._cardElement = this._getTemplate();
+    this._cardImage = this._cardElement.querySelector("#card-image");
+    this._cardName = this._cardElement.querySelector("#card-name");
   }
 
   _setEventListeners() {
@@ -40,8 +43,7 @@ export default class Card {
       this._handleDeleteClick(this._cardId);
     });
     //image
-    this._cardElement
-      .querySelector("#card-image")
+    this._cardImage
       .addEventListener("click", () =>
         this._handleCardClick({ name: this._name, link: this._link })
       );
@@ -104,11 +106,11 @@ export default class Card {
   }
 
   getCard() {
-    this._cardElement = this._getTemplate();
+    
     //get the card view
-    this._cardElement.querySelector("#card-image").src = this._link;
-    this._cardElement.querySelector("#card-name").textContent = this._name;
-    this._cardElement.querySelector("#card-image").alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardName.textContent = this._name;
+    this._cardImage.alt = this._name;
     this._deleteBtn = this._cardElement.querySelector("#card-delete-button");
     this.handleDeleteButton();
     //set the event listeners

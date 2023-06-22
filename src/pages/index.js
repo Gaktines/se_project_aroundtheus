@@ -34,9 +34,7 @@ import {
 } from "../utils/constants.js";
 
 
-profileImageButton.addEventListener("click", () => {
-  profileImageModal.open();
-});
+
 const editFormValidator = new FormValidator(
   validationOptions,
   profileEditModal
@@ -176,10 +174,7 @@ addCardButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
   addCardModal.open();
 });
-profileImageButton.addEventListener("click", () => {
-  profileImageValidator.toggleButtonState();
-  profileImageModal.open();
-})
+
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -216,6 +211,7 @@ openProfileImageModal();
 
 function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {
+    profileImageValidator.toggleButtonState();
     profileImageModal.open();
   });
 }
