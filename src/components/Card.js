@@ -16,14 +16,14 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._cardTemplateInput =
       document.querySelector("#card-template").content.firstElementChild;
-    
+
     this._handleCardClick = _handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     //this._handleLikeClick = handleLikeClick;
     this._userId = userId;
     this._currentUserId = cardData.owner._id;
     this._processLikeClick = processLikeClick;
-    
+
     this._modalDeleteButton = document.querySelector("#modal-delete-btn");
     this._likes = cardData.likes;
   }
