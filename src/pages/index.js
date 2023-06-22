@@ -189,6 +189,7 @@ const api = new Api({
   },
 }); // log the error to the console
 
+
 let section;
 let userId;
 
