@@ -102,7 +102,7 @@ function renderCard(cardData) {
       cardDeleteModal.open();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
-        cardDeleteModal.renderLoading(true); 
+        cardDeleteModal.renderLoading(true);  
         api
           .deleteCard(cardId)
           .then((res) => {
@@ -126,9 +126,8 @@ function renderCard(cardData) {
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
-  
+  editModal.renderLoading(true);
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
-    editModal.renderLoading(true);
     userInfo.setUserInfo(data);
     editModal.close();
   }).catch((err) => {
