@@ -7,47 +7,36 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/API.js";
+import {
+  profileEditButton,
+  profileImage,
+  profileImageSaveButton,
+  profileImageButton,
+  validationOptions,
+  deleteBtnModal,
+  imageModalCloseBtn,
+  cardsWrap,
+  addCardForm,
+  addCardLinkInput,
+  addCardTitleInput,
+  addCardButton,
+  addCardModalCloseButton,
+  addCardEditModal,
+  deleteBtn,
+  cardTemplateInput,
+  profileEditForm,
+  profileAboutInput,
+  profileTitleInput,
+  profileAbout,
+  profileTitle,
+  profileEditModal,
+  profileModalCloseButton,
+} from "../utils/constants.js";
 
 
-
-const profileEditButton = document.querySelector("#profile-edit-button");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileModalCloseButton = document.querySelector(
-  "#profile-modal-close-button"
-);
-const profileTitle = document.querySelector("#profile-title");
-const profileAbout = document.querySelector("#profile-about");
-const profileTitleInput = document.querySelector("#profile-modal-title");
-const profileAboutInput = document.querySelector("#modal-about");
-const profileEditForm = profileEditModal.querySelector("#profile-modal-form");
-const cardTemplateInput =
-  document.querySelector("#card-template").content.firstElementChild;
-
-const addCardEditModal = document.querySelector("#add-card-edit-modal");
-const addCardModalCloseButton = document.querySelector(
-  "#add-card-modal-close-button"
-);
-const addCardButton = document.querySelector("#profile-add-button");
-const addCardTitleInput = document.querySelector("#add-card-modal-title");
-const addCardLinkInput = document.querySelector("#add-card-link");
-
-const addCardForm = addCardEditModal.querySelector("#add-card-modal-form");
-const cardsWrap = document.querySelector("#card-list");
-
-const imageModalCloseBtn = document.querySelector("#modal-close-button");
-const deleteBtnModal = document.querySelector("#modal-delete");
-const validationOptions = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-const profileImageButton = document.querySelector(".profile__image-button");
-const deleteBtn = document.querySelector("#card-delete-button");
-const profileImageSaveButton = document.querySelector(".modal__button_save");
-const profileImage = document.querySelector("#modal-profile-image");
+profileImageButton.addEventListener("click", () => {
+  profileImageModal.open();
+});
 const editFormValidator = new FormValidator(
   validationOptions,
   profileEditModal
@@ -56,10 +45,6 @@ const addCardFormValidator = new FormValidator(
   validationOptions,
   addCardEditModal
 );
-
-editFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
-
 const userInfo = new UserInfo({
   name: ".profile__title",
   about: ".profile__about",
@@ -69,48 +54,40 @@ const editModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
   handleFormSubmit: handleEditModalFormSubmit,
 });
-editModal.setEventListeners();
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-edit-modal",
   handleFormSubmit: handleAddCardFormSubmit,
 });
-addCardModal.setEventListeners();
 const imageModal = new PopupWithImage({
   popupSelector: "#image-modal",
 });
-imageModal.setEventListeners();
 const cardDeleteModal = new PopupWithForm({
   popupSelector: "#modal-delete",
   handleFormSubmit: () => {},
 });
-cardDeleteModal.setEventListeners();
 const profileImageModal = new PopupWithForm({
   popupSelector: "#modal-profile-image",
   handleFormSubmit: handleProfileImageForm,
 });
-profileImageModal.setEventListeners();
 const profileImageValidator = new FormValidator(
   validationOptions,
   profileImage
 );
-profileImageValidator.enableValidation();
-profileImageButton.addEventListener("click", () => {
-  profileImageModal.open();
-});
 
-function processLikeClick(card) {
-  const isLiked = card.isLiked();
-    if (isLiked) {
-      api.removeCardLike(card._cardId).then((data) => {
-        card.setLikesInfo(data.likes);
-      });
-    } else {
-      api.addCardLike(card._cardId).then((data) => {
-        card.setLikesInfo(data.likes);
-      });
-    }
-  }
-  
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+profileImageValidator.enableValidation();
+editModal.setEventListeners();
+
+addCardModal.setEventListeners();
+
+imageModal.setEventListeners();
+
+cardDeleteModal.setEventListeners();
+
+profileImageModal.setEventListeners();
+
+
 
 function renderCard(cardData) {
   const card = new Card({
@@ -122,23 +99,26 @@ function renderCard(cardData) {
     },
     handleDeleteClick: (cardId) => {
       // open the modal
-      openDeleteModal();
+      cardDeleteModal.open();
       // set a submit action
       cardDeleteModal.setSubmitAction(() => {
+        cardDeleteModal.renderLoading(true);  
         api
           .deleteCard(cardId)
           .then((res) => {
-            cardDeleteModal.setLoading(true);
             card.handleModalDeleteButton();
-            cardDeleteModal.setLoading(false);
-            closeDeleteModal();
+            cardDeleteModal.close();
           })
           .catch((err) => {
             console.error(err);
-          });
+          })
+          .finally(()=>{
+            cardDeleteModal.renderLoading(false);
+          }); 
       });
+      card.processLikeClick();
     },
-    processLikeClick,
+   
 
     userId,
   });
@@ -147,39 +127,43 @@ function renderCard(cardData) {
 }
 
 function handleEditModalFormSubmit(inputValues) {
-  editModal.setLoading(true);
+  editModal.renderLoading(true);
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {
     userInfo.setUserInfo(data);
     editModal.close();
-  });
-  editModal.setLoading(false);
+  }).catch((err) => {
+    console.error(err)})
+    .finally(()=>{
+      editModal.renderLoading(false);
+    }); 
 }
 function handleAddCardFormSubmit(cardData) {
-  addCardModal.setLoading(true);
+  addCardModal.renderLoading(true);
   api
     .addCard(cardData)
     .then((cardData) => {
-      addCardModal.setLoading(false);
       renderCard(cardData);
       addCardModal.close();
     })
     .catch((err) => {
       console.error(err);
+    }).finally(()=>{
+      addCardModal.renderLoading(false);
     });
 }
 
 function handleProfileImageForm(inputValues) {
   //evt.preventDefault();
-  console.log(inputValues);
-  profileImageModal.setLoading(true);
+  profileImageModal.renderLoading(true);
   const profileImage = document.querySelector(".profile__image");
-  const profileImageInput = document.querySelector("#profile-image-link");
-  profileImage.src = profileImageInput.value;
-  profileImageModal.setLoading(false);
-  api.updateProfileImage(inputValues).then((res) => {
-    console.log(res);
+ api.updateProfileImage(inputValues).then((res) => {
+  profileImage.src = inputValues.link;
     profileImageModal.close();
-  });
+  }).catch((err) => {
+    console.error(err)})
+    .finally(()=>{
+      profileImageModal.renderLoading(false);
+    });
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -193,6 +177,10 @@ addCardButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
   addCardModal.open();
 });
+profileImageButton.addEventListener("click", () => {
+  profileImageValidator.toggleButtonState();
+  profileImageModal.open();
+})
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -214,7 +202,11 @@ api
       ".cards__list"
     );
     section.renderItems();
-    userInfo.setUserInfo({ name: userData.name, about: userData.about, avatar: userData.avatar });
+    userInfo.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+      avatar: userData.avatar,
+    });
   })
   .catch((err) => {
     console.error(err);
@@ -226,15 +218,4 @@ function openProfileImageModal() {
   profileImageButton.addEventListener("click", () => {
     profileImageModal.open();
   });
-}
-
-function openDeleteModal() {
-  deleteBtn.addEventListener("click", () => {
-    deleteModal.open();
-  });
-  
-}
-
-function closeDeleteModal() {
-  deleteBtnModal.classList.remove("modal_opened");
 }

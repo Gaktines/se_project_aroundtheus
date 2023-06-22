@@ -120,7 +120,4 @@ export default class Api {
     return fetch(url, options).then(this._checkResponse);
   }
 }
-/* I went back through the history to review your comments
-in regards the API but I couldn't view the comments since 
-I cleared them out.  The only reason I cleared them out
-is because I thought I had corrected all of them.*/
+
