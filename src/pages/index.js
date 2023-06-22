@@ -178,7 +178,7 @@ addCardButton.addEventListener("click", () => {
 });
 profileImageButton.addEventListener("click", () => {
   profileImageValidator.toggleButtonState();
-  imageModal.open();
+  profileImageModal.open();
 })
 
 const api = new Api({
