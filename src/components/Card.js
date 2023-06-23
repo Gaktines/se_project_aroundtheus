@@ -1,5 +1,6 @@
 import Popup from "./Popup.js";
-import Api from "./API.js";
+
+
 
 export default class Card {
   constructor({
@@ -35,7 +36,7 @@ export default class Card {
     //".card__button"
     this._likeButton = this._cardElement.querySelector(".card__button");
     this._likeButton.addEventListener("click", () => {
-      this.processLikeClick(this);
+      this._processLikeClick(this);
     });
     //"#card-delete-button"
 
@@ -49,25 +50,7 @@ export default class Card {
       );
     //"#modal-delete-btn"
   }
-  processLikeClick(card) {
-    const isLiked = this.isLiked();
-    const api = new Api({
-      baseUrl: "https://around.nomoreparties.co/v1/group-12",
-      headers: {
-        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-        "Content-Type": "application/json",
-      },
-    });
-    if (isLiked) {
-      api.removeCardLike(this._cardId).then((data) => {
-        this.setLikesInfo(data.likes);
-      });
-    } else {
-      api.addCardLike(this._cardId).then((data) => {
-        this.setLikesInfo(data.likes);
-      });
-    }
-  }
+  
   setLikesInfo(likes) {
     this._likes = likes;
     this._updateLikesView();
@@ -85,8 +68,8 @@ export default class Card {
   }
 
   isLiked() {
-    return this._likes.some(() => {
-      return this._currenUserId === this._likes._id;
+    return this._likes.some((like) => {
+      return this._userId === like._id;
     });
   }
   handleModalDeleteButton() {

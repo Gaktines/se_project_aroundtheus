@@ -116,11 +116,28 @@ function renderCard(cardData) {
       });
       
     },
+    processLikeClick,
     userId,
   });
-  card.processLikeClick();
+
   section.addItem(card.getCard());
 }
+function processLikeClick(card) {
+  const isLiked = card.isLiked();
+  if (isLiked) {
+    () => {
+      this.setLikesInfo(data.likes);
+    }
+    api.removeCardLike(card._cardId).then((data) => {
+      this.setLikesInfo(data.likes);
+    });
+  } else {
+    api.addCardLike(this._cardId).then((data) => {
+      this.setLikesInfo(data.likes);
+    });
+  }
+}
+
 function handleEditModalFormSubmit(inputValues) {
   editModal.renderLoading(true);
   api.updateUserInfo(inputValues.name, inputValues.about).then((data) => {

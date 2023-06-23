@@ -83,10 +83,7 @@
         }
       );
     }
-    handleDeleteButton() {
-      this.deleteBtnModal = document.querySelector("#modal-delete");
-      this.deleteBtnModal.classList.add(".modal_opened");
-    }
+    
     handleCardLikes() {
       return Promise.all([this.addCardLike(), this.removeCardLike()]);
     }
