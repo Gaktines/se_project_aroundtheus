@@ -125,9 +125,6 @@ function renderCard(cardData) {
 function processLikeClick(card) {
   const isLiked = card.isLiked();
   if (isLiked) {
-    () => {
-      this.setLikesInfo(data.likes);
-    }
     api.removeCardLike(card._cardId).then((data) => {
       this.setLikesInfo(data.likes);
     }).catch((err) => {
