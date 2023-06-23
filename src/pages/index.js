@@ -130,10 +130,14 @@ function processLikeClick(card) {
     }
     api.removeCardLike(card._cardId).then((data) => {
       this.setLikesInfo(data.likes);
+    }).catch((err) => {
+      console.error(err);
     });
   } else {
     api.addCardLike(this._cardId).then((data) => {
       this.setLikesInfo(data.likes);
+    }).catch((err) => {
+      console.error(err);
     });
   }
 }
@@ -167,9 +171,8 @@ function handleAddCardFormSubmit(cardData) {
 function handleProfileImageForm(inputValues) {
   //evt.preventDefault();
   profileImageModal.renderLoading(true);
-  const profileImage = document.querySelector(".profile__image");
  api.updateProfileImage(inputValues).then((res) => {
-  profileImage.src = inputValues.link;
+  userInfo.setUserInfo(res);
     profileImageModal.close();
   }).catch((err) => {
     console.error(err)})

@@ -9,14 +9,11 @@
   });*/
 
   export default class Api {
-    constructor(name, link) {
+    constructor(name, link, baseURL, headers) {
       this.name = name;
       this.link = link;
-      this._baseURL = "https://around.nomoreparties.co/v1/group-12";
-      this._headers = {
-        authorization: "bb2f5d86-90ca-441b-9ac8-a1ee02058df5",
-        "Content-Type": "application/json",
-      };
+      this._baseURL = baseURL;
+      this._headers = headers;
     }
     getAppInfo() {
       return Promise.all([this.getInitialCards(), this.getUserInfo()]);
