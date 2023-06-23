@@ -9,10 +9,8 @@
   });*/
 
   export default class Api {
-    constructor(name, link, baseURL, headers) {
-      this.name = name;
-      this.link = link;
-      this._baseURL = baseURL;
+    constructor({ baseUrl, headers}) {
+      this._baseURL = baseUrl;
       this._headers = headers;
     }
     getAppInfo() {
