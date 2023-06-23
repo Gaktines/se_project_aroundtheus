@@ -114,13 +114,11 @@ function renderCard(cardData) {
             cardDeleteModal.renderLoading(false);
           }); 
       });
-      card.processLikeClick();
+      
     },
-   
-
     userId,
   });
-
+  card.processLikeClick();
   section.addItem(card.getCard());
 }
 function handleEditModalFormSubmit(inputValues) {
